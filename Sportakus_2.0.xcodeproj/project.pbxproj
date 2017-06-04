@@ -21,8 +21,8 @@
 		0ABE2C7B1EDADAF300D3D887 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C7A1EDADAF300D3D887 /* ExtensionDelegate.swift */; };
 		0ABE2C7D1EDADAF300D3D887 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C7C1EDADAF300D3D887 /* NotificationController.swift */; };
 		0ABE2C7F1EDADAF300D3D887 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABE2C7E1EDADAF300D3D887 /* Assets.xcassets */; };
-		0ABE2C941EDADBD700D3D887 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C921EDADBD700D3D887 /* Database.xcdatamodeld */; };
-		0ABE2C951EDADBD700D3D887 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C921EDADBD700D3D887 /* Database.xcdatamodeld */; };
+		0ABE2C941EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C921EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld */; };
+		0ABE2C951EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C921EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld */; };
 		0AE52CDB1EE2C46400B009BB /* UebersichtInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDA1EE2C46400B009BB /* UebersichtInterfaceController.swift */; };
 		0AE52CDD1EE2CF7D00B009BB /* HammerCurlsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDC1EE2CF7D00B009BB /* HammerCurlsExtension.swift */; };
 		0AE52CE01EE2D0AB00B009BB /* TimerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDF1EE2D0AB00B009BB /* TimerExtensions.swift */; };
@@ -32,6 +32,8 @@
 		0AF492891EE1A8D200A2597E /* UebungenInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF492881EE1A8D200A2597E /* UebungenInterfaceController.swift */; };
 		0AF4928B1EE1A9CA00A2597E /* UebungsUebersichtInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4928A1EE1A9CA00A2597E /* UebungsUebersichtInterfaceController.swift */; };
 		0AF4928D1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4928C1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift */; };
+		73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */; };
+		73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +98,7 @@
 		0ABE2C7C1EDADAF300D3D887 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		0ABE2C7E1EDADAF300D3D887 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ABE2C801EDADAF300D3D887 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0ABE2C931EDADBD700D3D887 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
+		0ABE2C931EDADBD700D3D887 /* Sportakus_2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sportakus_2.0.xcdatamodel; sourceTree = "<group>"; };
 		0AE52CDA1EE2C46400B009BB /* UebersichtInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebersichtInterfaceController.swift; sourceTree = "<group>"; };
 		0AE52CDC1EE2CF7D00B009BB /* HammerCurlsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HammerCurlsExtension.swift; sourceTree = "<group>"; };
 		0AE52CDF1EE2D0AB00B009BB /* TimerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerExtensions.swift; sourceTree = "<group>"; };
@@ -106,6 +108,8 @@
 		0AF492881EE1A8D200A2597E /* UebungenInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungenInterfaceController.swift; sourceTree = "<group>"; };
 		0AF4928A1EE1A9CA00A2597E /* UebungsUebersichtInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungsUebersichtInterfaceController.swift; sourceTree = "<group>"; };
 		0AF4928C1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurchfuehrungInterfaceController.swift; sourceTree = "<group>"; };
+		73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanErstellenViewController.swift; sourceTree = "<group>"; };
+		73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungsListeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +137,7 @@
 				0ABE2C661EDADAF300D3D887 /* Sportakus_2.0 WatchKit App */,
 				0ABE2C751EDADAF300D3D887 /* Sportakus_2.0 WatchKit Extension */,
 				0ABE2C511EDADAF300D3D887 /* Products */,
-				0ABE2C921EDADBD700D3D887 /* Database.xcdatamodeld */,
+				0ABE2C921EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +161,8 @@
 				0ABE2C5C1EDADAF300D3D887 /* LaunchScreen.storyboard */,
 				0ABE2C5F1EDADAF300D3D887 /* Info.plist */,
 				0AF492821EE19FDD00A2597E /* CommunicationToWatchTest.swift */,
+				73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */,
+				73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */,
 			);
 			path = Sportakus_2.0;
 			sourceTree = "<group>";
@@ -349,8 +355,10 @@
 			files = (
 				0ABE2C561EDADAF300D3D887 /* ViewController.swift in Sources */,
 				0AF492831EE19FDD00A2597E /* CommunicationToWatchTest.swift in Sources */,
-				0ABE2C941EDADBD700D3D887 /* Database.xcdatamodeld in Sources */,
+				73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */,
+				0ABE2C941EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */,
 				0ABE2C541EDADAF300D3D887 /* AppDelegate.swift in Sources */,
+				73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +373,7 @@
 				0ABE2C7B1EDADAF300D3D887 /* ExtensionDelegate.swift in Sources */,
 				0AE52CDD1EE2CF7D00B009BB /* HammerCurlsExtension.swift in Sources */,
 				0AE52CDB1EE2C46400B009BB /* UebersichtInterfaceController.swift in Sources */,
-				0ABE2C951EDADBD700D3D887 /* Database.xcdatamodeld in Sources */,
+				0ABE2C951EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */,
 				0ABE2C791EDADAF300D3D887 /* InterfaceController.swift in Sources */,
 				0AE52CE01EE2D0AB00B009BB /* TimerExtensions.swift in Sources */,
 				0AF492891EE1A8D200A2597E /* UebungenInterfaceController.swift in Sources */,
@@ -648,14 +656,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0ABE2C921EDADBD700D3D887 /* Database.xcdatamodeld */ = {
+		0ABE2C921EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0ABE2C931EDADBD700D3D887 /* Database.xcdatamodel */,
+				0ABE2C931EDADBD700D3D887 /* Sportakus_2.0.xcdatamodel */,
 			);
-			currentVersion = 0ABE2C931EDADBD700D3D887 /* Database.xcdatamodel */;
-			name = Database.xcdatamodeld;
-			path = Sportakus_2.0/Database.xcdatamodeld;
+			currentVersion = 0ABE2C931EDADBD700D3D887 /* Sportakus_2.0.xcdatamodel */;
+			name = Sportakus_2.0.xcdatamodeld;
+			path = Sportakus_2.0/Sportakus_2.0.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
