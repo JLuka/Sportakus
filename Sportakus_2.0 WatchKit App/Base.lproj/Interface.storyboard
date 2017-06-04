@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Sportakus_2_0_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label width="1" alignment="left" text="Sportakus" textAlignment="center" id="W2S-U2-3BC">
+                            <fontDescription key="font" type="system" pointSize="26"/>
+                        </label>
+                        <button width="126" height="126" alignment="center" verticalAlignment="center" title="Training beginnen" backgroundImage="StartBackground" id="Sml-dh-BTB">
+                            <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
+                            <connections>
+                                <action selector="pushNextController" destination="AgC-eL-Hgc" id="UfW-3F-Eq9"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Plaene-->
+        <scene sceneID="sPq-X3-B5R">
+            <objects>
+                <controller identifier="Plaene" id="n46-mU-RxL" customClass="PlaeneInterfaceController" customModule="Sportakus_2_0_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="center" text="Pläne" textAlignment="center" id="hNO-Pt-dem">
+                            <fontDescription key="font" type="system" pointSize="23"/>
+                        </label>
+                        <table alignment="left" id="OPc-6z-rIt">
+                            <items>
+                                <tableRow identifier="Table" id="b7g-5U-yt8" customClass="TableRowController" customModule="Sportakus_2_0_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Pu4-Je-6ul">
+                                        <items>
+                                            <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="7S8-B3-Trq"/>
+                                        </items>
+                                        <color key="backgroundColor" red="0.52156862749999999" green="0.80000000000000004" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="7S8-B3-Trq" id="HdE-Y8-FV5"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="OPc-6z-rIt" id="Og3-A1-ucP"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="411" y="345"/>
+        </scene>
+        <!--Uebungen-->
+        <scene sceneID="Zqc-fN-YhP">
+            <objects>
+                <controller identifier="Uebungen" id="t8j-l4-JJG" customClass="UebungenInterfaceController" customModule="Sportakus_2_0_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="center" text="Übungen" textAlignment="center" id="h3m-h3-BjA">
+                            <fontDescription key="font" type="system" pointSize="23"/>
+                        </label>
+                        <table alignment="left" id="3Rb-K6-flB">
+                            <items>
+                                <tableRow identifier="UebungenTable" id="1lA-dm-7q1" customClass="TableRowController" customModule="Sportakus_2_0_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="c6d-rr-BnZ">
+                                        <items>
+                                            <label width="1" alignment="left" verticalAlignment="center" text="Label" textAlignment="center" id="feX-Fs-1gr"/>
+                                        </items>
+                                        <color key="backgroundColor" red="0.52156862749999999" green="0.80000000000000004" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="uebungenLabel" destination="feX-Fs-1gr" id="FW3-V5-JNp"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <button width="1" height="38" alignment="left" title="Training beenden" id="rU4-3Q-0Ov">
+                            <color key="backgroundColor" red="0.96470588239999999" green="0.66274509800000003" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="17"/>
+                            <connections>
+                                <action selector="trainingBeendenButtonPressed" destination="t8j-l4-JJG" id="AOF-Pe-dDr"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="3Rb-K6-flB" id="HW3-ZD-2hz"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="601.53846153846155" y="344.79487179487182"/>
+        </scene>
+        <!--UebungsUebersicht-->
+        <scene sceneID="Qxp-Wn-tmm">
+            <objects>
+                <controller identifier="UebungsUebersicht" id="Q5k-wQ-gsl" customClass="UebungsUebersichtInterfaceController" customModule="Sportakus_2_0_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="center" text="Label" textAlignment="left" id="Td8-cc-XZu">
+                            <fontDescription key="font" type="system" pointSize="24"/>
+                        </label>
+                        <group width="136" alignment="left" id="gkk-ty-hqw">
+                            <items>
+                                <label width="84" alignment="left" text="Gewicht:" id="bTg-MV-eHR">
+                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                </label>
+                                <label width="57" alignment="left" text="Label" id="elc-uv-nXb">
+                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" height="28" alignment="center" verticalAlignment="center" id="i6b-rD-QZk">
+                            <items>
+                                <label alignment="left" verticalAlignment="center" text="  Sätze" textAlignment="center" id="6Iw-Ko-CUr">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
+                                <label alignment="right" verticalAlignment="center" text="Wiederholungen  " textAlignment="center" id="JAX-1T-aQ7">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" height="36" alignment="center" verticalAlignment="bottom" id="Hdb-hi-Tob">
+                            <items>
+                                <label width="39" alignment="left" text="  Label" textAlignment="center" id="met-Jj-bgi">
+                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                </label>
+                                <label width="94" alignment="right" text="Label" textAlignment="center" id="P4l-zi-yej">
+                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                </label>
+                            </items>
+                        </group>
+                        <button width="1" height="41" alignment="left" verticalAlignment="bottom" title="Start" id="5BK-4O-psn">
+                            <color key="backgroundColor" red="0.52156862749999999" green="0.80000000000000004" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="20"/>
+                            <connections>
+                                <action selector="startExerciseButtonPressed" destination="Q5k-wQ-gsl" id="CqI-KH-oJK"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="gewichtLabel" destination="elc-uv-nXb" id="ndG-Sx-s0X"/>
+                        <outlet property="saetzeLabel" destination="met-Jj-bgi" id="ewm-0X-8v1"/>
+                        <outlet property="uebungsName" destination="Td8-cc-XZu" id="J86-7j-cES"/>
+                        <outlet property="wiederholungsLabel" destination="P4l-zi-yej" id="Nhr-fr-ojN"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="792" y="345"/>
+        </scene>
+        <!--Durchfuehrung-->
+        <scene sceneID="bxH-nb-ZyR">
+            <objects>
+                <controller identifier="Durchfuehrung" id="GJP-7F-lGt" customClass="DurchfuehrungInterfaceController" customModule="Sportakus_2_0_WatchKit_Extension">
+                    <items>
+                        <group width="1" alignment="left" id="9lM-1Z-NGR">
+                            <items>
+                                <label width="103" alignment="left" text="Label" id="akj-Uh-INB">
+                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                </label>
+                                <label width="47" alignment="right" text="Label" textAlignment="right" id="J53-0g-Ycz">
+                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                </label>
+                            </items>
+                        </group>
+                        <button width="89" height="88" alignment="center" verticalAlignment="center" title="Button" backgroundImage="DurchführungBackground" id="dkn-ga-MKe">
+                            <fontDescription key="font" type="system" pointSize="20"/>
+                            <connections>
+                                <action selector="startButtonPressed" destination="GJP-7F-lGt" id="tWt-ya-7ES"/>
+                            </connections>
+                        </button>
+                        <button width="129" height="33" alignment="center" verticalAlignment="bottom" title="Stop" id="bpa-VE-ZUZ">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96862745100000003" green="0.66274509800000003" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="16"/>
+                            <connections>
+                                <action selector="stopButtonPressed" destination="GJP-7F-lGt" id="UuB-BP-8I4"/>
+                            </connections>
+                        </button>
+                        <group width="1" alignment="left" verticalAlignment="bottom" id="bYd-b6-xIs">
+                            <items>
+                                <label alignment="left" verticalAlignment="bottom" text="  Sätze:" id="3YM-Kk-axO">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
+                                <label alignment="left" text="Label" id="JZx-Al-K6k">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="gewichtLabel" destination="J53-0g-Ycz" id="npo-ef-TlM"/>
+                        <outlet property="saetzeLabel" destination="JZx-Al-K6k" id="If9-Xv-Dha"/>
+                        <outlet property="saetzeWortLabel" destination="3YM-Kk-axO" id="AEZ-uJ-gQl"/>
+                        <outlet property="uebungsNameLabel" destination="akj-Uh-INB" id="k8f-Np-Obt"/>
+                        <outlet property="wiederholungenLabel" destination="dkn-ga-MKe" id="TER-mY-MHQ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="983" y="345"/>
+        </scene>
+        <!--Uebersicht-->
+        <scene sceneID="9HG-C0-dsi">
+            <objects>
+                <controller identifier="Uebersicht" id="19E-yH-hc8" customClass="UebersichtInterfaceController" customModule="Sportakus_2_0_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="left" text="Übersicht" textAlignment="center" id="ul3-Ng-8YF">
+                            <fontDescription key="font" type="system" pointSize="25"/>
+                        </label>
+                        <group width="1" alignment="left" verticalAlignment="center" id="aFe-Jc-hWd">
+                            <items>
+                                <label width="69" alignment="left" verticalAlignment="center" text="Satz:" id="YpG-OO-1hX">
+                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                </label>
+                                <label width="84" alignment="right" verticalAlignment="center" text="Label" textAlignment="left" id="t2d-6u-Qdy">
+                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" verticalAlignment="center" id="GRb-HA-Yq3">
+                            <items>
+                                <label width="69" alignment="left" verticalAlignment="center" text="Wdh:" id="Hhm-pY-86n">
+                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                </label>
+                                <label width="84" alignment="right" verticalAlignment="center" text="Label" textAlignment="left" id="MeC-SI-3qk">
+                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" verticalAlignment="center" id="gGy-E4-rvf">
+                            <items>
+                                <label width="69" alignment="left" verticalAlignment="center" text="Zeit:" id="ZFh-dV-z3y">
+                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                </label>
+                                <label width="47" alignment="right" verticalAlignment="center" text="Sek" id="Alh-th-y35">
+                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                </label>
+                                <label width="35" alignment="left" verticalAlignment="center" text="1" textAlignment="left" id="rF9-if-Zpm">
+                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                </label>
+                            </items>
+                        </group>
+                        <button width="1" height="41" alignment="left" verticalAlignment="bottom" title="Weiter" id="dLL-Q9-eJf">
+                            <color key="backgroundColor" red="0.52156862749999999" green="0.80000000000000004" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="20"/>
+                            <connections>
+                                <action selector="weiterButtonClicked" destination="19E-yH-hc8" id="xib-CW-d4Q"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Übung beenden" id="kzf-Tj-iUC">
+                            <color key="backgroundColor" red="0.96862745100000003" green="0.66274509800000003" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="20"/>
+                            <connections>
+                                <action selector="uebungBeendenButtonClicked" destination="19E-yH-hc8" id="bVm-0h-Ebe"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="beendenButton" destination="kzf-Tj-iUC" id="Fq1-bI-pMY"/>
+                        <outlet property="satzLabel" destination="t2d-6u-Qdy" id="1c8-fW-9mW"/>
+                        <outlet property="timeLabel" destination="rF9-if-Zpm" id="vJI-GW-lzF"/>
+                        <outlet property="ueberschriftLabel" destination="ul3-Ng-8YF" id="J8E-cp-EQJ"/>
+                        <outlet property="wiederholungLabel" destination="MeC-SI-3qk" id="iQ4-yL-ifI"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1188" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Sportakus_2_0_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sportakus_2.0 WatchKit Extension/UebungenInterfaceController.swift"
+            timestampString = "518193307.271086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sportakus_2_0_WatchKit_Extension.UebungenInterfaceController.__deallocating_deinit"
+                  moduleName = "Sportakus_2.0 WatchKit Extension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jannislindenberg/Documents/Studium/6.%20Semester/Mobile%20Computing/App%20new/Sportakus2.0/Sportakus_2.0%20WatchKit%20Extension/UebungenInterfaceController.swift"
+                  timestampString = "518193307.794575"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sportakus_2_0_WatchKit_Extension.UebungenInterfaceController.init () -&gt; Sportakus_2_0_WatchKit_Extension.UebungenInterfaceController"
+                  moduleName = "Sportakus_2.0 WatchKit Extension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jannislindenberg/Documents/Studium/6.%20Semester/Mobile%20Computing/App%20new/Sportakus2.0/Sportakus_2.0%20WatchKit%20Extension/UebungenInterfaceController.swift"
+                  timestampString = "518193307.802228"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sportakus_2_0_WatchKit_Extension.UebungenInterfaceController.__allocating_init () -&gt; Sportakus_2_0_WatchKit_Extension.UebungenInterfaceController"
+                  moduleName = "Sportakus_2.0 WatchKit Extension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jannislindenberg/Documents/Studium/6.%20Semester/Mobile%20Computing/App%20new/Sportakus2.0/Sportakus_2.0%20WatchKit%20Extension/UebungenInterfaceController.swift"
+                  timestampString = "518193307.804818"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "3">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
