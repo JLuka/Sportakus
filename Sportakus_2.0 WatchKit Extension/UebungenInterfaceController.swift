@@ -13,9 +13,9 @@ import Foundation
 import WatchConnectivity
 
 
-class UebungenInterfaceController: WKInterfaceController {
+class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
 
-    
+    var wcSession: WCSession!
     @IBOutlet var table: WKInterfaceTable!
     
     let defaults = UserDefaults.standard
@@ -26,6 +26,10 @@ class UebungenInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        
+        wcSession = WCSession.default()
+        wcSession.delegate = self
+        wcSession.activate()
         
         self.context = defaults.object(forKey: "welcherPlan") as! String
         uebungen = defaults.object(forKey: self.context) as! [String]
@@ -106,7 +110,41 @@ class UebungenInterfaceController: WKInterfaceController {
     //Button zum Beenden des Trainings und zum senden der Trainingsdaten an das Handy
     @IBAction func trainingBeendenButtonPressed() {
         
+        //Current Time and Date
+        let date : Date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+        var todaysDate = dateFormatter.string(from: date)
+        
+        //TrainingsplanName
+        var plaene = defaults.object(forKey: "plaene") as! [String]
+        //print(plaene[Int(context)!-1])
+        
+        
+        var firstMessage = [todaysDate, plaene[Int(context)!-1]]
+        
+        let message = ["allgemeines": firstMessage]
+        
+        
+        //Send Messages to Watch
+        wcSession.sendMessage(message, replyHandler: nil, errorHandler: {
+            error in
+            print(error.localizedDescription)
+        })
+        
+        
         
         
     }
+    
+    
+    public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
+        print ("error in activationDidCompleteWith error")
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    
+    }
+    
+    
 }

@@ -24,6 +24,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         wcSession = WCSession.default()
         wcSession.delegate = self
         wcSession.activate()
+        
+        
+        //Pläne löschen
+//        if let bundle = Bundle.main.bundleIdentifier {
+//            UserDefaults.standard.removePersistentDomain(forName: bundle)
+//        }
     }
     
     
@@ -43,6 +49,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         
+        if let bundle = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundle)
+        }
         
         var wieVielePlaene = message.count
         

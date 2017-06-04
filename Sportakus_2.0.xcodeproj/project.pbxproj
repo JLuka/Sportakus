@@ -26,6 +26,7 @@
 		0AE52CDB1EE2C46400B009BB /* UebersichtInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDA1EE2C46400B009BB /* UebersichtInterfaceController.swift */; };
 		0AE52CDD1EE2CF7D00B009BB /* HammerCurlsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDC1EE2CF7D00B009BB /* HammerCurlsExtension.swift */; };
 		0AE52CE01EE2D0AB00B009BB /* TimerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDF1EE2D0AB00B009BB /* TimerExtensions.swift */; };
+		0AEEC6351EE44015006C7B98 /* DatenEmpfangenTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEC6341EE44015006C7B98 /* DatenEmpfangenTestViewController.swift */; };
 		0AF492831EE19FDD00A2597E /* CommunicationToWatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF492821EE19FDD00A2597E /* CommunicationToWatchTest.swift */; };
 		0AF492851EE1A1E000A2597E /* PlaeneInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF492841EE1A1E000A2597E /* PlaeneInterfaceController.swift */; };
 		0AF492871EE1A2A700A2597E /* TableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF492861EE1A2A700A2597E /* TableRowController.swift */; };
@@ -102,6 +103,7 @@
 		0AE52CDA1EE2C46400B009BB /* UebersichtInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebersichtInterfaceController.swift; sourceTree = "<group>"; };
 		0AE52CDC1EE2CF7D00B009BB /* HammerCurlsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HammerCurlsExtension.swift; sourceTree = "<group>"; };
 		0AE52CDF1EE2D0AB00B009BB /* TimerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerExtensions.swift; sourceTree = "<group>"; };
+		0AEEC6341EE44015006C7B98 /* DatenEmpfangenTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatenEmpfangenTestViewController.swift; sourceTree = "<group>"; };
 		0AF492821EE19FDD00A2597E /* CommunicationToWatchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationToWatchTest.swift; sourceTree = "<group>"; };
 		0AF492841EE1A1E000A2597E /* PlaeneInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaeneInterfaceController.swift; sourceTree = "<group>"; };
 		0AF492861EE1A2A700A2597E /* TableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableRowController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				0AF492821EE19FDD00A2597E /* CommunicationToWatchTest.swift */,
 				73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */,
 				73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */,
+				0AEEC6341EE44015006C7B98 /* DatenEmpfangenTestViewController.swift */,
 			);
 			path = Sportakus_2.0;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */,
 				0ABE2C941EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */,
 				0ABE2C541EDADAF300D3D887 /* AppDelegate.swift in Sources */,
+				0AEEC6351EE44015006C7B98 /* DatenEmpfangenTestViewController.swift in Sources */,
 				73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

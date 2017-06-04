@@ -41,6 +41,8 @@ class UebersichtInterfaceController: WKInterfaceController {
             defaults.set(vorherGespeicherteDaten, forKey: String(welcheUebung))
         }
         
+        var test = defaults.object(forKey: String(welcheUebung)) as! [String]
+        test.forEach { print($0) }
         
         
         fillViewWithContext()
