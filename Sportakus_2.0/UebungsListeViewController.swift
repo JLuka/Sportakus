@@ -20,7 +20,7 @@ class UebungsListeViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         tableViewUebung.dataSource = self
         tableViewUebung.delegate = self
-        uebungen = plan.uebungen?.allObjects as! [Uebung]
+        uebungen = plan.toUebungen?.allObjects as! [Uebung]
         planName.text = plan.name
 
         // Do any additional setup after loading the view.
@@ -57,7 +57,7 @@ class UebungsListeViewController: UIViewController, UITableViewDataSource, UITab
                     plan = plaene[i]
                 }
                 
-                uebungen = plan.uebungen?.allObjects as! [Uebung]
+                uebungen = plan.toUebungen?.allObjects as! [Uebung]
             }
             catch {
                 print("Fetching Failed")

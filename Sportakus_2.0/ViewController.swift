@@ -7,99 +7,192 @@
 //
 
 import UIKit
+import CoreData
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableViewPlan: UITableView!
-    var plaene : [Plan] = []
+    var controller: NSFetchedResultsController<Plan>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewPlan.dataSource = self
         tableViewPlan.delegate = self
+        
+       // generateTestData()
+        attemptFetch()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // get the data from CoreData
+
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         
-        getData()
+        if let sections = controller.sections {
+            return sections.count
+        }
         
-        // reload the tableview
+        return 0
         
-        tableViewPlan.reloadData()
     }
     
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PlanEditieren" {
+            
+            if let destination = segue.destination as? PlanErstellenViewController {
+                if let item = sender as? Plan {
+                    destination.itemToEdit = item
+                }
+            }
+            
+        }
+    }
+
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plaene.count
+        
+        if let sections = controller.sections {
+            let sectionInfo = sections[section]
+            return sectionInfo.numberOfObjects
+        }
+        
+        return 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
         
-        let plan = plaene[indexPath.row]
-        cell.textLabel?.text = plan.name!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCellPlan
+        
+        configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
         
         return cell
+        
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "UebungsListe", sender: plaene[indexPath.row])
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func configureCell(cell: ItemCellPlan, indexPath: NSIndexPath) {
+        
+        let item = controller.object(at: indexPath as IndexPath)
+        cell.configureCell(item: item)
         
         
-        if segue.identifier == "PlanErstellen" {
-            
-            _ = segue.destination as! PlanErstellenViewController
-            
-        } else if segue.identifier == "watch" {
-            
-            _ = segue.destination as! CommunicationToWatchTest
-            
-        } else {
-            
-            let guest = segue.destination as! UebungsListeViewController
-            guest.plan = sender as! Plan
-            
-        }
     }
     
-    func getData() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+
+    func attemptFetch() {
+        
+        let fetchRequest: NSFetchRequest<Plan> = Plan.fetchRequest()
+        let dataSort = NSSortDescriptor(key: "name", ascending: false)
+        
+        fetchRequest.sortDescriptors = [dataSort]
+
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        self.controller = controller
+        
         do {
-            plaene = try context.fetch(Plan.fetchRequest())
+            try controller.performFetch()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
         }
-        catch {
-            print("Fetching Failed")
-        }
+        
+        controller.delegate = self
         
     }
+
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        if editingStyle == .delete {
-            
-            let plan = plaene[indexPath.row]
-            
-            context.delete(plan)
-            
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            
-            do {
-                plaene = try context.fetch(Plan.fetchRequest())
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Editieren") { (action, indexPath) in
+            if let objs = self.controller.fetchedObjects , objs.count > 0 {
+                
+                let item = objs[indexPath.row]
+                
+                self.performSegue(withIdentifier: "PlanEditieren", sender: item)
+                self.tableViewPlan.setEditing(false, animated: true)
             }
-            catch {
-                print("Fetching Failed")
-            }
+
         }
-        tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+        
+        delete.backgroundColor = UIColor.lightGray
+
+        
+        return [delete]
     }
     
 
+        
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? { return "editieren" }
+    
+    
+    
+    
+    
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        tableViewPlan.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        tableViewPlan.endUpdates()
+        
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableViewPlan.insertRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+            }
+            break
+        case .delete:
+            if let indexPath = indexPath {
+                tableViewPlan.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+            }
+            break
+        case .update:
+            if let indexPath = indexPath {
+                let cell = tableViewPlan.cellForRow(at: indexPath) as! ItemCellPlan
+                configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
+            }
+            break
+        case .move:
+            if let indexPath = indexPath {
+                tableViewPlan.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+            }
+            if let indexPath = newIndexPath {
+                tableViewPlan.insertRows(at: [indexPath], with: .fade)
+            }
+            break
+        default: break
+            
+        }
+    }
+    
+    
+    func generateTestData() {
+        
+        let plan = Plan(context: context)
+        plan.name = "New MacBook Pro"
+
+        let plan1 = Plan(context: context)
+        plan1.name = "New MacBook Pro1111"
+        
+        
+
+        
+        
+        ad.saveContext()
+        
+    }
 
 
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tKC-Li-PaR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tKC-Li-PaR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -87,7 +86,7 @@
             </objects>
             <point key="canvasLocation" x="972" y="-737.18140929535241"/>
         </scene>
-        <!--View Controller-->
+        <!--Pläne-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Sportakus_2_0" customModuleProvider="target" sceneMemberID="viewController">
@@ -99,26 +98,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1yD-r5-EBA">
-                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1yD-r5-EBA">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemCell" rowHeight="50" id="uF6-yo-4Pm" customClass="ItemCellPlan" customModule="Sportakus_2_0" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uF6-yo-4Pm" id="ry6-tV-78r">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3Z-IY-Qhc">
+                                                    <rect key="frame" x="13" y="6" width="42" height="37.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Z3Z-IY-Qhc" firstAttribute="centerY" secondItem="ry6-tV-78r" secondAttribute="centerY" id="fWd-9H-Kaj"/>
+                                                <constraint firstItem="Z3Z-IY-Qhc" firstAttribute="top" secondItem="ry6-tV-78r" secondAttribute="top" constant="6" id="foJ-VV-kIE"/>
+                                                <constraint firstItem="Z3Z-IY-Qhc" firstAttribute="leading" secondItem="ry6-tV-78r" secondAttribute="leading" constant="13" id="n86-i9-HEz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="Z3Z-IY-Qhc" id="CfV-YD-x5n"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1yD-r5-EBA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="CH6-8B-K9S"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1yD-r5-EBA" secondAttribute="bottom" id="HYl-GR-40U"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="1yD-r5-EBA" secondAttribute="trailing" id="Sve-vW-W6J"/>
-                            <constraint firstItem="1yD-r5-EBA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rgK-1V-s77"/>
+                            <constraint firstItem="1yD-r5-EBA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="N5o-oe-JH4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1yD-r5-EBA" secondAttribute="bottom" id="eFY-D2-g18"/>
+                            <constraint firstAttribute="trailing" secondItem="1yD-r5-EBA" secondAttribute="trailing" id="frG-1Q-bfj"/>
+                            <constraint firstItem="1yD-r5-EBA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jGV-Li-Z4i"/>
+                            <constraint firstItem="1yD-r5-EBA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pN1-Ke-OjI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="E0Z-bY-8be">
+                    <navigationItem key="navigationItem" title="Pläne" id="E0Z-bY-8be">
                         <barButtonItem key="leftBarButtonItem" title="watch" id="fXt-vi-Krb">
                             <connections>
                                 <segue destination="cJC-zy-rY3" kind="show" identifier="watch" id="1Sq-zp-7to"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rsA-JL-hcq">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="QYH-pJ-6j7" kind="show" identifier="PlanErstellen" id="yMc-wX-L4g"/>
                             </connections>
@@ -127,6 +155,7 @@
                     <connections>
                         <outlet property="tableViewPlan" destination="1yD-r5-EBA" id="eeJ-jL-u19"/>
                         <segue destination="omX-NU-GK6" kind="show" identifier="UebungsListe" id="UAX-eR-KnS"/>
+                        <segue destination="QYH-pJ-6j7" kind="show" identifier="PlanEditieren" id="ac9-B5-l0J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -179,7 +208,7 @@
             </objects>
             <point key="canvasLocation" x="972" y="845.1274362818591"/>
         </scene>
-        <!--Plan Erstellen View Controller-->
+        <!--Anlegen/Editieren-->
         <scene sceneID="2Wi-Ch-Td9">
             <objects>
                 <viewController id="QYH-pJ-6j7" customClass="PlanErstellenViewController" customModule="Sportakus_2_0" customModuleProvider="target" sceneMemberID="viewController">
@@ -192,14 +221,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sOR-wN-qVn">
-                                <rect key="frame" x="40" y="107" width="295" height="30"/>
+                                <rect key="frame" x="24" y="175" width="327" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jNB-Rv-YP2"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oma-jG-5h9">
-                                <rect key="frame" x="132" y="185" width="111" height="30"/>
-                                <state key="normal" title="Plan hinzufügen"/>
+                                <rect key="frame" x="24" y="334" width="327" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Speichern">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="btnClicked:" destination="QYH-pJ-6j7" eventType="touchUpInside" id="b4x-72-Vby"/>
                                 </connections>
@@ -207,21 +242,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oma-jG-5h9" firstAttribute="centerX" secondItem="sOR-wN-qVn" secondAttribute="centerX" id="2Ln-BE-vze"/>
-                            <constraint firstItem="sOR-wN-qVn" firstAttribute="top" secondItem="K2L-WO-U7o" secondAttribute="bottom" constant="43" id="4GG-4C-U7a"/>
-                            <constraint firstItem="oma-jG-5h9" firstAttribute="top" secondItem="sOR-wN-qVn" secondAttribute="bottom" constant="48" id="Kna-tc-Bny"/>
-                            <constraint firstItem="sOR-wN-qVn" firstAttribute="centerX" secondItem="Cy0-Y0-RGV" secondAttribute="centerX" id="QNa-4d-Iah"/>
-                            <constraint firstAttribute="trailing" secondItem="sOR-wN-qVn" secondAttribute="trailing" constant="40" id="mUW-31-Nxv"/>
-                            <constraint firstItem="sOR-wN-qVn" firstAttribute="leading" secondItem="Cy0-Y0-RGV" secondAttribute="leading" constant="40" id="s68-2f-63D"/>
+                            <constraint firstItem="sOR-wN-qVn" firstAttribute="leading" secondItem="Cy0-Y0-RGV" secondAttribute="leading" constant="24" id="7hD-GT-bLI"/>
+                            <constraint firstAttribute="trailing" secondItem="sOR-wN-qVn" secondAttribute="trailing" constant="24" id="NK7-q2-MB1"/>
+                            <constraint firstItem="oma-jG-5h9" firstAttribute="leading" secondItem="Cy0-Y0-RGV" secondAttribute="leading" constant="24" id="PgL-uE-Rv7"/>
+                            <constraint firstAttribute="trailing" secondItem="oma-jG-5h9" secondAttribute="trailing" constant="24" id="cOd-C1-Uza"/>
+                            <constraint firstItem="sOR-wN-qVn" firstAttribute="top" secondItem="K2L-WO-U7o" secondAttribute="bottom" constant="111" id="hQw-Vb-Vhb"/>
+                            <constraint firstItem="oma-jG-5h9" firstAttribute="top" secondItem="sOR-wN-qVn" secondAttribute="bottom" constant="129" id="zr4-xo-OMd"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Anlegen/Editieren" id="NSn-hl-Mpl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Eak-Nx-bii">
+                            <color key="tintColor" red="1" green="0.2117683185" blue="0.026447382790000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="deleteClicked:" destination="QYH-pJ-6j7" id="NER-I6-Z9b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="planName" destination="sOR-wN-qVn" id="KAs-uH-H4f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbe-ge-mU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786" y="38"/>
+            <point key="canvasLocation" x="1784.8" y="37.331334332833585"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eBY-29-8It">
@@ -242,4 +285,7 @@
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ac9-B5-l0J"/>
+    </inferredMetricsTieBreakers>
 </document>
