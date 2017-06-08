@@ -28,7 +28,7 @@ class UebungErstellenViewController: UIViewController {
         
         
         if itemToEdit != nil {
-            //loadItemdata()
+            loadItemdata()
         }
 
     }
@@ -76,8 +76,34 @@ class UebungErstellenViewController: UIViewController {
     
     
     
+    func loadItemdata() {
+        
+        if let item = itemToEdit {
+            
+            nameField.text = item.name
+            gewichtField.text = "\(item.gewicht)"
+            wiederholungenField.text = "\(item.wiederholungen)"
+            saetzeField.text = "\(item.gewicht)"
+            
+        }
+        
+    }
+
     
     
+    
+    @IBAction func deleteClicked(_ sender: UIBarButtonItem) {
+        
+        if itemToEdit != nil {
+            
+            context.delete(itemToEdit!)
+            ad.saveContext()
+            
+        }
+        
+        navigationController?.popViewController(animated: true)
+    }
+
     
     
     

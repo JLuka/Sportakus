@@ -16,7 +16,7 @@ class UebungsListeViewController: UIViewController, UITableViewDataSource, UITab
     var uebungen : [Uebung]!
     @IBOutlet weak var cellName: UITableViewCell!
     
-    var controller: NSFetchedResultsController<Uebung>!
+    var controller: NSFetchedResultsController<Plan>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class UebungsListeViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         // get the data from CoreData
-    
+    attemptFetch()
         // reload the tableview
         
         tableViewUebung.reloadData()
@@ -51,10 +51,81 @@ class UebungsListeViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Editieren") { (action, indexPath) in
+            if let objs = self.controller.fetchedObjects , objs.count > 0 {
+                
+                
+                let item = self.plan
+                let resultItem = item?.toUebungen?.allObjects as! [Uebung]
+                var uebung: Uebung!
+                
+                for i in 0 ..< resultItem.count {
+                    
+                    if resultItem[i].name == self.uebungen[indexPath.row].name {
+                        
+                        uebung = resultItem[i]
+                        
+                    }
+                }
+
+                
+                self.performSegue(withIdentifier: "UebungEditieren", sender: uebung)
+                self.tableViewUebung.setEditing(false, animated: true)
+            }
+            
+        }
+        
+        delete.backgroundColor = UIColor.lightGray
+        
+        
+        
+        
+        return [delete]
+    }
+    
 
     
     
-    
+    func attemptFetch() {
+        
+        let fetchRequest: NSFetchRequest<Plan> = Plan.fetchRequest()
+        
+        let dataSort = NSSortDescriptor(key: "name", ascending: false)
+        
+        fetchRequest.sortDescriptors = [dataSort]
+        
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        self.controller = controller
+        
+        do {
+            try controller.performFetch()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+        
+        let plan1 = controller.fetchedObjects
+        var resultPlan: Plan!
+        
+        for i in 0 ..< plan1!.count {
+        
+            if plan1?[i].name == plan.name {
+            
+                resultPlan = plan1?[i]
+            
+            }
+        }
+        
+        uebungen = resultPlan.toUebungen?.allObjects as! [Uebung]
+        
+        controller.delegate = self
+        
+    }
+
     
     
     
@@ -64,9 +135,21 @@ class UebungsListeViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let objs = controller.fetchedObjects , objs.count > 0 {
             
-            let item = objs[indexPath.row]
+            let item = plan
+            let resultItem = item?.toUebungen?.allObjects as! [Uebung]
+            var uebung: Uebung!
             
-            performSegue(withIdentifier: "UebungEditieren", sender: item)
+            for i in 0 ..< resultItem.count {
+                
+                if resultItem[i].name == uebungen[indexPath.row].name {
+                    
+                    uebung = resultItem[i]
+                    
+                }
+            }
+
+            
+            performSegue(withIdentifier: "UebungEditieren", sender: uebung)
             
         }
     }
@@ -77,7 +160,9 @@ class UebungsListeViewController: UIViewController, UITableViewDataSource, UITab
             
             if let destination = segue.destination as? UebungErstellenViewController{
                 if let item = sender as? Uebung {
+        
                     destination.itemToEdit = item
+                    destination.plan = plan
                 }
             }
             

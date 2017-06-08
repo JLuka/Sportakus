@@ -309,6 +309,9 @@
                     <navigationItem key="navigationItem" title="Anlegen/Editieren" id="d9h-j2-KfQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="7Vt-xs-Qc7">
                             <color key="tintColor" red="1" green="0.2117683185" blue="0.026447382790000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="deleteClicked:" destination="Ish-Ha-cFq" id="7wi-BT-wbY"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
