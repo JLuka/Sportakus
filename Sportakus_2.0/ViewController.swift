@@ -192,7 +192,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 tableViewPlan.insertRows(at: [indexPath], with: .fade)
             }
             break
-        default: break
             
         }
     }
