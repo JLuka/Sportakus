@@ -36,6 +36,12 @@
 		73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */; };
 		73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */; };
 		73D21A101EE985AC00A86FB1 /* ItemCellPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A0F1EE985AC00A86FB1 /* ItemCellPlan.swift */; };
+		73D21A131EE99BE000A86FB1 /* UebungErstellenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A121EE99BE000A86FB1 /* UebungErstellenViewController.swift */; };
+		73D21A171EE99F0E00A86FB1 /* ItemCellUebung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A161EE99F0E00A86FB1 /* ItemCellUebung.swift */; };
+		73D21A1C1EE9A8E800A86FB1 /* Uebung+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A181EE9A8E800A86FB1 /* Uebung+CoreDataClass.swift */; };
+		73D21A1D1EE9A8E800A86FB1 /* Uebung+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A191EE9A8E800A86FB1 /* Uebung+CoreDataProperties.swift */; };
+		73D21A1E1EE9A8E800A86FB1 /* Plan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A1A1EE9A8E800A86FB1 /* Plan+CoreDataClass.swift */; };
+		73D21A1F1EE9A8E800A86FB1 /* Plan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A1B1EE9A8E800A86FB1 /* Plan+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +120,12 @@
 		73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanErstellenViewController.swift; sourceTree = "<group>"; };
 		73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungsListeViewController.swift; sourceTree = "<group>"; };
 		73D21A0F1EE985AC00A86FB1 /* ItemCellPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCellPlan.swift; sourceTree = "<group>"; };
+		73D21A121EE99BE000A86FB1 /* UebungErstellenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungErstellenViewController.swift; sourceTree = "<group>"; };
+		73D21A161EE99F0E00A86FB1 /* ItemCellUebung.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCellUebung.swift; sourceTree = "<group>"; };
+		73D21A181EE9A8E800A86FB1 /* Uebung+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Uebung+CoreDataClass.swift"; path = "Sportakus_2.0/Uebung+CoreDataClass.swift"; sourceTree = "<group>"; };
+		73D21A191EE9A8E800A86FB1 /* Uebung+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Uebung+CoreDataProperties.swift"; path = "Sportakus_2.0/Uebung+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		73D21A1A1EE9A8E800A86FB1 /* Plan+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Plan+CoreDataClass.swift"; path = "Sportakus_2.0/Plan+CoreDataClass.swift"; sourceTree = "<group>"; };
+		73D21A1B1EE9A8E800A86FB1 /* Plan+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Plan+CoreDataProperties.swift"; path = "Sportakus_2.0/Plan+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +149,8 @@
 		0ABE2C471EDADAF300D3D887 = {
 			isa = PBXGroup;
 			children = (
+				73D21A211EE9A8F700A86FB1 /* Models */,
+				73D21A201EE9A8EC00A86FB1 /* generated */,
 				0ABE2C521EDADAF300D3D887 /* Sportakus_2.0 */,
 				0ABE2C661EDADAF300D3D887 /* Sportakus_2.0 WatchKit App */,
 				0ABE2C751EDADAF300D3D887 /* Sportakus_2.0 WatchKit Extension */,
@@ -166,7 +180,6 @@
 				0ABE2C5C1EDADAF300D3D887 /* LaunchScreen.storyboard */,
 				0ABE2C5F1EDADAF300D3D887 /* Info.plist */,
 				0AF492821EE19FDD00A2597E /* CommunicationToWatchTest.swift */,
-				73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */,
 				0AEEC6341EE44015006C7B98 /* DatenEmpfangenTestViewController.swift */,
 			);
 			path = Sportakus_2.0;
@@ -224,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				73D21A0F1EE985AC00A86FB1 /* ItemCellPlan.swift */,
+				73D21A161EE99F0E00A86FB1 /* ItemCellUebung.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -233,8 +247,28 @@
 			children = (
 				0ABE2C551EDADAF300D3D887 /* ViewController.swift */,
 				73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */,
+				73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */,
+				73D21A121EE99BE000A86FB1 /* UebungErstellenViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		73D21A201EE9A8EC00A86FB1 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				73D21A191EE9A8E800A86FB1 /* Uebung+CoreDataProperties.swift */,
+				73D21A1B1EE9A8E800A86FB1 /* Plan+CoreDataProperties.swift */,
+			);
+			name = generated;
+			sourceTree = "<group>";
+		};
+		73D21A211EE9A8F700A86FB1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				73D21A181EE9A8E800A86FB1 /* Uebung+CoreDataClass.swift */,
+				73D21A1A1EE9A8E800A86FB1 /* Plan+CoreDataClass.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,14 +409,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73D21A1F1EE9A8E800A86FB1 /* Plan+CoreDataProperties.swift in Sources */,
+				73D21A1C1EE9A8E800A86FB1 /* Uebung+CoreDataClass.swift in Sources */,
+				73D21A171EE99F0E00A86FB1 /* ItemCellUebung.swift in Sources */,
 				0ABE2C561EDADAF300D3D887 /* ViewController.swift in Sources */,
 				0AF492831EE19FDD00A2597E /* CommunicationToWatchTest.swift in Sources */,
 				73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */,
+				73D21A131EE99BE000A86FB1 /* UebungErstellenViewController.swift in Sources */,
 				0ABE2C941EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */,
 				0ABE2C541EDADAF300D3D887 /* AppDelegate.swift in Sources */,
 				0AEEC6351EE44015006C7B98 /* DatenEmpfangenTestViewController.swift in Sources */,
 				73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */,
+				73D21A1E1EE9A8E800A86FB1 /* Plan+CoreDataClass.swift in Sources */,
 				73D21A101EE985AC00A86FB1 /* ItemCellPlan.swift in Sources */,
+				73D21A1D1EE9A8E800A86FB1 /* Uebung+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

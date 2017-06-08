@@ -47,7 +47,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             }
             
+        } else if segue.identifier == "UebungsListe" {
+            
+            if let destination = segue.destination as? UebungsListeViewController {
+                if let item = sender as? Plan {
+                    destination.plan = item
+                }
+            }
+            
         }
+
+        
+        
     }
 
 
@@ -120,17 +131,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         delete.backgroundColor = UIColor.lightGray
+        
+        
 
         
         return [delete]
     }
     
 
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? { return "editieren" }
-    
-    
-    
+        if let objs = controller.fetchedObjects , objs.count > 0 {
+            
+            let item = objs[indexPath.row]
+            
+            performSegue(withIdentifier: "UebungsListe", sender: item)
+            
+        }
+        
+    }
     
     
     

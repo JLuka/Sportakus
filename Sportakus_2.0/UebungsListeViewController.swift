@@ -7,67 +7,97 @@
 //
 
 import UIKit
+import CoreData
 
-class UebungsListeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UebungsListeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate  {
     
-    @IBOutlet weak var planName: UILabel!
     @IBOutlet weak var tableViewUebung: UITableView!
     var plan : Plan!
     var uebungen : [Uebung]!
-    var plaene : [Plan] = []
+    @IBOutlet weak var cellName: UITableViewCell!
+    
+    var controller: NSFetchedResultsController<Uebung>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewUebung.dataSource = self
         tableViewUebung.delegate = self
         uebungen = plan.toUebungen?.allObjects as! [Uebung]
-        planName.text = plan.name
 
         // Do any additional setup after loading the view.
+
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // get the data from CoreData
+    
+        // reload the tableview
+        
+        tableViewUebung.reloadData()
+    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return uebungen.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = UITableViewCell()
         
-        let plan = uebungen[indexPath.row]
-        cell.textLabel?.text = plan.name!
+        cell.textLabel?.text = uebungen[indexPath.row].name
         
         return cell
+        
     }
     
+
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        if editingStyle == .delete {
+    
+    
+    
+    
+    
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let objs = controller.fetchedObjects , objs.count > 0 {
             
-            context.delete(uebungen[indexPath.row])
+            let item = objs[indexPath.row]
             
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            performSegue(withIdentifier: "UebungEditieren", sender: item)
             
-            do {
-                plaene = try context.fetch(Plan.fetchRequest())
-                
-                if let i = plaene.index(where: { $0.name == plan.name }) {
-                    plan = plaene[i]
-                }
-                
-                uebungen = plan.toUebungen?.allObjects as! [Uebung]
-            }
-            catch {
-                print("Fetching Failed")
-            }
         }
-        tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "UebungEditieren" {
+            
+            if let destination = segue.destination as? UebungErstellenViewController{
+                if let item = sender as? Uebung {
+                    destination.itemToEdit = item
+                }
+            }
+            
+        }  else if segue.identifier == "UebungErstellen" {
+            
+            if let destination = segue.destination as? UebungErstellenViewController{
 
+                    destination.plan = plan
+            }
+            
+        }
 
+    }
+    
+    
+    
+    
+    
+    
+    
+   
 
 }
