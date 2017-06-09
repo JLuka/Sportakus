@@ -99,14 +99,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1yD-r5-EBA">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemCell" rowHeight="50" id="uF6-yo-4Pm" customClass="ItemCellPlan" customModule="Sportakus_2_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uF6-yo-4Pm" id="ry6-tV-78r">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3Z-IY-Qhc">
@@ -128,30 +128,40 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiX-8m-T88">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.52156862749999999" green="0.80000000000000004" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Kwj-Ig-2Zo"/>
+                                    <barButtonItem systemItem="add" id="rsA-JL-hcq">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="QYH-pJ-6j7" kind="show" identifier="PlanErstellen" id="yMc-wX-L4g"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.52156862749999999" green="0.80000000000000004" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1yD-r5-EBA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="N5o-oe-JH4"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1yD-r5-EBA" secondAttribute="bottom" id="eFY-D2-g18"/>
-                            <constraint firstAttribute="trailing" secondItem="1yD-r5-EBA" secondAttribute="trailing" id="frG-1Q-bfj"/>
-                            <constraint firstItem="1yD-r5-EBA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jGV-Li-Z4i"/>
-                            <constraint firstItem="1yD-r5-EBA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pN1-Ke-OjI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1yD-r5-EBA" secondAttribute="bottom" constant="80" id="DlX-Ii-l30"/>
+                            <constraint firstItem="1yD-r5-EBA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="R2b-nr-yaS"/>
+                            <constraint firstAttribute="trailing" secondItem="1yD-r5-EBA" secondAttribute="trailing" id="crl-ij-Y4S"/>
+                            <constraint firstItem="1yD-r5-EBA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xJD-Fo-HM8"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Pläne" id="E0Z-bY-8be">
                         <barButtonItem key="leftBarButtonItem" title="watch" id="fXt-vi-Krb">
                             <connections>
                                 <segue destination="cJC-zy-rY3" kind="show" identifier="watch" id="1Sq-zp-7to"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rsA-JL-hcq">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="QYH-pJ-6j7" kind="show" identifier="PlanErstellen" id="yMc-wX-L4g"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableViewPlan" destination="1yD-r5-EBA" id="eeJ-jL-u19"/>
                         <segue destination="omX-NU-GK6" kind="show" identifier="UebungsListe" id="UAX-eR-KnS"/>
@@ -175,14 +185,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L6d-eV-j19">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemCellUebung" id="87N-XF-PrD">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="87N-XF-PrD" id="bzy-XB-caV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L31-Ol-fOr">
@@ -388,9 +398,15 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tKC-Li-PaR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ktu-bA-APg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ktu-bA-APg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.52156862745098043" green="0.80000000000000004" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.52156862749999999" green="0.80000000000000004" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
