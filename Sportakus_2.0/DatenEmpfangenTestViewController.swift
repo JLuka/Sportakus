@@ -16,7 +16,7 @@ class DatenEmpfangenTestViewController: UIViewController, WCSessionDelegate {
     
     var wcSession: WCSession!
     
-    var allgemeines = [String]()
+    var trainingsdaten = [[String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +33,13 @@ class DatenEmpfangenTestViewController: UIViewController, WCSessionDelegate {
     
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        allgemeines = message["allgemeines"] as! [String]
+        trainingsdaten = message["trainingsdaten"] as! [[String]]
         
+        self.date.text = trainingsdaten[1][0]
+        self.plan.text = trainingsdaten[0][0]
         
+        print(trainingsdaten)
         
-        self.date.text = allgemeines[0]
-        self.plan.text = allgemeines[1]
     }
     
     

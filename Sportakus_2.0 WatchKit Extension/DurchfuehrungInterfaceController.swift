@@ -95,7 +95,6 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     }
 
     @IBAction func startButtonPressed() {
-        wiederholungenLabel.setEnabled(false)
         wiederholungenLabel.setTitle("Bereit?")
         countDownToStartExercise.invalidate()
         

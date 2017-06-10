@@ -157,31 +157,27 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //Button zum Beenden des Trainings und zum senden der Trainingsdaten an das Handy
     @IBAction func trainingBeendenButtonPressed() {
-        
-        for (key, value) in erledigteUebungDefaults!.dictionaryRepresentation() {
-            print("\(key) = \(value) \n")
-        }
-
-        
         wcSession = WCSession.default()
         wcSession.delegate = self
         wcSession.activate()
+
+        var gemachteUebungen = abgeschlosseneUebungen?.object(forKey: "GeschaffteUebungen") as! [String]
+        var gemachteUebungenAnzahl = gemachteUebungen.count - 1
+        let dateAndTime = getCurrentDateAndTime()
+        let planName = abgeschlosseneUebungen?.object(forKey: "planname") as! String
+        var durchgefuehrteUebungen = [[String]]()
         
+        durchgefuehrteUebungen.append([planName])
+        durchgefuehrteUebungen.append([dateAndTime])
         
-        //Current Time and Date
-        let date : Date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
-        let todaysDate = dateFormatter.string(from: date)
+        for i in 0..<gemachteUebungenAnzahl {
+            var uebungsname = gemachteUebungen[i+1]
+            var currentExercise = abgeschlosseneUebungen?.object(forKey: uebungsname) as! [String]
+            durchgefuehrteUebungen.append(currentExercise)
+        }
+
         
-        //TrainingsplanName
-        var plaene = defaults.object(forKey: "plaene") as! [String]
-        //print(plaene[Int(context)!-1])
-        
-        
-        let firstMessage = [todaysDate, plaene[Int(context)!-1]]
-        
-        let message = ["allgemeines": firstMessage]
+        let message = ["trainingsdaten": durchgefuehrteUebungen]
         
         
         //Send Messages to Watch
@@ -190,6 +186,14 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
             print(error.localizedDescription)
         })
 
+    }
+    
+    func getCurrentDateAndTime() -> String{
+        let date : Date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+        let todaysDate = dateFormatter.string(from: date)
+        return todaysDate
     }
     
     func appendGeschaffteUebungToSuite(){
@@ -222,11 +226,6 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
             abgeschlosseneUebungen?.set(uebung, forKey: geschaffteUebung)
             abgeschlosseneUebungen?.synchronize()
         }
-        
-        for (key, value) in abgeschlosseneUebungen!.dictionaryRepresentation() {
-            print("\(key) = \(value) \n")
-        }
-        
     }
     
     
