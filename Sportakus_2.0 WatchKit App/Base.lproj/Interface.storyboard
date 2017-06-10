@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -59,6 +59,39 @@
             </objects>
             <point key="canvasLocation" x="411" y="345"/>
         </scene>
+        <!--Error-->
+        <scene sceneID="bXG-I9-4O2">
+            <objects>
+                <controller identifier="Error" id="trA-8R-gJB" customClass="ErrorHandlerInterfaceController" customModule="Sportakus_2_0_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="center" text="Achtung" textAlignment="center" id="BAP-TJ-p5k">
+                            <fontDescription key="font" type="system" pointSize="23"/>
+                        </label>
+                        <label width="1" height="96" alignment="left" text="Sie haben diese Übung schon ausgeführt. Wenn sie die Übung nochmal machen, werden ihre vorherigen Leistungen gelöscht." textAlignment="center" numberOfLines="6" id="lfb-ou-WAW">
+                            <fontDescription key="font" type="system" pointSize="12"/>
+                        </label>
+                        <group width="1" alignment="left" id="Uhk-8y-j9d">
+                            <items>
+                                <button width="76" alignment="left" title="Zurück" id="Eub-xp-H8L">
+                                    <connections>
+                                        <action selector="BackButtonPressed" destination="trA-8R-gJB" id="fEn-lb-37p"/>
+                                    </connections>
+                                </button>
+                                <button width="77" alignment="left" title="Ok" id="HPU-73-4yb">
+                                    <connections>
+                                        <action selector="OkayButtonPressed" destination="trA-8R-gJB" id="Ful-R3-6Uw"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="alertTextLabel" destination="lfb-ou-WAW" id="Jpk-lT-uPh"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="601.53846153846155" y="33.564102564102569"/>
+        </scene>
         <!--Uebungen-->
         <scene sceneID="Zqc-fN-YhP">
             <objects>
@@ -91,6 +124,7 @@
                         </button>
                     </items>
                     <connections>
+                        <outlet property="beendenButton" destination="rU4-3Q-0Ov" id="Agq-e1-L4Y"/>
                         <outlet property="table" destination="3Rb-K6-flB" id="HW3-ZD-2hz"/>
                     </connections>
                 </controller>

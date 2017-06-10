@@ -9,8 +9,9 @@
 import WatchKit
 import Foundation
 import CoreMotion
+import HealthKit
 
-class DurchfuehrungInterfaceController: WKInterfaceController {
+class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
 
     @IBOutlet var uebungsNameLabel: WKInterfaceLabel!
     @IBOutlet var gewichtLabel: WKInterfaceLabel!
@@ -38,10 +39,29 @@ class DurchfuehrungInterfaceController: WKInterfaceController {
     //Motion Handler
     var motionManager = CMMotionManager()
     
+    //let healthStore: HKHealthStore = HKHealthStore()
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         uebung = context as! [String]
         fillViewWithContent()
+        
+//        let configuration = HKWorkoutConfiguration()
+//        
+//        configuration.activityType = .traditionalStrengthTraining
+//        configuration.locationType = .indoor
+//        
+//        do {
+//            
+//            let session = try HKWorkoutSession(configuration: configuration)
+//            session.delegate = self
+//            healthStore.start(session)
+//            print("Läuft")
+//        }
+//        catch let error as NSError {
+//            // Perform proper error handling here...
+//            fatalError("*** Unable to create the workout session: \(error.localizedDescription) ***")
+//        }
     }
     
     override func willActivate() {
@@ -54,7 +74,6 @@ class DurchfuehrungInterfaceController: WKInterfaceController {
         super.didDeactivate()
         
         motionManager.stopDeviceMotionUpdates()
-        
     }
 
     //Die View mit der übergebenen Übung füllen
@@ -76,6 +95,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController {
     }
 
     @IBAction func startButtonPressed() {
+        wiederholungenLabel.setEnabled(false)
         wiederholungenLabel.setTitle("Bereit?")
         countDownToStartExercise.invalidate()
         
@@ -101,7 +121,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController {
             saetzeWortLabel.setText("Satz")
         }else{
             countDownToStartExercise.invalidate()
-            WKInterfaceDevice.current().play(.start)
+            WKInterfaceDevice.current().play(.click)
             countRepititions()
         }
     }
@@ -122,6 +142,33 @@ class DurchfuehrungInterfaceController: WKInterfaceController {
             zielErreicht()
         }
     }
+
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
+        
+    }
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didGenerate event: HKWorkoutEvent) {
+        
+    }
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

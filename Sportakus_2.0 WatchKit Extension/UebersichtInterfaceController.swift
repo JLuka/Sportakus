@@ -22,6 +22,11 @@ class UebersichtInterfaceController: WKInterfaceController {
     var zuSpeichernderContext = [String]()
     
     var defaults = UserDefaults.standard
+    var erledigteUebungDefaults = UserDefaults.init(suiteName: "ErledigteUebung")
+    
+    
+    var testArray = [String]()
+    
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -29,20 +34,28 @@ class UebersichtInterfaceController: WKInterfaceController {
         self.context = context as! [String]
         welcheUebung = defaults.object(forKey: "welcheUebung") as! Int
         
+        
+        
+        
         if Int(self.context[2]) == 1 {
+            //Löschen des Suite Inhalt
+            if Bundle.main.bundleIdentifier != nil {
+                erledigteUebungDefaults?.removePersistentDomain(forName: "ErledigteUebung")
+            }
+            
+            
             //                          Uebungsname  zuErreichendeSätze      Gewicht      Satz                Wdh             Zeit
             zuSpeichernderContext = [self.context[0], self.context[4], self.context[5], self.context[2], self.context[1], self.context[3]]
-            defaults.set(zuSpeichernderContext, forKey: String(welcheUebung))
+            erledigteUebungDefaults?.set(zuSpeichernderContext, forKey: String(welcheUebung))
+            erledigteUebungDefaults?.synchronize()
         }else{
             //                          Satz                Wdh                Zeit
             zuSpeichernderContext = [self.context[2], self.context[1], self.context[3]]
-            var vorherGespeicherteDaten = defaults.object(forKey: String(welcheUebung)) as! [String]
+            var vorherGespeicherteDaten = erledigteUebungDefaults?.object(forKey: String(welcheUebung)) as! [String]
             vorherGespeicherteDaten.append(contentsOf: zuSpeichernderContext)
-            defaults.set(vorherGespeicherteDaten, forKey: String(welcheUebung))
+            erledigteUebungDefaults?.set(vorherGespeicherteDaten, forKey: String(welcheUebung))
+            erledigteUebungDefaults?.synchronize()
         }
-        
-        var test = defaults.object(forKey: String(welcheUebung)) as! [String]
-        test.forEach { print($0) }
         
         
         fillViewWithContext()
@@ -66,7 +79,7 @@ class UebersichtInterfaceController: WKInterfaceController {
     
     
     @IBAction func uebungBeendenButtonClicked() {
-        
+        pushController(withName: "Uebungen", context: String(welcheUebung))
     }
     
     

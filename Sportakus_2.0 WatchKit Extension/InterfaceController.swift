@@ -13,8 +13,8 @@ import WatchConnectivity
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     var wcSession: WCSession!
-    
     let defaults = UserDefaults.standard
+    let plaeneDefaults = UserDefaults.init(suiteName: "Plaene")
     
     var plaene = [String]()
     
@@ -26,10 +26,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         wcSession.activate()
         
         
-        //Pläne löschen
-//        if let bundle = Bundle.main.bundleIdentifier {
-//            UserDefaults.standard.removePersistentDomain(forName: bundle)
+//        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+//            print("\(key) = \(value) \n")
 //        }
+//        for (key, value) in (plaeneDefaults?.dictionaryRepresentation())! {
+//            print("\(key) = \(value) \n")
+//        }
+        
     }
     
     
@@ -44,7 +47,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
-        print ("error in activationDidCompleteWith error")
+        //print ("error in activationDidCompleteWith error")
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
@@ -53,27 +56,30 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             UserDefaults.standard.removePersistentDomain(forName: bundle)
         }
         
-        var wieVielePlaene = message.count
+        let wieVielePlaene = message.count - 1
         
-        print(wieVielePlaene)
         
         defaults.set(wieVielePlaene, forKey: "wieVielePlaene")
         
         var helper = String()
         
-        for i in 0 ..< wieVielePlaene {
+        for i in 0...wieVielePlaene {
             helper = String(i)
             
             if i == 0 {
                 defaults.set(message["plaene"], forKey: "plaene")
             }else{
-                defaults.set(message[helper], forKey: helper)
+                plaeneDefaults?.set(message[helper], forKey: helper)
             }
             
             
         }
         
         defaults.synchronize()
+        
+        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+            print("\(key) = \(value) \n")
+        }
         
     }
     @IBAction func pushNextController() {

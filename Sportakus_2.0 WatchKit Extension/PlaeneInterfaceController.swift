@@ -46,7 +46,7 @@ class PlaeneInterfaceController: WKInterfaceController {
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        var welcherPlan = rowIndex + 1
+        let welcherPlan = rowIndex + 1
         defaults.set(String(welcherPlan), forKey: "welcherPlan")
         pushController(withName: "Uebungen", context: nil)
     }

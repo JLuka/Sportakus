@@ -18,6 +18,7 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
     @IBOutlet var wiederholungsLabel: WKInterfaceLabel!
     
     let defaults = UserDefaults.standard
+    let uebungenDefaults = UserDefaults.init(suiteName: "Uebungen")
     
     var uebung = [String]()
     
@@ -25,9 +26,7 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        
-        var connectedString = "Uebung" + String(context as! Int)
-        uebung = defaults.object(forKey: connectedString) as! [String]
+        uebung = uebungenDefaults?.object(forKey: String(context as! Int)) as! [String]
         fillViewWithContent()
     }
     

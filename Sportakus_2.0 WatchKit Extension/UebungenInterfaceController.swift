@@ -17,29 +17,57 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
 
     var wcSession: WCSession!
     @IBOutlet var table: WKInterfaceTable!
+    @IBOutlet var beendenButton: WKInterfaceButton!
     
     let defaults = UserDefaults.standard
+    let uebungenDefaults = UserDefaults.init(suiteName: "Uebungen")
+    let plaeneDefaults = UserDefaults.init(suiteName: "Plaene")
+    let erledigteUebungDefaults = UserDefaults.init(suiteName: "ErledigteUebung")
+    var abgeschlosseneUebungen = UserDefaults.init(suiteName: "AbgeschlosseneUebungen")
+    
+    
     
     var uebungen = [String]()
     var uebungsNamen = [String]()
     var context = String()
+    var geschaffteUebung = String()
+    var geschaffteUebungen = [String]()
+    var schonEineUebungGemacht = Bool()
+    var abgeschlosseneUebung = [String]()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        wcSession = WCSession.default()
-        wcSession.delegate = self
-        wcSession.activate()
         
         self.context = defaults.object(forKey: "welcherPlan") as! String
-        uebungen = defaults.object(forKey: self.context) as! [String]
+        uebungen = plaeneDefaults?.object(forKey: self.context) as! [String]
+        
+        if context != nil {
+            schonEineUebungGemacht = true
+            geschaffteUebung = context as! String
+            appendGeschaffteUebungToSuite()
+            saveAccomplishedExercises()
+        }else{
+            schonEineUebungGemacht = false
+            deleteSuite()
+        }
         
         
         //Nur die Uebungsnamen aus dem array ziehen
-        for (var index, content) in uebungen.enumerated() {
+        for (index, content) in uebungen.enumerated() {
             if index % 4 == 0 {
                 uebungsNamen.append(content)
             }
+        }
+        
+        if geschaffteUebungen.count - 1 == uebungsNamen.count {
+            beendenButton.setBackgroundColor(UIColor(red:0.52, green:0.80, blue:0.81, alpha:1.0))
+        }
+        
+        
+        //Löschen der Suite
+        if Bundle.main.bundleIdentifier != nil {
+            uebungenDefaults?.removePersistentDomain(forName: "Uebungen")
         }
         
         //Einzelne Übungen in DefaultUser laden.
@@ -47,7 +75,7 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         loadTableData()
         uploadUserDefaultExercises()
     }
-    
+
     
     
     override func willActivate() {
@@ -71,27 +99,29 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         for (var index, content) in uebungsNamen.enumerated() {
             let row = table.rowController(at: index) as! TableRowController
             row.uebungenLabel.setText(content)
+            
+            for (context, content) in geschaffteUebungen.enumerated(){
+                if String(index) == content {
+                    row.uebungenLabel.setAlpha(0.5)
+                }
+            }
         }
     }
     
     
     
     func uploadUserDefaultExercises(){
-        
-        
-        
         var counter = 0;
-        var uebungsNummer = String()
+        let uebungsNummer = String()
         
         
         for i in 0..<uebungsNamen.count {
             var uebung = [String]()
-            uebungsNummer = "Uebung" + String(i)
             for j in 0..<4 {
                 uebung.append(uebungen[counter])
                 counter += 1
             }
-            defaults.set(uebung, forKey: uebungsNummer)
+            uebungenDefaults?.set(uebung, forKey: String(i))
             uebung.removeAll()
         }
     }
@@ -99,29 +129,57 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //Push to next Controller
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        defaults.set(rowIndex, forKey: "welcheUebung")
-        pushController(withName: "UebungsUebersicht", context: rowIndex)
+        if schonEineUebungGemacht{
+            if istVorhanden(rowIndex: rowIndex) {
+                //Fehlermeldung / Warnung
+                pushController(withName: "Error", context: rowIndex)
+            }else{
+                defaults.set(rowIndex, forKey: "welcheUebung")
+                pushController(withName: "UebungsUebersicht", context: rowIndex)
+            }
+
+        }else{
+            defaults.set(rowIndex, forKey: "welcheUebung")
+            pushController(withName: "UebungsUebersicht", context: rowIndex)
+        }
     }
     
-    
+    func istVorhanden(rowIndex: Int) -> Bool{
+        for (context, content) in geschaffteUebungen.enumerated(){
+            if String(rowIndex) == content {
+                return true
+            }
+        }
+        return false
+    }
     
     
     
     //Button zum Beenden des Trainings und zum senden der Trainingsdaten an das Handy
     @IBAction func trainingBeendenButtonPressed() {
         
+        for (key, value) in erledigteUebungDefaults!.dictionaryRepresentation() {
+            print("\(key) = \(value) \n")
+        }
+
+        
+        wcSession = WCSession.default()
+        wcSession.delegate = self
+        wcSession.activate()
+        
+        
         //Current Time and Date
         let date : Date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
-        var todaysDate = dateFormatter.string(from: date)
+        let todaysDate = dateFormatter.string(from: date)
         
         //TrainingsplanName
         var plaene = defaults.object(forKey: "plaene") as! [String]
         //print(plaene[Int(context)!-1])
         
         
-        var firstMessage = [todaysDate, plaene[Int(context)!-1]]
+        let firstMessage = [todaysDate, plaene[Int(context)!-1]]
         
         let message = ["allgemeines": firstMessage]
         
@@ -131,10 +189,51 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
             error in
             print(error.localizedDescription)
         })
+
+    }
+    
+    func appendGeschaffteUebungToSuite(){
+        if  abgeschlosseneUebungen?.object(forKey: "GeschaffteUebungen") == nil {
+            //Ein Hilfsarray, welches gespeichert wird, damit das gespeicherte Objekt beim nächsten Durchlauf als String Array in eine Variable gespeichert werden kann
+            let helpArray = ["Uebungen", geschaffteUebung]
+            abgeschlosseneUebungen?.set(helpArray, forKey: "GeschaffteUebungen")
+            geschaffteUebungen = abgeschlosseneUebungen?.object(forKey: "GeschaffteUebungen") as! [String]
+            abgeschlosseneUebungen?.synchronize()
+        }else {
+            geschaffteUebungen = abgeschlosseneUebungen?.object(forKey: "GeschaffteUebungen") as! [String]
+            geschaffteUebungen.append(geschaffteUebung)
+            abgeschlosseneUebungen?.set(geschaffteUebungen, forKey: "GeschaffteUebungen")
+            abgeschlosseneUebungen?.synchronize()
+        }
         
+    }
+    
+    func saveAccomplishedExercises(){
+        var stringArray = [String]()
         
+        if abgeschlosseneUebungen?.object(forKey: "planname") == nil {
+            var plaene = defaults.object(forKey: "plaene") as! [String]
+            abgeschlosseneUebungen?.set(plaene[Int(context)!-1], forKey: "planname")
+            var uebung = erledigteUebungDefaults?.object(forKey: geschaffteUebung) as! [String]
+            abgeschlosseneUebungen?.set(uebung, forKey: geschaffteUebung)
+            abgeschlosseneUebungen?.synchronize()
+        }else{
+            var uebung = erledigteUebungDefaults?.object(forKey: geschaffteUebung) as! [String]
+            abgeschlosseneUebungen?.set(uebung, forKey: geschaffteUebung)
+            abgeschlosseneUebungen?.synchronize()
+        }
         
+        for (key, value) in abgeschlosseneUebungen!.dictionaryRepresentation() {
+            print("\(key) = \(value) \n")
+        }
         
+    }
+    
+    
+    func deleteSuite(){
+        if Bundle.main.bundleIdentifier != nil {
+            abgeschlosseneUebungen?.removePersistentDomain(forName: "AbgeschlosseneUebungen")
+        }
     }
     
     
