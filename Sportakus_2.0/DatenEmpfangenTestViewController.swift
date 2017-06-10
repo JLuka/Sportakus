@@ -13,6 +13,8 @@ class DatenEmpfangenTestViewController: UIViewController, WCSessionDelegate {
     
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var plan: UILabel!
+    @IBOutlet weak var uebungsname: UILabel!
+    @IBOutlet weak var gewicht: UILabel!
     
     var wcSession: WCSession!
     
@@ -37,8 +39,8 @@ class DatenEmpfangenTestViewController: UIViewController, WCSessionDelegate {
         
         self.date.text = trainingsdaten[1][0]
         self.plan.text = trainingsdaten[0][0]
-        
-        print(trainingsdaten)
+        self.uebungsname.text = trainingsdaten[2][0]
+        self.gewicht.text = trainingsdaten[2][2]
         
     }
     
