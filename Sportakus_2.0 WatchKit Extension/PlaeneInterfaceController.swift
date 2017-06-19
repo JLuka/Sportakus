@@ -25,7 +25,9 @@ class PlaeneInterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        plaene = defaults.object(forKey: "plaene") as! [String]
+        if defaults.object(forKey: "plaene") != nil {
+                  plaene = defaults.object(forKey: "plaene") as! [String]
+        }
         loadTableData()
     }
     

@@ -83,7 +83,7 @@ class UebungErstellenViewController: UIViewController {
             nameField.text = item.name
             gewichtField.text = "\(item.gewicht)"
             wiederholungenField.text = "\(item.wiederholungen)"
-            saetzeField.text = "\(item.gewicht)"
+            saetzeField.text = "\(item.saetze)"
             
         }
         

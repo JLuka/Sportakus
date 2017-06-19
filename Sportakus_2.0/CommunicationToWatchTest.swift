@@ -8,12 +8,13 @@
 
 import UIKit
 import WatchConnectivity
+import CoreData
 
-class CommunicationToWatchTest: UIViewController, WCSessionDelegate {
+class CommunicationToWatchTest: UIViewController, WCSessionDelegate, NSFetchedResultsControllerDelegate {
     
     var wcSession: WCSession!
     
-    var plaene = ["Brust - Trizeps", "Bauch - Beine", "Rücken - Bizeps", "Ganzkörpertraining"]
+    //var plaene = ["Brust - Trizeps", "Bauch - Beine", "Rücken - Bizeps", "Ganzkörpertraining"]
     
     var plan1 = ["Bankdrücken", "60", "3", "10", "Brustpresse", "40", "3", "12", "Butterfly", "47", "3", "12", "Kabelzug", "15", "3", "10"]
     
@@ -23,12 +24,27 @@ class CommunicationToWatchTest: UIViewController, WCSessionDelegate {
     
     var plan4 = ["Bankdrücken", "60", "3", "10", "Klimmzüge", "0", "3", "12", "Beinpresse", "75", "3", "12", "Hammer-Curls", "20", "3", "10"]
 
+    var plan : Plan!
+    var plaene: [Plan]!
+    var uebungen : [Uebung]!
+    var uebungenString = [""]
+    var plaeneString = [""]
+    var messageString: [String: [String]] = [:]
+     var controller: NSFetchedResultsController<Plan>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         wcSession = WCSession.default()
         wcSession.delegate = self
         wcSession.activate()
+        
+        attemptFetch()
+        
+        prepareData()
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,7 +53,8 @@ class CommunicationToWatchTest: UIViewController, WCSessionDelegate {
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        let message = ["plaene": plaene, "1": plan1, "2": plan2, "3": plan3, "4": plan4]
+        let message = messageString
+        //let message = ["plaene": plaeneString, "1": plan1, "2": plan2, "3": plan3, "4": plan4]
         
         
         //Send Messages to Watch
@@ -66,5 +83,67 @@ class CommunicationToWatchTest: UIViewController, WCSessionDelegate {
     }
     public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
         print ("error in activationDidCompleteWith error")
+    }
+    
+    func prepareData() {
+        
+        plaeneString.removeAll()
+        uebungenString.removeAll()
+        messageString.removeAll()
+        
+        
+        plaene = controller.fetchedObjects
+        
+        
+        for k in 0 ..< plaene.count  {
+            plaeneString.append((controller.fetchedObjects?[k].name)!)
+        }
+        
+        messageString["plaene"] = plaeneString
+        
+        var count:Int
+        count = 1
+        
+        for i in 0 ..< plaene.count  {
+            plan = plaene[i]
+            uebungen = plan.toUebungen?.allObjects as! [Uebung]
+            for j in 0 ..< uebungen.count  {
+                let nameUebung = uebungen![j].name!
+                uebungenString.append(nameUebung)
+                uebungenString.append("\(uebungen![j].gewicht)")
+                uebungenString.append("\(uebungen![j].saetze)")
+                uebungenString.append("\(uebungen[j].wiederholungen)")
+            }
+            messageString["\(count)"] = uebungenString
+            uebungenString.removeAll()
+            count += 1
+        }
+        
+        
+    }
+    
+    
+    
+    func attemptFetch() {
+        
+        let fetchRequest: NSFetchRequest<Plan> = Plan.fetchRequest()
+        let dataSort = NSSortDescriptor(key: "name", ascending: false)
+        
+        fetchRequest.sortDescriptors = [dataSort]
+        
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        self.controller = controller
+        
+        do {
+            try controller.performFetch()
+        } catch {
+            let error = error as NSError
+            print("\(error)")
+        }
+        
+        controller.delegate = self
+        
     }
 }

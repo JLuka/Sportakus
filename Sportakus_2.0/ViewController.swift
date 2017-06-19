@@ -197,21 +197,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-    func generateTestData() {
-        
-        let plan = Plan(context: context)
-        plan.name = "New MacBook Pro"
-
-        let plan1 = Plan(context: context)
-        plan1.name = "New MacBook Pro1111"
-        
-        
-
-        
-        
-        ad.saveContext()
-        
-    }
 
 
 }
