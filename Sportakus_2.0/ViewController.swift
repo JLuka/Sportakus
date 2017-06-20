@@ -8,14 +8,27 @@
 
 import UIKit
 import CoreData
+import WatchConnectivity
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableViewPlan: UITableView!
     var controller: NSFetchedResultsController<Plan>!
+    var wcSession: WCSession!
+    
+    var plan : Plan!
+    var plaene: [Plan]!
+    var uebungen : [Uebung]!
+    var uebungenString = [""]
+    var plaeneString = [""]
+    var messageString: [String: [String]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        wcSession = WCSession.default()
+        wcSession.delegate = self
+        wcSession.activate()
         tableViewPlan.dataSource = self
         tableViewPlan.delegate = self
         
@@ -196,6 +209,76 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    @IBAction func refreshWatchClicked(_ sender: UIBarButtonItem) {
+        
+        prepareData()
+        
+        let message = messageString
+        
+        
+        //Send Messages to Watch
+        wcSession.sendMessage(message, replyHandler: nil, errorHandler: {
+            error in
+            print(error.localizedDescription)
+        })
+        
+        // create the alert
+        let alert = UIAlertController(title: "Complete", message: "Syncronisation with watch complete.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+        
+        
+        
+    }
+    func prepareData() {
+        
+        plaeneString.removeAll()
+        uebungenString.removeAll()
+        messageString.removeAll()
+        
+        
+        plaene = controller.fetchedObjects
+        
+        
+        for k in 0 ..< plaene.count  {
+            plaeneString.append((controller.fetchedObjects?[k].name)!)
+        }
+        
+        messageString["plaene"] = plaeneString
+        
+        var count:Int
+        count = 1
+        
+        for i in 0 ..< plaene.count  {
+            plan = plaene[i]
+            uebungen = plan.toUebungen?.allObjects as! [Uebung]
+            for j in 0 ..< uebungen.count  {
+                let nameUebung = uebungen![j].name!
+                uebungenString.append(nameUebung)
+                uebungenString.append("\(uebungen![j].gewicht)")
+                uebungenString.append("\(uebungen![j].saetze)")
+                uebungenString.append("\(uebungen[j].wiederholungen)")
+            }
+            messageString["\(count)"] = uebungenString
+            uebungenString.removeAll()
+            count += 1
+        }
+        
+        
+    }
+    public func sessionDidBecomeInactive(_ session: WCSession) {
+        print ("error in sessionDidBecomeInactive")
+    }
+    public func sessionDidDeactivate(_ session: WCSession) {
+        print ("error in SesssionDidDeactivate")
+    }
+    public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
+        print ("error in activationDidCompleteWith error")
+    }
     
 
 
