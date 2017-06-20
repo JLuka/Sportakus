@@ -22,7 +22,8 @@ extension DurchfuehrungInterfaceController{
         timeCounter = 5
         time = 0
         wiederholung = 0
-        wiederholungenLabel.setTitle(String(self.zuErreichendeWiederholungen))
+        startLabel.setTitle("Start")
+        startLabel.setEnabled(true)
     }
     
     

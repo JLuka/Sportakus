@@ -159,7 +159,6 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBAction func trainingBeendenButtonPressed() {
         wcSession = WCSession.default()
         wcSession.delegate = self
-        wcSession.activate()
 
         var gemachteUebungen = abgeschlosseneUebungen?.object(forKey: "GeschaffteUebungen") as! [String]
         var gemachteUebungenAnzahl = gemachteUebungen.count - 1
@@ -178,7 +177,6 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
 
         
         let message = ["trainingsdaten": durchgefuehrteUebungen]
-        
         
         //Send Messages to Watch
         wcSession.sendMessage(message, replyHandler: nil, errorHandler: {

@@ -42,7 +42,7 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
     
     func fillViewWithContent(){
         uebungsName.setText(uebung[0])
-        if uebung[1] == "0" {
+        if uebung[1] == "0.0" {
             gewichtLabel.setText("EG")
         }else{
             gewichtLabel.setText(uebung[1] + "kg")

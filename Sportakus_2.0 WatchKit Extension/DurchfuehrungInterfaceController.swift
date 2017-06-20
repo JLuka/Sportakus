@@ -15,14 +15,15 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
 
     @IBOutlet var uebungsNameLabel: WKInterfaceLabel!
     @IBOutlet var gewichtLabel: WKInterfaceLabel!
-    @IBOutlet var wiederholungenLabel: WKInterfaceButton!
-    @IBOutlet var saetzeWortLabel: WKInterfaceLabel!
     @IBOutlet var saetzeLabel: WKInterfaceLabel!
+    @IBOutlet var startLabel: WKInterfaceButton!
+    @IBOutlet var wiederholungenLabel: WKInterfaceLabel!
+    @IBOutlet var stopButton: WKInterfaceButton!
     
     //Uebergebene Werte
     var uebung = [String]()
     var uebungsName = String()
-    var gewicht = Int()
+    var gewicht = Double()
     var zuErreichendeSaetze = Int()
     var zuErreichendeWiederholungen = Int()
     
@@ -45,23 +46,6 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         super.awake(withContext: context)
         uebung = context as! [String]
         fillViewWithContent()
-        
-//        let configuration = HKWorkoutConfiguration()
-//        
-//        configuration.activityType = .traditionalStrengthTraining
-//        configuration.locationType = .indoor
-//        
-//        do {
-//            
-//            let session = try HKWorkoutSession(configuration: configuration)
-//            session.delegate = self
-//            healthStore.start(session)
-//            print("Läuft")
-//        }
-//        catch let error as NSError {
-//            // Perform proper error handling here...
-//            fatalError("*** Unable to create the workout session: \(error.localizedDescription) ***")
-//        }
     }
     
     override func willActivate() {
@@ -79,29 +63,32 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     //Die View mit der übergebenen Übung füllen
     func fillViewWithContent(){
         uebungsName = uebung[0]
-        gewicht = Int(uebung[1])!
+        gewicht = Double(uebung[1])!
         zuErreichendeSaetze = Int(uebung[2])!
         zuErreichendeWiederholungen = Int(uebung[3])!
         
+        
         uebungsNameLabel.setText(uebungsName)
+        stopButton.setEnabled(false)
+        
         if gewicht == 0 {
             gewichtLabel.setText("EG")
         }else{
             gewichtLabel.setText(String(gewicht) + "kg")
         }
-        
-        wiederholungenLabel.setTitle(String(zuErreichendeWiederholungen))
-        saetzeLabel.setText(String(zuErreichendeSaetze))
+        satz += 1
+        startLabel.setTitle("Start")
+        saetzeLabel.setText(String(satz))
+        wiederholungenLabel.setText(String(zuErreichendeWiederholungen))
     }
 
     @IBAction func startButtonPressed() {
-        wiederholungenLabel.setTitle("Bereit?")
+        startLabel.setTitle("Bereit?")
         countDownToStartExercise.invalidate()
-        
+        startLabel.setEnabled(false)
         if timeCounter > 2 {
             countDownToStartExercise = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-            wiederholungenLabel.setEnabled(false)
-            satz += 1
+            startLabel.setEnabled(false)
         }
     }
     
@@ -109,15 +96,14 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         if timeCounter > 0 {
             timeCounter -= 1
             if timeCounter == 4 {
-                wiederholungenLabel.setTitle("Start in:")
+                startLabel.setTitle("Start in:")
             }else if timeCounter == 0{
-                wiederholungenLabel.setTitle("Los")
+                startLabel.setTitle("Los")
             }else {
-                wiederholungenLabel.setTitle("\(timeCounter)")
+                startLabel.setTitle("\(timeCounter)")
             }
             
             saetzeLabel.setText("\(satz)")
-            saetzeWortLabel.setText("Satz")
         }else{
             countDownToStartExercise.invalidate()
             WKInterfaceDevice.current().play(.click)
@@ -126,20 +112,23 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     }
     
     func countRepititions(){
-        wiederholungenLabel.setEnabled(true)
         timerStarten()
         if uebungsName == "Hammer-Curls" {
             countRepsForHammerCurls()
         }
     }
     
+    func increaseReps(){
+        self.wiederholung += 1
+        if wiederholung > 0 {
+            stopButton.setEnabled(true)
+        }
+    }
+    
     
     
     @IBAction func stopButtonPressed() {
-        wiederholung += 1
-        if wiederholung == zuErreichendeWiederholungen {
-            zielErreicht()
-        }
+        zielErreicht()
     }
 
     
@@ -156,20 +145,13 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @IBAction func testButtonPressed() {
+        increaseReps()
+        startLabel.setTitle(String(wiederholung))
+        if wiederholung == zuErreichendeWiederholungen {
+            zielErreicht()
+        }
+    }
+
 
 }

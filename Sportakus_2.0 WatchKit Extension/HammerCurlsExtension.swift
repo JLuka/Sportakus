@@ -23,7 +23,7 @@ extension DurchfuehrungInterfaceController {
 
                 
                 let pitch = self.degrees(radians: motion!.attitude.pitch)
-                self.wiederholungenLabel.setEnabled(true)
+                self.startLabel.setEnabled(true)
                 
                 //Try
                 if(pitch < -60){
@@ -34,8 +34,15 @@ extension DurchfuehrungInterfaceController {
                 }
                 if(pitch > -40 && lifted){
                     lifted = false;
-                    self.wiederholung += 1
-                    self.wiederholungenLabel.setTitle("\(self.wiederholung)")
+                    
+                    
+                    
+                    //@Emel! Musst die Methode benutzen, um die Wiederholungen hochzuzählen!
+                    self.increaseReps()
+                    
+                    
+                    
+                    self.startLabel.setTitle("\(self.wiederholung)")
                     WKInterfaceDevice.current().play(.failure)
                 }
                 

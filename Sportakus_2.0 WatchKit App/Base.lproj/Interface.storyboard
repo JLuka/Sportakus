@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--FirstView-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Sportakus_2_0_WatchKit_App" customModuleProvider="target">
+                <controller identifier="FirstView" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Sportakus_2_0_WatchKit_App" customModuleProvider="target">
                     <items>
                         <label width="1" alignment="left" text="Sportakus" textAlignment="center" id="W2S-U2-3BC">
                             <fontDescription key="font" type="system" pointSize="26"/>
@@ -27,6 +27,36 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--ErrorHandler-->
+        <scene sceneID="G5m-cE-nnU">
+            <objects>
+                <controller identifier="ErrorHandler" id="nT6-tQ-dow" customClass="DynamicErrorInterfaceController" customModule="Sportakus_2_0_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="center" text="Achtung" textAlignment="center" id="dY3-kT-Wgm">
+                            <fontDescription key="font" type="system" pointSize="23"/>
+                        </label>
+                        <label width="1" height="96" alignment="left" text="Sie haben diese Übung schon ausgeführt. Wenn sie die Übung nochmal machen, werden ihre vorherigen Leistungen gelöscht." textAlignment="center" numberOfLines="6" id="DPA-xf-CY1">
+                            <fontDescription key="font" type="system" pointSize="12"/>
+                        </label>
+                        <group width="1" alignment="left" id="pJX-CP-7Tx">
+                            <items>
+                                <button width="154" alignment="left" title="Zurück" id="jXw-zu-u2d">
+                                    <connections>
+                                        <action selector="backButtonPressed" destination="nT6-tQ-dow" id="bRd-gT-YRg"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="backButton" destination="jXw-zu-u2d" id="qwH-uc-JNw"/>
+                        <outlet property="errorMessageLabel" destination="DPA-xf-CY1" id="wm0-Aq-cMG"/>
+                        <outlet property="titelLabel" destination="dY3-kT-Wgm" id="eHD-Qp-P4i"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="219.69230769230771" y="33.564102564102569"/>
         </scene>
         <!--Plaene-->
         <scene sceneID="sPq-X3-B5R">
@@ -141,7 +171,7 @@
                         </label>
                         <group width="136" alignment="left" id="gkk-ty-hqw">
                             <items>
-                                <label width="84" alignment="left" text="Gewicht:" id="bTg-MV-eHR">
+                                <label width="79" alignment="left" text="Gewicht:" id="bTg-MV-eHR">
                                     <fontDescription key="font" type="system" pointSize="20"/>
                                 </label>
                                 <label width="57" alignment="left" text="Label" id="elc-uv-nXb">
@@ -185,7 +215,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="792" y="345"/>
+            <point key="canvasLocation" x="791.58974358974365" y="344.79487179487182"/>
         </scene>
         <!--Durchfuehrung-->
         <scene sceneID="bxH-nb-ZyR">
@@ -194,20 +224,25 @@
                     <items>
                         <group width="1" alignment="left" id="9lM-1Z-NGR">
                             <items>
-                                <label width="103" alignment="left" text="Label" id="akj-Uh-INB">
+                                <label width="103" alignment="left" text="Label" minimumScaleFactor="0.29999999999999999" id="akj-Uh-INB">
                                     <fontDescription key="font" type="system" pointSize="16"/>
                                 </label>
-                                <label width="47" alignment="right" text="Label" textAlignment="right" id="J53-0g-Ycz">
+                                <label width="47" alignment="right" text="Label" textAlignment="right" minimumScaleFactor="0.5" id="J53-0g-Ycz">
                                     <fontDescription key="font" type="system" pointSize="16"/>
                                 </label>
                             </items>
                         </group>
-                        <button width="89" height="88" alignment="center" verticalAlignment="center" title="Button" backgroundImage="DurchführungBackground" id="dkn-ga-MKe">
-                            <fontDescription key="font" type="system" pointSize="20"/>
-                            <connections>
-                                <action selector="startButtonPressed" destination="GJP-7F-lGt" id="tWt-ya-7ES"/>
-                            </connections>
-                        </button>
+                        <group width="90" alignment="center" backgroundImage="DurchführungBackground" id="Lvj-lq-07w">
+                            <items>
+                                <button width="89" height="88" alignment="center" verticalAlignment="center" title="Button" id="dkn-ga-MKe">
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                    <connections>
+                                        <action selector="startButtonPressed" destination="GJP-7F-lGt" id="tWt-ya-7ES"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                         <button width="129" height="33" alignment="center" verticalAlignment="bottom" title="Stop" id="bpa-VE-ZUZ">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="backgroundColor" red="0.96862745100000003" green="0.66274509800000003" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -218,25 +253,37 @@
                         </button>
                         <group width="1" alignment="left" verticalAlignment="bottom" id="bYd-b6-xIs">
                             <items>
-                                <label alignment="left" verticalAlignment="bottom" text="  Sätze:" id="3YM-Kk-axO">
+                                <label alignment="left" verticalAlignment="bottom" text="  Satz:" id="3YM-Kk-axO">
                                     <fontDescription key="font" type="system" pointSize="12"/>
                                 </label>
                                 <label alignment="left" text="Label" id="JZx-Al-K6k">
                                     <fontDescription key="font" type="system" pointSize="12"/>
                                 </label>
+                                <label alignment="right" verticalAlignment="bottom" text="Wdh." id="bG0-aB-2bf">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
+                                <label alignment="right" verticalAlignment="bottom" text="dd" id="KOu-M9-2Xh">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
                             </items>
                         </group>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="TestButton" id="m81-td-A14">
+                            <connections>
+                                <action selector="testButtonPressed" destination="GJP-7F-lGt" id="E5F-EI-qnW"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="gewichtLabel" destination="J53-0g-Ycz" id="npo-ef-TlM"/>
                         <outlet property="saetzeLabel" destination="JZx-Al-K6k" id="If9-Xv-Dha"/>
-                        <outlet property="saetzeWortLabel" destination="3YM-Kk-axO" id="AEZ-uJ-gQl"/>
+                        <outlet property="startLabel" destination="dkn-ga-MKe" id="pnc-eZ-yoe"/>
+                        <outlet property="stopButton" destination="bpa-VE-ZUZ" id="ux4-Wh-xX8"/>
                         <outlet property="uebungsNameLabel" destination="akj-Uh-INB" id="k8f-Np-Obt"/>
-                        <outlet property="wiederholungenLabel" destination="dkn-ga-MKe" id="TER-mY-MHQ"/>
+                        <outlet property="wiederholungenLabel" destination="KOu-M9-2Xh" id="dRq-Dz-MBK"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="983" y="345"/>
+            <point key="canvasLocation" x="982.51282051282055" y="344.79487179487182"/>
         </scene>
         <!--Uebersicht-->
         <scene sceneID="9HG-C0-dsi">

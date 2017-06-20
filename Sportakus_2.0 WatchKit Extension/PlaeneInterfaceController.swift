@@ -14,17 +14,23 @@ class PlaeneInterfaceController: WKInterfaceController {
     
     @IBOutlet var table: WKInterfaceTable!
 
+    
+    
+    
     var plaene = [String]()
     let defaults = UserDefaults.standard
+    let plaeneDefaults = UserDefaults.init(suiteName: "Plaene")
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
         // Configure interface objects here.
+        
+        
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
         if defaults.object(forKey: "plaene") != nil {
                   plaene = defaults.object(forKey: "plaene") as! [String]
         }
@@ -50,7 +56,16 @@ class PlaeneInterfaceController: WKInterfaceController {
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         let welcherPlan = rowIndex + 1
         defaults.set(String(welcherPlan), forKey: "welcherPlan")
-        pushController(withName: "Uebungen", context: nil)
+        
+        let helper = plaeneDefaults?.object(forKey: String(welcherPlan)) as! [String]
+        
+        if helper.count == 0{
+            let viewInformationen = ["keineUebungenVorhanden", "PlaeneView"]
+            pushController(withName: "ErrorHandler", context: viewInformationen)
+        }else{
+            pushController(withName: "Uebungen", context: nil)
+        }
+        
     }
 
 

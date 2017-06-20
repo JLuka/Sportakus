@@ -24,15 +24,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         wcSession = WCSession.default()
         wcSession.delegate = self
         wcSession.activate()
-        
-        
-//        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-//            print("\(key) = \(value) \n")
-//        }
-//        for (key, value) in (plaeneDefaults?.dictionaryRepresentation())! {
-//            print("\(key) = \(value) \n")
-//        }
-        
     }
     
     
@@ -57,7 +48,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
         
         let wieVielePlaene = message.count - 1
-        
+        plaene = message["plaene"] as! [String]
         
         defaults.set(wieVielePlaene, forKey: "wieVielePlaene")
         
@@ -77,13 +68,16 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         defaults.synchronize()
         
-        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-            print("\(key) = \(value) \n")
-        }
         
     }
     @IBAction func pushNextController() {
-        pushController(withName: "Plaene", context: plaene)
+        if defaults.object(forKey: "wieVielePlaene") == nil || plaene.count == 0 {
+            let viewInformationen = ["keinePlaeneVorhanden", "FirstView"]
+            presentController(withName: "ErrorHandler", context: viewInformationen)
+        }else{
+            pushController(withName: "Plaene", context: plaene)
+        }
+        
     }
 
 }
