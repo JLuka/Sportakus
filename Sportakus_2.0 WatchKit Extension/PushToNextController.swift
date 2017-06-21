@@ -15,6 +15,7 @@ extension DurchfuehrungInterfaceController{
         neededTime.invalidate()
         let erreichteLeistungen = [self.uebungsName, String(self.wiederholung), String(self.satz), String(self.time), String(self.zuErreichendeSaetze), String(self.gewicht)]
         resetTraining()
+        viewContentWurdeSchonGeladen = false
         pushController(withName: "Uebersicht", context: erreichteLeistungen)
     }
     

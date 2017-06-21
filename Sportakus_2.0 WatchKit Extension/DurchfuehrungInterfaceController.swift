@@ -40,19 +40,23 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     //Motion Handler
     var motionManager = CMMotionManager()
     
+    var viewContentWurdeSchonGeladen = false
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         uebung = context as! [String]
-        fillViewWithContent()
+        
     }
     
     override func willActivate() {
         super.willActivate()
+        if viewContentWurdeSchonGeladen == false {
+            fillViewWithContent()
+        }
     }
     
     override func didDeactivate() {
         super.didDeactivate()
-        
         motionManager.stopDeviceMotionUpdates()
     }
 
@@ -62,7 +66,6 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         gewicht = Double(uebung[1])!
         zuErreichendeSaetze = Int(uebung[2])!
         zuErreichendeWiederholungen = Int(uebung[3])!
-        
         
         uebungsNameLabel.setText(uebungsName)
         stopButton.setEnabled(false)
@@ -76,6 +79,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         startLabel.setTitle("Start")
         saetzeLabel.setText(String(satz))
         wiederholungenLabel.setText(String(zuErreichendeWiederholungen))
+        viewContentWurdeSchonGeladen = true
     }
 
     @IBAction func startButtonPressed() {
