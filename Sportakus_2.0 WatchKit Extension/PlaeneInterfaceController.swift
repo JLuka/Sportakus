@@ -6,9 +6,15 @@
 //  Copyright © 2017 Jannis Lindenberg. All rights reserved.
 //
 
+/**
+ InterfaceController zur View "Plaene"
+ Die View zeigt alle vorhanden Trainingsplaene an
+ Der Controller nutzt die Plaene aus dem UserDefault
+ Zeigt diese in einer Table View an
+ */
+
 import WatchKit
 import Foundation
-
 
 class PlaeneInterfaceController: WKInterfaceController {
     
@@ -34,7 +40,14 @@ class PlaeneInterfaceController: WKInterfaceController {
     override func didDeactivate() {
         super.didDeactivate()
     }
-    
+    /**
+     Methode um die Table View mit den Trainingsplannamen zu füllen
+     
+     # Important Informations #
+        - Table Identifier = "Table"
+        - NumberOfRows = Anzahl von Plaenen
+        - Label in jeder Row ist in TableRowController.swift deklariert
+     */
     func loadTableData(){
         table.setNumberOfRows(plaene.count, withRowType: "Table")
         
@@ -44,6 +57,13 @@ class PlaeneInterfaceController: WKInterfaceController {
         }
     }
     
+    /**
+     Table function um zum nächsten View zu wechseln ("Uebungen")
+     Inkl. dem Row Index um den ausgewählten Plan weiter zu geben
+     
+     # Important #
+     Wenn keine Übungen in einem Plan vorhanden sind, wird an den DynamicErrorInterfaceController weitergeleitet
+     */
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         let welcherPlan = rowIndex + 1
         defaults.set(String(welcherPlan), forKey: "welcherPlan")

@@ -6,6 +6,14 @@
 //  Copyright © 2017 Jannis Lindenberg. All rights reserved.
 //
 
+/**
+ Interface Controller zur ersten View
+ Die View zeigt den StartScreen
+ Controller empfängt Daten des iPhones
+ Speichert diese im NSUserDefault
+ Und wechselt dann zum nächsten ViewController
+ */
+
 import WatchKit
 import Foundation
 import WatchConnectivity
@@ -18,10 +26,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     var plaene = [String]()
     
+    /**
+     WatchConnectivity Session aktivieren
+     */
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        //WatchConnectivity Session aktivieren
         wcSession = WCSession.default()
         wcSession.delegate = self
         wcSession.activate()
@@ -38,6 +47,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
     }
     
+    /**
+     Did receive Message Methode
+        - löscht als erstes ggf. bestehend gespeicherte Daten
+        - empfängt Daten der Uhr als String Dictionary
+        - speichert neu empfangene Daten im NSUserDefault und im PlaeneSuite
+        - Lässt eine alert aufploppen, wenn die Daten erfolgreich empfangen wurden
+     */
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         
         if let bundle = Bundle.main.bundleIdentifier {
@@ -67,7 +83,15 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         self.presentAlert(withTitle: "Erledigt", message: "Ihre Daten wurden erfolgreich empfangen.", preferredStyle: .alert, actions: [action1])
     }
     
-    
+    /**
+     Methode die zum nächsten ViewController wechselt
+     
+     # Important Notes #
+        wechselt nur zum Controller PlaeneInterfaceController, wenn:
+            - eine Message empfangen wurde und
+            - mehr als ein Plan vorhanden ist
+        andernfalls wechselt die View zum DynamicErrorInterfaceController
+     */
     @IBAction func pushNextController() {
         if defaults.object(forKey: "wieVielePlaene") == nil || plaene.count == 0 {
             let viewInformationen = ["keinePlaeneVorhanden", "FirstView"]
