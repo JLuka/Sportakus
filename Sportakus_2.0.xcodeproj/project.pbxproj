@@ -37,6 +37,8 @@
 		0AF57DBF1EF9035E004820A1 /* DynamicErrorInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF57DBE1EF9035E004820A1 /* DynamicErrorInterfaceController.swift */; };
 		73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */; };
 		73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */; };
+		73CB0E251EF91FED004EE79C /* ArchivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB0E241EF91FED004EE79C /* ArchivViewController.swift */; };
+		73CB0E271EF923C0004EE79C /* ItemCellArchiv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB0E261EF923C0004EE79C /* ItemCellArchiv.swift */; };
 		73D21A101EE985AC00A86FB1 /* ItemCellPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A0F1EE985AC00A86FB1 /* ItemCellPlan.swift */; };
 		73D21A131EE99BE000A86FB1 /* UebungErstellenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A121EE99BE000A86FB1 /* UebungErstellenViewController.swift */; };
 		73D21A171EE99F0E00A86FB1 /* ItemCellUebung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A161EE99F0E00A86FB1 /* ItemCellUebung.swift */; };
@@ -123,6 +125,8 @@
 		0AF57DBE1EF9035E004820A1 /* DynamicErrorInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicErrorInterfaceController.swift; sourceTree = "<group>"; };
 		73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanErstellenViewController.swift; sourceTree = "<group>"; };
 		73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungsListeViewController.swift; sourceTree = "<group>"; };
+		73CB0E241EF91FED004EE79C /* ArchivViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchivViewController.swift; sourceTree = "<group>"; };
+		73CB0E261EF923C0004EE79C /* ItemCellArchiv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCellArchiv.swift; sourceTree = "<group>"; };
 		73D21A0F1EE985AC00A86FB1 /* ItemCellPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCellPlan.swift; sourceTree = "<group>"; };
 		73D21A121EE99BE000A86FB1 /* UebungErstellenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungErstellenViewController.swift; sourceTree = "<group>"; };
 		73D21A161EE99F0E00A86FB1 /* ItemCellUebung.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCellUebung.swift; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 			children = (
 				73D21A0F1EE985AC00A86FB1 /* ItemCellPlan.swift */,
 				73D21A161EE99F0E00A86FB1 /* ItemCellUebung.swift */,
+				73CB0E261EF923C0004EE79C /* ItemCellArchiv.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 		73D21A111EE98A6800A86FB1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				73CB0E241EF91FED004EE79C /* ArchivViewController.swift */,
 				0ABE2C551EDADAF300D3D887 /* ViewController.swift */,
 				73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */,
 				73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */,
@@ -457,7 +463,9 @@
 				73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */,
 				73D21A1E1EE9A8E800A86FB1 /* Plan+CoreDataClass.swift in Sources */,
 				73D21A101EE985AC00A86FB1 /* ItemCellPlan.swift in Sources */,
+				73CB0E251EF91FED004EE79C /* ArchivViewController.swift in Sources */,
 				73D21A1D1EE9A8E800A86FB1 /* Uebung+CoreDataProperties.swift in Sources */,
+				73CB0E271EF923C0004EE79C /* ItemCellArchiv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
