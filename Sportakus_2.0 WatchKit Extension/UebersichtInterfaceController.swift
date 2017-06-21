@@ -24,9 +24,7 @@ class UebersichtInterfaceController: WKInterfaceController {
     var defaults = UserDefaults.standard
     var erledigteUebungDefaults = UserDefaults.init(suiteName: "ErledigteUebung")
     
-    
     var testArray = [String]()
-    
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -34,16 +32,11 @@ class UebersichtInterfaceController: WKInterfaceController {
         self.context = context as! [String]
         welcheUebung = defaults.object(forKey: "welcheUebung") as! Int
         
-        
-        
-        
         if Int(self.context[2]) == 1 {
             //Löschen des Suite Inhalt
             if Bundle.main.bundleIdentifier != nil {
                 erledigteUebungDefaults?.removePersistentDomain(forName: "ErledigteUebung")
             }
-            
-            
             //                          Uebungsname  zuErreichendeSätze      Gewicht      Satz                Wdh             Zeit
             zuSpeichernderContext = [self.context[0], self.context[4], self.context[5], self.context[2], self.context[1], self.context[3]]
             erledigteUebungDefaults?.set(zuSpeichernderContext, forKey: String(welcheUebung))
@@ -56,32 +49,24 @@ class UebersichtInterfaceController: WKInterfaceController {
             erledigteUebungDefaults?.set(vorherGespeicherteDaten, forKey: String(welcheUebung))
             erledigteUebungDefaults?.synchronize()
         }
-        
-        
         fillViewWithContext()
     }
 
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
 
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-    
     
     @IBAction func weiterButtonClicked() {
         pop()
     }
     
-    
-    
     @IBAction func uebungBeendenButtonClicked() {
         pushController(withName: "Uebungen", context: String(welcheUebung))
     }
-    
     
     func fillViewWithContext(){
         wiederholungLabel.setText(context[1])
@@ -93,7 +78,4 @@ class UebersichtInterfaceController: WKInterfaceController {
             beendenButton.setBackgroundColor(UIColor(red:0.52, green:0.80, blue:0.81, alpha:1.0))
         }
     }
-    
-    
-
 }

@@ -25,6 +25,4 @@ extension DurchfuehrungInterfaceController{
         startLabel.setTitle("Start")
         startLabel.setEnabled(true)
     }
-    
-    
 }
