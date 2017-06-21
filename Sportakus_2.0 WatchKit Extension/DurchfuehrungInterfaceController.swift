@@ -37,6 +37,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     var timeCounter = 5
     var time = 0
     
+    
     //Motion Handler
     var motionManager = CMMotionManager()
     
@@ -51,13 +52,14 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
         
-        motionManager.stopDeviceMotionUpdates()
+        //motionManager.stopDeviceMotionUpdates()
     }
 
     //Die View mit der übergebenen Übung füllen
@@ -102,11 +104,12 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
             }else {
                 startLabel.setTitle("\(timeCounter)")
             }
-            
             saetzeLabel.setText("\(satz)")
+            
         }else{
             countDownToStartExercise.invalidate()
-            WKInterfaceDevice.current().play(.click)
+            WKInterfaceDevice.current().play(.start)
+            timeCounterReset()
             countRepititions()
         }
     }
@@ -125,10 +128,13 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         }
     }
     
-    
+    func timeCounterReset(){
+        self.timeCounter = 5;
+    }
     
     @IBAction func stopButtonPressed() {
         zielErreicht()
+        WKInterfaceDevice.current().play(.failure)
     }
 
     
