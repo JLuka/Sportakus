@@ -9,7 +9,6 @@
 import WatchKit
 import Foundation
 
-
 extension DurchfuehrungInterfaceController{
     func timerStarten(){
         neededTime = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(zeitStoppen), userInfo: nil, repeats: true)
@@ -19,5 +18,4 @@ extension DurchfuehrungInterfaceController{
     func zeitStoppen(){
         time += 1
     }
-    
 }

@@ -41,22 +41,20 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     //Motion Handler
     var motionManager = CMMotionManager()
     
-    //let healthStore: HKHealthStore = HKHealthStore()
+    var viewContentWurdeSchonGeladen = false
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         uebung = context as! [String]
-        fillViewWithContent()
+        
     }
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
         
         //motionManager.stopDeviceMotionUpdates()
@@ -68,7 +66,6 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         gewicht = Double(uebung[1])!
         zuErreichendeSaetze = Int(uebung[2])!
         zuErreichendeWiederholungen = Int(uebung[3])!
-        
         
         uebungsNameLabel.setText(uebungsName)
         stopButton.setEnabled(false)
@@ -82,6 +79,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         startLabel.setTitle("Start")
         saetzeLabel.setText(String(satz))
         wiederholungenLabel.setText(String(zuErreichendeWiederholungen))
+        viewContentWurdeSchonGeladen = true
     }
 
     @IBAction func startButtonPressed() {
@@ -100,7 +98,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
             if timeCounter == 4 {
                 startLabel.setTitle("Start in:")
             }else if timeCounter == 0{
-                startLabel.setTitle("Los")
+                startLabel.setTitle(String(wiederholung))
             }else {
                 startLabel.setTitle("\(timeCounter)")
             }
@@ -139,17 +137,13 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
 
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-        
     }
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didGenerate event: HKWorkoutEvent) {
-        
     }
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
-        
     }
-    
     
     @IBAction func testButtonPressed() {
         increaseReps()
@@ -158,6 +152,4 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
             zielErreicht()
         }
     }
-
-
 }

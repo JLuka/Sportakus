@@ -21,24 +21,21 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        //WatchConnectivity Session aktivieren
         wcSession = WCSession.default()
         wcSession.delegate = self
         wcSession.activate()
     }
     
-    
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
     
     public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
-        //print ("error in activationDidCompleteWith error")
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
@@ -62,14 +59,15 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             }else{
                 plaeneDefaults?.set(message[helper], forKey: helper)
             }
-            
-            
         }
-        
         defaults.synchronize()
         
-        
+        let h0 = {self.popToRootController()}
+        let action1 = WKAlertAction(title: "OK", style: .default, handler:h0)
+        self.presentAlert(withTitle: "Erledigt", message: "Ihre Daten wurden erfolgreich empfangen.", preferredStyle: .alert, actions: [action1])
     }
+    
+    
     @IBAction func pushNextController() {
         if defaults.object(forKey: "wieVielePlaene") == nil || plaene.count == 0 {
             let viewInformationen = ["keinePlaeneVorhanden", "FirstView"]
@@ -77,7 +75,5 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }else{
             pushController(withName: "Plaene", context: plaene)
         }
-        
     }
-
 }

@@ -22,7 +22,6 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
     
     var uebung = [String]()
     
-    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -31,12 +30,10 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
     }
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
     
@@ -47,7 +44,6 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
         }else{
             gewichtLabel.setText(uebung[1] + "kg")
         }
-        
         saetzeLabel.setText(uebung[2])
         wiederholungsLabel.setText(uebung[3])
     }
@@ -55,6 +51,4 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
     @IBAction func startExerciseButtonPressed() {
         pushController(withName: "Durchfuehrung", context: uebung)
     }
-
-
 }

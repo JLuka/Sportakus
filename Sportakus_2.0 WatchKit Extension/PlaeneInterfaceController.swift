@@ -14,21 +14,15 @@ class PlaeneInterfaceController: WKInterfaceController {
     
     @IBOutlet var table: WKInterfaceTable!
 
-    
-    
-    
     var plaene = [String]()
     let defaults = UserDefaults.standard
     let plaeneDefaults = UserDefaults.init(suiteName: "Plaene")
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        // Configure interface objects here.
-        
-        
     }
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
         if defaults.object(forKey: "plaene") != nil {
@@ -38,7 +32,6 @@ class PlaeneInterfaceController: WKInterfaceController {
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
     
@@ -49,8 +42,6 @@ class PlaeneInterfaceController: WKInterfaceController {
             let row = table.rowController(at: index) as! TableRowController
             row.label.setText(content)
         }
-        
-        
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
@@ -65,8 +56,5 @@ class PlaeneInterfaceController: WKInterfaceController {
         }else{
             pushController(withName: "Uebungen", context: nil)
         }
-        
     }
-
-
 }

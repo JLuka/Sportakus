@@ -9,8 +9,6 @@
 import WatchKit
 
 class TableRowController: NSObject {
-    
     @IBOutlet var label: WKInterfaceLabel!
     @IBOutlet var uebungenLabel: WKInterfaceLabel!
-
 }

@@ -9,7 +9,6 @@
 import WatchKit
 import Foundation
 
-
 class DynamicErrorInterfaceController: WKInterfaceController {
     
     @IBOutlet var titelLabel: WKInterfaceLabel!
@@ -21,17 +20,15 @@ class DynamicErrorInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         errorMessageInformations = context as! [String]
-        
+        self.setTitle("zurück")
         fillView()
     }
 
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
 
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
     
@@ -51,7 +48,5 @@ class DynamicErrorInterfaceController: WKInterfaceController {
 
     @IBAction func backButtonPressed() {
         pop()
-        //pushController(withName: errorMessageInformations[1], context: nil)
     }
-    
 }
