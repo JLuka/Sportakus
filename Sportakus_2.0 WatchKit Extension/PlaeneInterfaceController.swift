@@ -6,16 +6,15 @@
 //  Copyright © 2017 Jannis Lindenberg. All rights reserved.
 //
 
+import WatchKit
+import Foundation
+
 /**
  InterfaceController zur View "Plaene"
  Die View zeigt alle vorhanden Trainingsplaene an
  Der Controller nutzt die Plaene aus dem UserDefault
  Zeigt diese in einer Table View an
  */
-
-import WatchKit
-import Foundation
-
 class PlaeneInterfaceController: WKInterfaceController {
     
     @IBOutlet var table: WKInterfaceTable!

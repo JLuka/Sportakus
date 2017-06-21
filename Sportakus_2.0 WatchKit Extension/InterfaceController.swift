@@ -6,6 +6,10 @@
 //  Copyright © 2017 Jannis Lindenberg. All rights reserved.
 //
 
+import WatchKit
+import Foundation
+import WatchConnectivity
+
 /**
  Interface Controller zur ersten View
  Die View zeigt den StartScreen
@@ -13,11 +17,6 @@
  Speichert diese im NSUserDefault
  Und wechselt dann zum nächsten ViewController
  */
-
-import WatchKit
-import Foundation
-import WatchConnectivity
-
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     var wcSession: WCSession!

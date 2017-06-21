@@ -9,6 +9,11 @@
 import WatchKit
 import Foundation
 
+/**
+ Interface Controller zur ErrorView zur Darstellung eines Errors zu fehlenden Plaenen oder fehlenden Uebungen
+ Die View zeigt eine Fehlermeldung, wenn kein Plan zur Verfügung steht oder ein Plan keine Uebungen enthält
+ Controller empfängt eine Fehlermeldung als Context und zeigt diese an
+ */
 class DynamicErrorInterfaceController: WKInterfaceController {
     
     @IBOutlet var titelLabel: WKInterfaceLabel!
@@ -17,6 +22,10 @@ class DynamicErrorInterfaceController: WKInterfaceController {
     
     var errorMessageInformations = [String]()
 
+    /**
+     speichert den übergebenen Context, setzt den Titel der View mit "Zurück"
+     ruft fillView auf
+     */
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         errorMessageInformations = context as! [String]
@@ -31,7 +40,12 @@ class DynamicErrorInterfaceController: WKInterfaceController {
     override func didDeactivate() {
         super.didDeactivate()
     }
-    
+    /**
+     füllt die View mit Kontext
+        - disabled den Zurück Button
+        - Setzt ein Titel
+        - füllt das errorMessage mit dem entsprechenden Kontext (keine Übungen vorhanden oder keine Pläne vorhanden)
+     */
     func fillView(){
         if errorMessageInformations[0] == "keinePlaeneVorhanden" {
             backButton.setEnabled(false)
@@ -45,7 +59,9 @@ class DynamicErrorInterfaceController: WKInterfaceController {
             errorMessageLabel.setText("Dieser Plan enthält keine Übungen. \nBitte fügen sie ihrem Trainingsplan zuerst Übungen hinzu.")
         }
     }
-
+    /**
+     Funktion um zur vorherigen View zurück zu kehren
+     */
     @IBAction func backButtonPressed() {
         pop()
     }

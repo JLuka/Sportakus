@@ -9,7 +9,12 @@
 import WatchKit
 import Foundation
 
-
+/**
+ InterfaceController zur View "UebungsUebersicht"
+ Die View zeigt alle Informationen zur ausgewählten Uebung an
+ Der Controller nutzt die Informationen aus der NSUserDefault Suite Uebungen und der Standard Suite
+ und füllt die View mit diesen Informationen
+ */
 class UebungsUebersichtInterfaceController: WKInterfaceController {
 
     @IBOutlet var uebungsName: WKInterfaceLabel!
@@ -22,6 +27,10 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
     
     var uebung = [String]()
     
+    /**
+     Lädt die Informationen aus der NSUserDefault Suite Uebungen und speichert diese in der Variable uebung
+     Ruft fillViewWithContent auf
+     */
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -37,6 +46,13 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
+    /**
+     Füllt die View mit Kontent
+     
+     # Wichtig #
+     Wenn das Gewicht 0.0 beträgt, wird das Gewicht auf EG für Eigengewicht gesetzt
+     Ansonsten wird das gewählte Gewicht angezeigt
+     */
     func fillViewWithContent(){
         uebungsName.setText(uebung[0])
         if uebung[1] == "0.0" {
@@ -48,6 +64,10 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
         wiederholungsLabel.setText(uebung[3])
     }
     
+    /**
+     Pushed zur nächsten View (Durchführung) und
+     übergibt die UebungsInformationen (Name, Gewicht, Sätze, Wiederholungen)
+     */
     @IBAction func startExerciseButtonPressed() {
         pushController(withName: "Durchfuehrung", context: uebung)
     }
