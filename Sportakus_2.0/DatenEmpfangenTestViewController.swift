@@ -27,7 +27,9 @@ class DatenEmpfangenTestViewController: UIViewController, WCSessionDelegate, NSF
 
         wcSession = WCSession.default()
         wcSession.delegate = self
-        wcSession.activate()
+        if !wcSession.isPaired {
+            wcSession.activate()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,14 +39,17 @@ class DatenEmpfangenTestViewController: UIViewController, WCSessionDelegate, NSF
     
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        trainingsdaten = message["trainingsdaten"] as! [[String]]
+        
+        DispatchQueue.main.async() {
+            self.trainingsdaten = message["trainingsdaten"] as! [[String]]
+        }
         
         print(trainingsdaten)
         
         var planName = trainingsdaten[0]
         var datum = trainingsdaten[1]
         
-        let uebungName = trainingsdaten[2][0]
+        _ = trainingsdaten[2][0]
         let saetze = trainingsdaten[2][1]
         let gewicht = trainingsdaten[2][2]
         let gemachteWiederholungen = trainingsdaten[2][4]
@@ -76,7 +81,7 @@ class DatenEmpfangenTestViewController: UIViewController, WCSessionDelegate, NSF
         var uebungsName = ""
         
         
-        for j in 0 ..< trainingsdaten.count {
+        for _ in 0 ..< trainingsdaten.count {
             
             uebungsName = trainingsdaten[0][0]
             trainingsdaten[0].remove(at: 0)
@@ -103,7 +108,14 @@ class DatenEmpfangenTestViewController: UIViewController, WCSessionDelegate, NSF
         
        // item.mutableSetValue(forKey: "toSaetze").add(satzItem)
         
+        let alert = UIAlertController(title: "Complete", message: "Daten empfangen.", preferredStyle: UIAlertControllerStyle.alert)
         
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+
 
         
         

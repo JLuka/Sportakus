@@ -21,6 +21,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        //WatchConnectivity Session aktivieren
         wcSession = WCSession.default()
         wcSession.delegate = self
         wcSession.activate()
@@ -60,6 +61,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             }
         }
         defaults.synchronize()
+        
+        let h0 = {self.popToRootController()}
+        let action1 = WKAlertAction(title: "OK", style: .default, handler:h0)
+        self.presentAlert(withTitle: "Erledigt", message: "Ihre Daten wurden erfolgreich empfangen.", preferredStyle: .alert, actions: [action1])
     }
     
     

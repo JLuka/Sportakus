@@ -167,27 +167,25 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         
         //Send Messages to Watch
         if wcSession.isReachable {
+            var fehlerTitel = "Erledigt"
+            var fehlerMessage = "Ihre Daten wurden erfolgreich übertragen."
+            
             wcSession.sendMessage(message, replyHandler: nil, errorHandler: {
                 error in
-                print(error.localizedDescription)
+                fehlerMessage = "Ihre Daten konnten nicht übertragen werden. Vermutlich ist ihr Handy nicht in Reichweite."
+                fehlerTitel = "Fehler"
             })
             
             deleteSuite()
             let h0 = {self.popToRootController()}
             let action1 = WKAlertAction(title: "OK", style: .default, handler:h0)
-            self.presentAlert(withTitle: "Erledigt", message: "Ihre Daten wurden erfolgreich übertragen.", preferredStyle: .alert, actions: [action1])
+            self.presentAlert(withTitle: "Erledigt", message: fehlerMessage, preferredStyle: .alert, actions: [action1])
             
         }else{
             let h0 = { }
             let action1 = WKAlertAction(title: "OK", style: .default, handler:h0)
             self.presentAlert(withTitle: "Fehler", message: "Ihre Daten konnten nicht übertragen werden. Vermutlich ist ihr Handy nicht in Reichweite.", preferredStyle: .alert, actions: [action1])
         }
-//        wcSession.sendMessage(message, replyHandler: nil, errorHandler: {
-//            (error) -> Void in
-//            let h0 = { }
-//            let action1 = WKAlertAction(title: "OK", style: .default, handler:h0)
-//            self.presentAlert(withTitle: "Fehler", message: "Ihre Daten konnten nicht übertragen werden. Vermutlich ist ihr Handy nicht in Reichweite.", preferredStyle: .alert, actions: [action1])
-//        })
     }
 
     func getCurrentDateAndTime() -> String{
