@@ -18,7 +18,10 @@ class DynamicErrorInterfaceController: WKInterfaceController {
     
     @IBOutlet var titelLabel: WKInterfaceLabel!
     @IBOutlet var errorMessageLabel: WKInterfaceLabel!
+    @IBOutlet var okButton: WKInterfaceButton!
     @IBOutlet var backButton: WKInterfaceButton!
+    
+    let defaults = UserDefaults.standard
     
     var errorMessageInformations = [String]()
 
@@ -50,13 +53,20 @@ class DynamicErrorInterfaceController: WKInterfaceController {
         if errorMessageInformations[0] == "keinePlaeneVorhanden" {
             backButton.setEnabled(false)
             backButton.setAlpha(0)
+            okButton.setEnabled(false)
+            okButton.setAlpha(0)
             titelLabel.setText("Fehler")
             errorMessageLabel.setText("Es sind noch keine \nTrainingspläne vorhanden. \nBitte übertragen sie zuerst Pläne von ihrem Handy.")
         }else if errorMessageInformations[0] == "keineUebungenVorhanden" {
             backButton.setEnabled(false)
             backButton.setAlpha(0)
+            okButton.setEnabled(false)
+            okButton.setAlpha(0)
             titelLabel.setText("Fehler")
             errorMessageLabel.setText("Dieser Plan enthält keine Übungen. \nBitte fügen sie ihrem Trainingsplan zuerst Übungen hinzu.")
+        }else if errorMessageInformations[0] == "UebungSchonAusgeführt" {
+            titelLabel.setText("Fehler")
+            errorMessageLabel.setText("Sie haben diese Übung schon ausgeführt.\nWenn sie die Übung nochmal machen, werden ihre vorherigen Leistungen gelöscht.")
         }
     }
     /**
@@ -64,5 +74,10 @@ class DynamicErrorInterfaceController: WKInterfaceController {
      */
     @IBAction func backButtonPressed() {
         pop()
+    }
+    
+    @IBAction func okButtonPressed() {
+        defaults.set(Int(errorMessageInformations[2])!, forKey: "welcheUebung")
+        pushController(withName: "UebungsUebersicht", context: Int(errorMessageInformations[2])!)
     }
 }

@@ -12,7 +12,15 @@ import Foundation
 
 import WatchConnectivity
 
-
+/**
+ InterfaceController zur View "Uebungen"
+ Die View zeigt alle vorhanden Uebungen
+ Der Controller nutzt die Uebungen aus dem UserDefault Suite Plaene
+ Zeigt diese in einer Table View an
+ 
+ # Wichtig #
+ Als Context wird übergeben, welcher Plan ausgewählt wurde
+ */
 class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
 
     var wcSession: WCSession!
@@ -20,12 +28,18 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet var table: WKInterfaceTable!
     @IBOutlet var beendenButton: WKInterfaceButton!
     
+    /**
+     Konstanten um auf den jeweiligen UserDefault zuzugreigen
+     */
     let defaults = UserDefaults.standard
     let uebungenDefaults = UserDefaults.init(suiteName: "Uebungen")
     let plaeneDefaults = UserDefaults.init(suiteName: "Plaene")
     let erledigteUebungDefaults = UserDefaults.init(suiteName: "ErledigteUebung")
-    var abgeschlosseneUebungen = UserDefaults.init(suiteName: "AbgeschlosseneUebungen")
+    let abgeschlosseneUebungen = UserDefaults.init(suiteName: "AbgeschlosseneUebungen")
     
+    /**
+     Variablen um die Daten aus den User Default Suits zu speichern
+     */
     var uebungen = [String]()
     var uebungsNamen = [String]()
     var context = String()
@@ -34,6 +48,16 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
     var schonEineUebungGemacht = Bool()
     var abgeschlosseneUebung = [String]()
     
+    
+    /**
+     Speichert den Context in einer Variablen
+     Speichert die Uebungen in uebungen[String]
+     Wenn der Context nicht nil ist, wird die übergebene, gemachte Uebung zum Uebungen Suite hinzugefügt
+     Wenn noch keine Uebung ausgeführt wurde, wird die Suite Abgeschlossene Uebungen gelöscht
+     Speichert aus dem Array uebungen nur die Uebungsnamen in einem neuen Array uebungsNamen
+     Blendet den Beenden Button aus, wenn noch keine Uebung ausgeführt wurde und ändert die Farbe, wenn alle Uebungen einmal ausgeführt wurden
+     Füllt die Table View mit Uebungsnamen
+     */
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -84,14 +108,15 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         super.didDeactivate()
     }
     
+    /**
+     Methode um die Table View mit den Uebungsnamen zu füllen und
+     die Schrift der schon gemachten Uebungen transparenter zu machen
+     */
     func loadTableData(){
-        
         table.setNumberOfRows(uebungsNamen.count, withRowType: "UebungenTable")
-        
         for (index, content) in uebungsNamen.enumerated() {
             let row = table.rowController(at: index) as! TableRowController
             row.uebungenLabel.setText(content)
-            
             for (_, content) in geschaffteUebungen.enumerated(){
                 if String(index) == content {
                     row.uebungenLabel.setAlpha(0.5)
@@ -100,10 +125,17 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    /**
+     Speichert alle Uebungen aus dem Plan mit den zugehörigen Werten: 
+        - Gewicht
+        - Sätze
+        - Wiederholungen
+     in einem eigenen Suite "Uebungen"
+     Der Key um auf diese Daten zuzugreifen ist, eine fortlaufende Zahl, angefangen bei 0
+     */
     func uploadUserDefaultExercises(){
         var counter = 0;
         _ = String()
-        
         
         for i in 0..<uebungsNamen.count {
             var uebung = [String]()
@@ -116,12 +148,22 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    //Push to next Controller
+    /**
+     Methode um zum nächsten ViewController zu pushen.
+     Wenn eine Übung, die geklickt wurde, schonmal ausgeführt wurde
+     (im aktuellen Training)
+     wird der Controller DynamicErrorInterfaceController aufgerufen
+     Wenn nicht, wird zur View UebungsUebersicht gepushed.
+     
+     # Wichtig #
+     Der RowIndex, der ausgewählten Uebung, muss als Context uebergeben werden
+     */
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         if schonEineUebungGemacht{
             if istVorhanden(rowIndex: rowIndex) {
                 //Fehlermeldung / Warnung
-                pushController(withName: "Error", context: rowIndex)
+                let errorMessage = ["UebungSchonAusgeführt", "Uebungen", String(rowIndex)]
+                pushController(withName: "ErrorHandler", context: errorMessage)
             }else{
                 defaults.set(rowIndex, forKey: "welcheUebung")
                 pushController(withName: "UebungsUebersicht", context: rowIndex)
@@ -133,6 +175,14 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    /**
+     Methode um zu überprüfen, ob eine Uebung schon ausgeführt wurde 
+     und dementsprechend im Array geschaffteUebungen vorhanden ist.
+     
+     # Wichtig #
+     Return: Boolean
+     
+     */
     func istVorhanden(rowIndex: Int) -> Bool{
         for (_, content) in geschaffteUebungen.enumerated(){
             if String(rowIndex) == content {
@@ -142,7 +192,12 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         return false
     }
     
-    //Button zum Beenden des Trainings und zum senden der Trainingsdaten an das Handy
+    /**
+     Button um das Training zu beenden und die Trainingsdaten an das iPhone zu senden
+     
+     sendet eine Message an das Handy, bestehend aus allen Trainingsdaten aus der Suite "abgeschlosseneUebungen"
+     Präsentiert eine Alert, wenn die Nachricht erfolgreich zugestellt wurde und wenn das Senden fehlgeschlagen ist.
+     */
     @IBAction func trainingBeendenButtonPressed() {
         
         wcSession = WCSession.default()
@@ -179,7 +234,7 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
             deleteSuite()
             let h0 = {self.popToRootController()}
             let action1 = WKAlertAction(title: "OK", style: .default, handler:h0)
-            self.presentAlert(withTitle: "Erledigt", message: fehlerMessage, preferredStyle: .alert, actions: [action1])
+            self.presentAlert(withTitle: fehlerTitel, message: fehlerMessage, preferredStyle: .alert, actions: [action1])
             
         }else{
             let h0 = { }
@@ -188,6 +243,9 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
 
+    /**
+     Methode, die das aktuelle Datum und die aktuelle Zeit als String zurück gibt
+     */
     func getCurrentDateAndTime() -> String{
         let date : Date = Date()
         let dateFormatter = DateFormatter()
@@ -196,6 +254,11 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         return todaysDate
     }
     
+    /**
+     Methode um eine geschaffte Uebung in die Suite abgeschlosseneUebungen zu speichern (Die Uebungsnummer)
+     Wenn die Suite noch leer ist, wird sie neu angelegt und der erste Wert wird gespeichert.
+     Wenn sie nicht leer ist, wird der neue Wert einfach hinzugefügt
+     */
     func appendGeschaffteUebungToSuite(){
         if  abgeschlosseneUebungen?.object(forKey: "GeschaffteUebungen") == nil {
             //Ein Hilfsarray, welches gespeichert wird, damit das gespeicherte Objekt beim nächsten Durchlauf als String Array in eine Variable gespeichert werden kann
@@ -211,6 +274,11 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    /**
+     Methode um eine geschaffte Uebung in die Suite erledigteUebungen zu speichern (Die Uebungswerte - > Sätze, Gewichte, Wiederholungen)
+     Wenn die Suite noch leer ist, wird sie neu angelegt und der erste Wert wird gespeichert.
+     Wenn sie nicht leer ist, wird der neue Wert einfach hinzugefügt
+     */
     func saveAccomplishedExercises(){
         _ = [String]()
         
@@ -227,18 +295,21 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    
+    /**
+     Methode um die Suite abgeschlosseneUebungen zu löschen
+     */
     func deleteSuite(){
         if Bundle.main.bundleIdentifier != nil {
             abgeschlosseneUebungen?.removePersistentDomain(forName: "AbgeschlosseneUebungen")
         }
     }
     
-    
+    /**
+     WatchConnectivity Methode
+     
+     Wenn die activation nicht geklappt hat, wird eine Fehlermeldung geprinted
+     */
     public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
         print ("error in activationDidCompleteWith error")
-    }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
     }
 }

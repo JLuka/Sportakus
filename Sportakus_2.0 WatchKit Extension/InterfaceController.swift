@@ -25,18 +25,20 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     var plaene = [String]()
     
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
+    }
     /**
      WatchConnectivity Session aktivieren
      */
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-        wcSession = WCSession.default()
-        wcSession.delegate = self
-        wcSession.activate()
-    }
-    
     override func willActivate() {
         super.willActivate()
+        
+        wcSession = WCSession.default()
+        wcSession.delegate = self
+        if wcSession.isReachable == false {
+            wcSession.activate()
+        }
     }
     
     override func didDeactivate() {

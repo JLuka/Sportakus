@@ -9,10 +9,17 @@
 import WatchKit
 import Foundation
 import CoreMotion
-import HealthKit
 
-class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
-
+/**
+ InterfaceController zur View "Durchfuehrung"
+ Die View zeigt alle Informationen zur Uebung an, die ausgeführt wird
+ Der Controller startet das Training und zählt die Wiederholungen an
+ */
+class DurchfuehrungInterfaceController: WKInterfaceController {
+    
+    /**
+     Outlets für die Labels in der View
+     */
     @IBOutlet var uebungsNameLabel: WKInterfaceLabel!
     @IBOutlet var gewichtLabel: WKInterfaceLabel!
     @IBOutlet var saetzeLabel: WKInterfaceLabel!
@@ -42,12 +49,17 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     
     var viewContentWurdeSchonGeladen = false
     
+    /**
+     Speichert übergebenen Context (ausgewählte Uebung und ihre Werte) in der Variable "uebung"
+     */
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         uebung = context as! [String]
-        
     }
     
+    /**
+     Ruft fillViewWithContent auf, wenn dieser Content im aktuellen Satz noch nicht geladen wurde
+     */
     override func willActivate() {
         super.willActivate()
         if viewContentWurdeSchonGeladen == false {
@@ -55,12 +67,20 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         }
     }
     
+    /**
+     Stoppt den Updater der Device Motions, wenn die View deaktiviert wird
+     */
     override func didDeactivate() {
         super.didDeactivate()
         motionManager.stopDeviceMotionUpdates()
     }
 
-    //Die View mit der übergebenen Übung füllen
+    /**
+     - Füllt die View mit dem übergebenen Content.
+     - Zählt den aktuellen Satz einen hoch
+     - Wenn das Gewicht 0 beträgt, wird das Gewichtslabel auf EG (Eigengewicht) gesetzt
+     - setzt die Variable viewContentWurdeSchonGeladen auf true
+     */
     func fillViewWithContent(){
         uebungsName = uebung[0]
         gewicht = Double(uebung[1])!
@@ -82,6 +102,14 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         viewContentWurdeSchonGeladen = true
     }
 
+    /**
+     Wird ausgeführt, wenn der Startbutton gedrückt wurde
+     Disabled den StartButton
+     startet den Countdown bis zum Start 
+     
+     # Wichtig #
+     Der Countdown ruft in einem Intervall von einer Sekunde die Methode timerAction auf
+     */
     @IBAction func startButtonPressed() {
         startLabel.setTitle("Bereit?")
         countDownToStartExercise.invalidate()
@@ -92,6 +120,19 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         }
     }
     
+    /**
+     Zählt den timeCounter einen herunter, wenn der timeCounter größer als 0 ist
+     Zeigt jede Sekunde ein neues Wort oder Zahlen an.
+     
+     # Timerablauf #
+     - Bereit
+     - Start in:
+     - 3
+     - 2
+     - 1
+     - 0
+     Countdown wird beendet und countRepititions wird aufgerufen
+     */
     func timerAction() {
         if timeCounter > 0 {
             timeCounter -= 1
@@ -111,6 +152,9 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         }
     }
     
+    /**
+     Methode, die den Uebungsnamen überprüft und zur dementsprechenden Extension weiterleitet
+     */
     func countRepititions(){
         timerStarten()
         if uebungsName == "Hammer-Curls" {
@@ -118,6 +162,9 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         }
     }
     
+    /**
+     Methode um die Wiederholungen eine Hochzuzählen und den Stop Button zu enablen, wenn die Wiederholung größer als 0 ist.
+     */
     func increaseReps(){
         self.wiederholung += 1
         if wiederholung > 0 {
@@ -125,22 +172,19 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         }
     }
     
-    
-    
+    /**
+     Wenn der Stop Button gedrückt wird, wird zielErreicht aufgerufen
+     */
     @IBAction func stopButtonPressed() {
         zielErreicht()
     }
-
     
-    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-    }
-    
-    func workoutSession(_ workoutSession: HKWorkoutSession, didGenerate event: HKWorkoutEvent) {
-    }
-    
-    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
-    }
-    
+    /**
+     Wird ausgelöst, wenn der Testbutton geklickt wird.
+     Muss noch gelöscht werden, wenn ausreichend Extensions zum tracken der Wiederholungen eingebaut sind.
+     Ruft increaseReps auf und setzt das Wiederholungen Label mit der neunen Anzahl an gemachten Wiederholungen
+     Ruft zielErreicht auf, wenn das angestrebte Ziel erreicht wurde (wiederholungen = zuErreichendeWiederholungen)
+     */
     @IBAction func testButtonPressed() {
         increaseReps()
         startLabel.setTitle(String(wiederholung))

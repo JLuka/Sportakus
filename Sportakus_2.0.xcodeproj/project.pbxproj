@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0A920EEC1EE2E5390001570E /* PushToNextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A920EEB1EE2E5390001570E /* PushToNextController.swift */; };
-		0AA5A08E1EE9A46600291099 /* ErrorHandlerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5A08D1EE9A46600291099 /* ErrorHandlerInterfaceController.swift */; };
 		0ABE2C541EDADAF300D3D887 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C531EDADAF300D3D887 /* AppDelegate.swift */; };
 		0ABE2C561EDADAF300D3D887 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C551EDADAF300D3D887 /* ViewController.swift */; };
 		0ABE2C591EDADAF300D3D887 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABE2C571EDADAF300D3D887 /* Main.storyboard */; };
@@ -92,7 +91,6 @@
 
 /* Begin PBXFileReference section */
 		0A920EEB1EE2E5390001570E /* PushToNextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushToNextController.swift; sourceTree = "<group>"; };
-		0AA5A08D1EE9A46600291099 /* ErrorHandlerInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandlerInterfaceController.swift; sourceTree = "<group>"; };
 		0ABE2C501EDADAF300D3D887 /* Sportakus_2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportakus_2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABE2C531EDADAF300D3D887 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ABE2C551EDADAF300D3D887 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 				0AE52CDE1EE2CF8500B009BB /* Extensions */,
 				0ABE2C7E1EDADAF300D3D887 /* Assets.xcassets */,
 				0AF57DBE1EF9035E004820A1 /* DynamicErrorInterfaceController.swift */,
-				0AA5A08D1EE9A46600291099 /* ErrorHandlerInterfaceController.swift */,
 				0AF492861EE1A2A700A2597E /* TableRowController.swift */,
 				0ABE2C7A1EDADAF300D3D887 /* ExtensionDelegate.swift */,
 				0ABE2C7C1EDADAF300D3D887 /* NotificationController.swift */,
@@ -478,7 +475,6 @@
 				0AF492871EE1A2A700A2597E /* TableRowController.swift in Sources */,
 				0AF4928D1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift in Sources */,
 				0ABE2C7B1EDADAF300D3D887 /* ExtensionDelegate.swift in Sources */,
-				0AA5A08E1EE9A46600291099 /* ErrorHandlerInterfaceController.swift in Sources */,
 				0AE52CDD1EE2CF7D00B009BB /* HammerCurlsExtension.swift in Sources */,
 				0AE52CDB1EE2C46400B009BB /* UebersichtInterfaceController.swift in Sources */,
 				0AF57DBF1EF9035E004820A1 /* DynamicErrorInterfaceController.swift in Sources */,

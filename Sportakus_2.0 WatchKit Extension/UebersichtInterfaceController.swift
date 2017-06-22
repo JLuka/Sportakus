@@ -9,8 +9,15 @@
 import WatchKit
 import Foundation
 
-
+/**
+ InterfaceController zur View "Uebersicht"
+ Die View zeigt alle Informationen zur zuletzt durchgeführten Uebung an
+ Der Controller speichert den übergebenen Context in der Suite erledigte Uebungen und zeigt diesen in der View an
+ */
 class UebersichtInterfaceController: WKInterfaceController {
+    /**
+     Outlets für die Labels in der View
+     */
     @IBOutlet var ueberschriftLabel: WKInterfaceLabel!
     @IBOutlet var satzLabel: WKInterfaceLabel!
     @IBOutlet var wiederholungLabel: WKInterfaceLabel!
@@ -26,6 +33,22 @@ class UebersichtInterfaceController: WKInterfaceController {
     
     var testArray = [String]()
 
+    /**
+     Speichert den uebergebenen context in der Variable context
+     Wenn die UserDefault Suite "ErledigteUebung leer ist, wird diese angelegt und die Werte:
+        - Uebungsname
+        - zuErreichendeSätze
+        - Gewicht
+        - Satz
+        - Wiederholungen
+        - Zeit
+     gespeichert.
+     Wenn die Suite schon vorhanden ist, werden die Werte
+        - Satz
+        - Wiederholungen
+        - Zeit
+     der Suite hinzugefügt
+     */
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -60,14 +83,27 @@ class UebersichtInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
+    /**
+     Wird ausgelöst, wenn der Weiter Button geklickt wurde
+     Wechselt zur vorherigen View
+     */
     @IBAction func weiterButtonClicked() {
         pop()
     }
     
+    /**
+     Wird ausgelöst, wenn der Uebung Beenden Button geklickt wurde
+     Wechselt zur View Uebungen und übergibt als Context als String, welche Uebung ausgeführt wurde
+     */
     @IBAction func uebungBeendenButtonClicked() {
         pushController(withName: "Uebungen", context: String(welcheUebung))
     }
     
+    /**
+     Methode, um die View mit dem übergebenen Context zu füllen
+     Wenn der aktuelle Satz und der zuErreichendeSatz übereinstimmen,
+     wird die Überschrift in "Glückwunsch" geändert und die Farbe des Beenden Buttons geändert
+     */
     func fillViewWithContext(){
         wiederholungLabel.setText(context[1])
         satzLabel.setText(context[2])
