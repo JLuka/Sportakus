@@ -22,6 +22,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var wcSession: WCSession!
     let defaults = UserDefaults.standard
     let plaeneDefaults = UserDefaults.init(suiteName: "Plaene")
+    let uebungenDefaults = UserDefaults.init(suiteName: "Uebungen")
+    let erledigteUebungDefaults = UserDefaults.init(suiteName: "ErledigteUebung")
+    let abgeschlosseneUebungen = UserDefaults.init(suiteName: "AbgeschlosseneUebungen")
     
     var plaene = [String]()
     
@@ -36,9 +39,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         wcSession = WCSession.default()
         wcSession.delegate = self
-        if wcSession.isReachable == false {
+        if wcSession.activationState != .activated {
             wcSession.activate()
         }
+        
+        eventuelVorhandeneWerteInDenSuitesLöschen()
     }
     
     override func didDeactivate() {
@@ -46,6 +51,28 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
+    }
+    
+    /**
+     Methode um die ggf. vorhandenen Werte in den Suites 
+     - abgeschlosseneUebungen
+     - ErledigteUebungen
+     - Uebungen 
+     und den Wert für den aktuellen Plan zu löschen
+     */
+    func eventuelVorhandeneWerteInDenSuitesLöschen(){
+        if Bundle.main.bundleIdentifier != nil {
+            abgeschlosseneUebungen?.removePersistentDomain(forName: "AbgeschlosseneUebungen")
+        }
+        if Bundle.main.bundleIdentifier != nil {
+            erledigteUebungDefaults?.removePersistentDomain(forName: "ErledigteUebung")
+        }
+        if Bundle.main.bundleIdentifier != nil {
+            uebungenDefaults?.removePersistentDomain(forName: "Uebungen")
+        }
+        if defaults.object(forKey: "welcherPlan") != nil {
+            defaults.removeObject(forKey: "welcherPlan")
+        }
     }
     
     /**
