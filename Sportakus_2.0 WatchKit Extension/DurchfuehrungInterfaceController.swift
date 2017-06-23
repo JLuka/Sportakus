@@ -30,13 +30,19 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     //Variable Werte
     var wiederholung = 0
     var satz = 0
+    var lifted = false
+    var repTimerCounter = 0;
+    var started = false;
     
     //Timer
     var countDownToStartExercise = Timer()
     var neededTime = Timer()
+    var repTimer = Timer()
     var timeCounter = 5
     var time = 0
     
+    //Zustand des Views
+    var isActivated = false;
     
     //Motion Handler
     var motionManager = CMMotionManager()
@@ -51,12 +57,15 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     
     override func willActivate() {
         super.willActivate()
-        
+        if viewContentWurdeSchonGeladen == false{
+            fillViewWithContent()
+        }
+        self.isActivated = true;
     }
     
     override func didDeactivate() {
         super.didDeactivate()
-        
+        self.isActivated = false;
         //motionManager.stopDeviceMotionUpdates()
     }
 
@@ -107,6 +116,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
         }else{
             countDownToStartExercise.invalidate()
             WKInterfaceDevice.current().play(.start)
+            WKInterfaceDevice.current().play(.notification)
             timeCounterReset()
             countRepititions()
         }
@@ -114,9 +124,9 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     
     func countRepititions(){
         timerStarten()
-        if uebungsName == "Hammer-Curls" {
-            countRepsForHammerCurls()
-        }
+        
+        countReps()
+        
     }
     
     func increaseReps(){
@@ -132,6 +142,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController, HKWorkoutSessionD
     
     @IBAction func stopButtonPressed() {
         zielErreicht()
+        motionManager.stopDeviceMotionUpdates()
         WKInterfaceDevice.current().play(.failure)
     }
 
