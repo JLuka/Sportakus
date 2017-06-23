@@ -19,6 +19,7 @@
                         </label>
                         <button width="126" height="126" alignment="center" verticalAlignment="center" title="Training beginnen" backgroundImage="StartBackground" id="Sml-dh-BTB">
                             <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
+                            <variation key="device=watch38mm" height="103" width="103"/>
                             <connections>
                                 <action selector="pushNextController" destination="AgC-eL-Hgc" id="UfW-3F-Eq9"/>
                             </connections>
@@ -26,7 +27,7 @@
                     </items>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="220" y="339"/>
         </scene>
         <!--ErrorHandler-->
         <scene sceneID="G5m-cE-nnU">
@@ -120,7 +121,7 @@
                         </table>
                         <button width="1" height="38" alignment="left" title="Training beenden" id="rU4-3Q-0Ov">
                             <color key="backgroundColor" red="0.96470588239999999" green="0.66274509800000003" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" type="system" pointSize="17"/>
+                            <fontDescription key="font" type="system" pointSize="15"/>
                             <connections>
                                 <action selector="trainingBeendenButtonPressed" destination="t8j-l4-JJG" id="AOF-Pe-dDr"/>
                             </connections>
@@ -139,26 +140,28 @@
             <objects>
                 <controller identifier="UebungsUebersicht" id="Q5k-wQ-gsl" customClass="UebungsUebersichtInterfaceController" customModule="Sportakus_2_0_WatchKit_Extension">
                     <items>
-                        <label width="1" alignment="center" text="Label" textAlignment="left" id="Td8-cc-XZu">
+                        <label width="1" alignment="center" text="Label" textAlignment="left" minimumScaleFactor="0.40000000000000002" id="Td8-cc-XZu">
                             <fontDescription key="font" type="system" pointSize="24"/>
                         </label>
                         <group width="156" alignment="left" id="gkk-ty-hqw">
                             <items>
-                                <label width="79" alignment="left" text="Gewicht:" id="bTg-MV-eHR">
-                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                <label width="79" alignment="left" text="Gewicht:" minimumScaleFactor="0.40000000000000002" id="bTg-MV-eHR">
+                                    <fontDescription key="font" type="system" pointSize="17"/>
+                                    <variation key="device=watch38mm" width="73"/>
                                 </label>
-                                <label width="73" alignment="left" text="Label" id="elc-uv-nXb">
-                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                <label width="73" alignment="left" text="Label" minimumScaleFactor="0.40000000000000002" id="elc-uv-nXb">
+                                    <fontDescription key="font" type="system" pointSize="17"/>
+                                    <variation key="device=watch38mm" width="60"/>
                                 </label>
                             </items>
                         </group>
                         <group width="1" height="28" alignment="center" verticalAlignment="center" id="i6b-rD-QZk">
                             <items>
                                 <label alignment="left" verticalAlignment="center" text="  Sätze" textAlignment="center" id="6Iw-Ko-CUr">
-                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <fontDescription key="font" type="system" pointSize="11"/>
                                 </label>
                                 <label alignment="right" verticalAlignment="center" text="Wiederholungen  " textAlignment="center" id="JAX-1T-aQ7">
-                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                    <fontDescription key="font" type="system" pointSize="11"/>
                                 </label>
                             </items>
                         </group>
@@ -188,7 +191,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="791.58974358974365" y="344.79487179487182"/>
+            <point key="canvasLocation" x="791" y="344"/>
         </scene>
         <!--Durchfuehrung-->
         <scene sceneID="bxH-nb-ZyR">
@@ -199,22 +202,28 @@
                             <items>
                                 <label width="103" alignment="left" text="Label" minimumScaleFactor="0.29999999999999999" id="akj-Uh-INB">
                                     <fontDescription key="font" type="system" pointSize="16"/>
+                                    <variation key="device=watch38mm" width="76"/>
                                 </label>
                                 <label width="47" alignment="right" text="Label" textAlignment="right" minimumScaleFactor="0.5" id="J53-0g-Ycz">
                                     <fontDescription key="font" type="system" pointSize="16"/>
+                                    <variation key="device=watch38mm" width="56"/>
                                 </label>
                             </items>
                         </group>
-                        <group width="90" alignment="center" backgroundImage="DurchführungBackground" id="Lvj-lq-07w">
+                        <group width="100" height="100" alignment="center" backgroundImage="DurchführungBackground" id="Lvj-lq-07w">
                             <items>
                                 <button width="89" height="88" alignment="center" verticalAlignment="center" title="Button" id="dkn-ga-MKe">
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" pointSize="20"/>
+                                    <variation key="device=watch38mm" height="81" width="81"/>
+                                    <variation key="device=watch42mm" width="104"/>
                                     <connections>
                                         <action selector="startButtonPressed" destination="GJP-7F-lGt" id="tWt-ya-7ES"/>
                                     </connections>
                                 </button>
                             </items>
+                            <variation key="device=watch38mm" height="77" width="80"/>
+                            <variation key="device=watch42mm" height="80" width="80"/>
                         </group>
                         <button width="129" height="33" alignment="center" verticalAlignment="bottom" title="Stop" id="bpa-VE-ZUZ">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -235,8 +244,10 @@
                                 <label alignment="right" verticalAlignment="bottom" text="Wdh." id="bG0-aB-2bf">
                                     <fontDescription key="font" type="system" pointSize="12"/>
                                 </label>
-                                <label alignment="right" verticalAlignment="bottom" text="dd" id="KOu-M9-2Xh">
+                                <label width="100" alignment="right" verticalAlignment="bottom" text="dd" id="KOu-M9-2Xh">
                                     <fontDescription key="font" type="system" pointSize="12"/>
+                                    <variation key="device=watch38mm" width="26"/>
+                                    <variation key="device=watch42mm" width="40"/>
                                 </label>
                             </items>
                         </group>
@@ -256,7 +267,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="982.51282051282055" y="344.79487179487182"/>
+            <point key="canvasLocation" x="980" y="353.5"/>
         </scene>
         <!--Uebersicht-->
         <scene sceneID="9HG-C0-dsi">
@@ -270,9 +281,11 @@
                             <items>
                                 <label width="69" alignment="left" verticalAlignment="center" text="Satz:" id="YpG-OO-1hX">
                                     <fontDescription key="font" type="system" pointSize="22"/>
+                                    <variation key="device=watch38mm" width="61"/>
                                 </label>
                                 <label width="84" alignment="right" verticalAlignment="center" text="Label" textAlignment="left" id="t2d-6u-Qdy">
                                     <fontDescription key="font" type="system" pointSize="22"/>
+                                    <variation key="device=watch38mm" width="73"/>
                                 </label>
                             </items>
                         </group>
@@ -280,9 +293,11 @@
                             <items>
                                 <label width="69" alignment="left" verticalAlignment="center" text="Wdh:" id="Hhm-pY-86n">
                                     <fontDescription key="font" type="system" pointSize="22"/>
+                                    <variation key="device=watch38mm" width="60"/>
                                 </label>
                                 <label width="84" alignment="right" verticalAlignment="center" text="Label" textAlignment="left" id="MeC-SI-3qk">
                                     <fontDescription key="font" type="system" pointSize="22"/>
+                                    <variation key="device=watch38mm" width="74"/>
                                 </label>
                             </items>
                         </group>
@@ -290,11 +305,13 @@
                             <items>
                                 <label width="69" alignment="left" verticalAlignment="center" text="Zeit:" id="ZFh-dV-z3y">
                                     <fontDescription key="font" type="system" pointSize="22"/>
-                                </label>
-                                <label width="47" alignment="right" verticalAlignment="center" text="Sek" id="Alh-th-y35">
-                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                    <variation key="device=watch38mm" width="61"/>
                                 </label>
                                 <label width="35" alignment="left" verticalAlignment="center" text="1" textAlignment="left" id="rF9-if-Zpm">
+                                    <fontDescription key="font" type="system" pointSize="22"/>
+                                    <variation key="device=watch38mm" width="23"/>
+                                </label>
+                                <label width="47" alignment="right" verticalAlignment="center" text="Sek" id="Alh-th-y35">
                                     <fontDescription key="font" type="system" pointSize="22"/>
                                 </label>
                             </items>
@@ -308,7 +325,7 @@
                         </button>
                         <button width="1" alignment="left" verticalAlignment="bottom" title="Übung beenden" id="kzf-Tj-iUC">
                             <color key="backgroundColor" red="0.96862745100000003" green="0.66274509800000003" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" type="system" pointSize="20"/>
+                            <fontDescription key="font" type="system" pointSize="16"/>
                             <connections>
                                 <action selector="uebungBeendenButtonClicked" destination="19E-yH-hc8" id="bVm-0h-Ebe"/>
                             </connections>
@@ -323,7 +340,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="1188" y="345"/>
+            <point key="canvasLocation" x="1188" y="344.5"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
