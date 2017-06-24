@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A920EEC1EE2E5390001570E /* PushToNextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A920EEB1EE2E5390001570E /* PushToNextController.swift */; };
+		0A998B5A1EFE410300C547DE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A998B591EFE410300C547DE /* HealthKit.framework */; };
+		0A998B5D1EFE410B00C547DE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A998B5C1EFE410B00C547DE /* HealthKit.framework */; };
+		0A998B5F1EFE427800C547DE /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A998B5E1EFE427800C547DE /* HealthManager.swift */; };
 		0ABE2C541EDADAF300D3D887 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C531EDADAF300D3D887 /* AppDelegate.swift */; };
 		0ABE2C561EDADAF300D3D887 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C551EDADAF300D3D887 /* ViewController.swift */; };
 		0ABE2C591EDADAF300D3D887 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABE2C571EDADAF300D3D887 /* Main.storyboard */; };
@@ -91,6 +94,11 @@
 
 /* Begin PBXFileReference section */
 		0A920EEB1EE2E5390001570E /* PushToNextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushToNextController.swift; sourceTree = "<group>"; };
+		0A998B581EFE410300C547DE /* Sportakus_2.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sportakus_2.0.entitlements; sourceTree = "<group>"; };
+		0A998B591EFE410300C547DE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		0A998B5B1EFE410B00C547DE /* Sportakus_2.0 WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sportakus_2.0 WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		0A998B5C1EFE410B00C547DE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		0A998B5E1EFE427800C547DE /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		0ABE2C501EDADAF300D3D887 /* Sportakus_2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportakus_2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABE2C531EDADAF300D3D887 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ABE2C551EDADAF300D3D887 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A998B5A1EFE410300C547DE /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A998B5D1EFE410B00C547DE /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +165,8 @@
 		0A4BC6711EEB0C6B00C971BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A998B5C1EFE410B00C547DE /* HealthKit.framework */,
+				0A998B591EFE410300C547DE /* HealthKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -186,6 +198,7 @@
 		0ABE2C521EDADAF300D3D887 /* Sportakus_2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				0A998B581EFE410300C547DE /* Sportakus_2.0.entitlements */,
 				73D21A111EE98A6800A86FB1 /* Controller */,
 				73D21A0E1EE9858000A86FB1 /* View */,
 				0ABE2C531EDADAF300D3D887 /* AppDelegate.swift */,
@@ -212,6 +225,7 @@
 		0ABE2C751EDADAF300D3D887 /* Sportakus_2.0 WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0A998B5B1EFE410B00C547DE /* Sportakus_2.0 WatchKit Extension.entitlements */,
 				0ABE2C781EDADAF300D3D887 /* InterfaceController.swift */,
 				0AF492841EE1A1E000A2597E /* PlaeneInterfaceController.swift */,
 				0AF492881EE1A8D200A2597E /* UebungenInterfaceController.swift */,
@@ -222,6 +236,7 @@
 				0ABE2C7E1EDADAF300D3D887 /* Assets.xcassets */,
 				0AF57DBE1EF9035E004820A1 /* DynamicErrorInterfaceController.swift */,
 				0AF492861EE1A2A700A2597E /* TableRowController.swift */,
+				0A998B5E1EFE427800C547DE /* HealthManager.swift */,
 				0ABE2C7A1EDADAF300D3D887 /* ExtensionDelegate.swift */,
 				0ABE2C7C1EDADAF300D3D887 /* NotificationController.swift */,
 				0ABE2C801EDADAF300D3D887 /* Info.plist */,
@@ -363,7 +378,7 @@
 								enabled = 0;
 							};
 							com.apple.HealthKit = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -383,10 +398,10 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.watchos.extension = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.HealthKit.watchos = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -474,6 +489,7 @@
 				0AF4928B1EE1A9CA00A2597E /* UebungsUebersichtInterfaceController.swift in Sources */,
 				0AF492871EE1A2A700A2597E /* TableRowController.swift in Sources */,
 				0AF4928D1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift in Sources */,
+				0A998B5F1EFE427800C547DE /* HealthManager.swift in Sources */,
 				0ABE2C7B1EDADAF300D3D887 /* ExtensionDelegate.swift in Sources */,
 				0AE52CDD1EE2CF7D00B009BB /* HammerCurlsExtension.swift in Sources */,
 				0AE52CDB1EE2C46400B009BB /* UebersichtInterfaceController.swift in Sources */,
@@ -627,6 +643,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Sportakus_2.0 WatchKit Extension/Sportakus_2.0 WatchKit Extension.entitlements";
 				DEVELOPMENT_TEAM = LD8EBCUDWD;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -644,6 +661,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Sportakus_2.0 WatchKit Extension/Sportakus_2.0 WatchKit Extension.entitlements";
 				DEVELOPMENT_TEAM = LD8EBCUDWD;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -697,6 +715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sportakus_2.0/Sportakus_2.0.entitlements;
 				DEVELOPMENT_TEAM = LD8EBCUDWD;
 				INFOPLIST_FILE = Sportakus_2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -710,6 +729,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sportakus_2.0/Sportakus_2.0.entitlements;
 				DEVELOPMENT_TEAM = LD8EBCUDWD;
 				INFOPLIST_FILE = Sportakus_2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

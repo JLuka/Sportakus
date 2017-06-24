@@ -9,6 +9,7 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
+import HealthKit
 
 /**
  Interface Controller zur ersten View
@@ -25,11 +26,22 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     let uebungenDefaults = UserDefaults.init(suiteName: "Uebungen")
     let erledigteUebungDefaults = UserDefaults.init(suiteName: "ErledigteUebung")
     let abgeschlosseneUebungen = UserDefaults.init(suiteName: "AbgeschlosseneUebungen")
+    let healthManager = HealthManager()
     
     var plaene = [String]()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                print("HealthKit authorization received.")
+            }
+            else
+            {
+                print("HealthKit authorization denied!")
+                print("\(error)")
+            }
+        }
     }
     /**
      WatchConnectivity Session aktivieren

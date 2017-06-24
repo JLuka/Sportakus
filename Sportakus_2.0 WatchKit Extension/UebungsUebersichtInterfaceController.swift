@@ -24,6 +24,7 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
     
     let defaults = UserDefaults.standard
     let uebungenDefaults = UserDefaults.init(suiteName: "Uebungen")
+    let healthManager = HealthManager()
     
     var uebung = [String]()
     
@@ -70,5 +71,6 @@ class UebungsUebersichtInterfaceController: WKInterfaceController {
      */
     @IBAction func startExerciseButtonPressed() {
         pushController(withName: "Durchfuehrung", context: uebung)
+        healthManager.startWorkout()
     }
 }

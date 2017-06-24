@@ -48,6 +48,8 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
     var schonEineUebungGemacht = Bool()
     var abgeschlosseneUebung = [String]()
     
+    let healthManager = HealthManager()
+    
     
     /**
      Speichert den Context in einer Variablen
@@ -199,6 +201,8 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
      Präsentiert eine Alert, wenn die Nachricht erfolgreich zugestellt wurde und wenn das Senden fehlgeschlagen ist.
      */
     @IBAction func trainingBeendenButtonPressed() {
+        
+        healthManager.startWorkout()
         
         wcSession = WCSession.default()
         wcSession.delegate = self
