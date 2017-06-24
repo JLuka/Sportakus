@@ -37,12 +37,16 @@ class DurchfuehrungInterfaceController: WKInterfaceController {
     //Variable Werte
     var wiederholung = 0
     var satz = 0
+    var started = false
+    var repTimerCounter = 0
+    var lifted = false
     
     //Timer
     var countDownToStartExercise = Timer()
     var neededTime = Timer()
     var timeCounter = 5
     var time = 0
+    var repTimer = Timer()
     
     //Motion Handler
     var motionManager = CMMotionManager()
@@ -157,9 +161,7 @@ class DurchfuehrungInterfaceController: WKInterfaceController {
      */
     func countRepititions(){
         timerStarten()
-        if uebungsName == "Hammer-Curls" {
-            countRepsForHammerCurls()
-        }
+        countReps()
     }
     
     /**
