@@ -371,7 +371,7 @@
 				TargetAttributes = {
 					0ABE2C4F1EDADAF300D3D887 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = LD8EBCUDWD;
+						DevelopmentTeam = 3E45QD236Z;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -384,7 +384,7 @@
 					};
 					0ABE2C611EDADAF300D3D887 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = LD8EBCUDWD;
+						DevelopmentTeam = 3E45QD236Z;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.watchos.app = {
@@ -394,7 +394,7 @@
 					};
 					0ABE2C701EDADAF300D3D887 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = LD8EBCUDWD;
+						DevelopmentTeam = 3E45QD236Z;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.watchos.extension = {
@@ -644,10 +644,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Sportakus_2.0 WatchKit Extension/Sportakus_2.0 WatchKit Extension.entitlements";
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -662,10 +662,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Sportakus_2.0 WatchKit Extension/Sportakus_2.0 WatchKit Extension.entitlements";
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -680,10 +680,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				IBSC_MODULE = Sportakus_2_0_WatchKit_Extension;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -698,10 +698,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				IBSC_MODULE = Sportakus_2_0_WatchKit_Extension;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -716,10 +716,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sportakus_2.0/Sportakus_2.0.entitlements;
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				INFOPLIST_FILE = Sportakus_2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -730,10 +730,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sportakus_2.0/Sportakus_2.0.entitlements;
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				INFOPLIST_FILE = Sportakus_2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

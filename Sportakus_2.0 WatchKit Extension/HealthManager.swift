@@ -19,7 +19,14 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
     var startDateSaved = Date()
     var endDateSaved = Date()
     
-    //Authorisieren der Healthkit Informationen
+    class var sharedInstance: HealthManager {
+        struct Static {
+            static let instance = HealthManager()
+        }
+        return Static.instance
+    }
+    
+        //Authorisieren der Healthkit Informationen
     func authorizeHealthKit(completion: ((_ success:Bool, _ error: Error) -> Void)!){
         // 1. Set the types you want to read from HK Store
         
@@ -48,6 +55,9 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
         if (self.workoutActive) {
             //finish the current workout
             self.workoutActive = false
+            if let workout = self.session{
+                self.healthKitStore.end(workout)
+            }
         } else {
             //start a new workout
             self.workoutActive = true
@@ -153,8 +163,7 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
             
             self.healthKitStore.add(samples, to: workout) { (success, error) -> Void in
                 guard success else {
-                    // Perform proper error handling here...
-                    fatalError("*** An error occurred while adding a " + "sample to the workout: \(String(describing: error?.localizedDescription))")
+                    return
                 }
             }
         }

@@ -48,8 +48,6 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
     var schonEineUebungGemacht = Bool()
     var abgeschlosseneUebung = [String]()
     
-    let healthManager = HealthManager()
-    
     
     /**
      Speichert den Context in einer Variablen
@@ -168,13 +166,13 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
                 pushController(withName: "ErrorHandler", context: errorMessage)
             }else{
                 defaults.set(rowIndex, forKey: "welcheUebung")
-                healthManager.startWorkout()
+                HealthManager.sharedInstance.startWorkout()
                 pushController(withName: "UebungsUebersicht", context: rowIndex)
             }
 
         }else{
             defaults.set(rowIndex, forKey: "welcheUebung")
-            healthManager.startWorkout()
+            HealthManager.sharedInstance.startWorkout()
             pushController(withName: "UebungsUebersicht", context: rowIndex)
         }
     }
@@ -204,7 +202,7 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
      */
     @IBAction func trainingBeendenButtonPressed() {
         
-        healthManager.startWorkout()
+        HealthManager.sharedInstance.startWorkout()
         
         wcSession = WCSession.default()
         wcSession.delegate = self
