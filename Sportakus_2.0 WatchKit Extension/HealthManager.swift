@@ -179,7 +179,6 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
         case .ended:
             endDateSaved = (session?.endDate)!
             createWorkoutStreamingQuery()
-            healthKitStore.end(session!)
         default:
             print("Unexpected state \(toState)")
         }
