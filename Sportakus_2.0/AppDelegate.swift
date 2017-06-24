@@ -8,11 +8,14 @@
 
 import UIKit
 import CoreData
+import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let healthStore = HKHealthStore()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -90,6 +93,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func applicationShouldRequestHealthAuthorization(_ application: UIApplication) {
+        self.healthStore.handleAuthorizationForExtension { success, error in
+            //...
+        }
+    }
 }
 
 let ad = UIApplication.shared.delegate as! AppDelegate

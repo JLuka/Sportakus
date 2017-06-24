@@ -37,6 +37,17 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func willActivate() {
         super.willActivate()
         
+        HealthManager.sharedInstance.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                print("HealthKit authorization received.")
+            }
+            else
+            {
+                print("HealthKit authorization denied!")
+                print("\(error)")
+            }
+        }
+        
         wcSession = WCSession.default()
         wcSession.delegate = self
         if wcSession.activationState != .activated {

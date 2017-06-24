@@ -171,6 +171,7 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
 
         }else{
             defaults.set(rowIndex, forKey: "welcheUebung")
+            HealthManager.sharedInstance.startWorkout()
             pushController(withName: "UebungsUebersicht", context: rowIndex)
         }
     }
@@ -199,6 +200,8 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
      Präsentiert eine Alert, wenn die Nachricht erfolgreich zugestellt wurde und wenn das Senden fehlgeschlagen ist.
      */
     @IBAction func trainingBeendenButtonPressed() {
+        
+        HealthManager.sharedInstance.startWorkout()
         
         wcSession = WCSession.default()
         wcSession.delegate = self
