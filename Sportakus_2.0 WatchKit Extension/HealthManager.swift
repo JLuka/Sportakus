@@ -22,11 +22,11 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
     //Authorisieren der Healthkit Informationen
     func authorizeHealthKit(completion: ((_ success:Bool, _ error: Error) -> Void)!){
         // 1. Set the types you want to read from HK Store
-        let healthKitTypesToRead = Set([
-            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!
-            ])
+        
         // 2. Set the types you want to write to HK Store
         let healthKitTypesToWrite = Set([
+            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!,
+            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!,
             HKQuantityType.workoutType()
             ])
         
@@ -37,7 +37,7 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
         }
         
         // 4.  Request HealthKit authorization
-        healthKitStore.requestAuthorization(toShare: healthKitTypesToWrite, read: healthKitTypesToRead) { (success, error) -> Void in
+        healthKitStore.requestAuthorization(toShare: healthKitTypesToWrite, read: nil) { (success, error) -> Void in
             if success == false {
                 print("Authorization failed")
             }
@@ -48,9 +48,6 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
         if (self.workoutActive) {
             //finish the current workout
             self.workoutActive = false
-            if let workout = self.session {
-                healthKitStore.end(workout)
-            }
         } else {
             //start a new workout
             self.workoutActive = true
@@ -87,10 +84,6 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
             fatalError("*** Unable to create the active energy burned type ***")
         }
         
-        guard let heartRateType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else {
-            fatalError("Unable to create the active energy burned type")
-        }
-        
         let device = HKDevice.local()
         
         let datePredicate = HKQuery.predicateForSamples(withStart: session?.startDate, end: session?.endDate, options: [])
@@ -103,31 +96,19 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
         
         let query = HKSampleQuery(sampleType: activeEnergyType, predicate: predicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: [sortByDate]) { (query, returnedSamples, error) -> Void in
             
-            guard let samples = returnedSamples as? [HKQuantitySample] else {
-                // Add proper error handling here...
-                print("*** an error occurred: \(error?.localizedDescription) ***")
-                return
-            }
-            
-            let energyUnit = HKUnit.kilocalorie()
-            var totalActiveEnergy : Double = 0.0
-        
-            
-            for sample in samples {
-                totalActiveEnergy += sample.quantity.doubleValue(for: energyUnit)
-            }
+            let energyBurned = HKQuantity(unit: HKUnit.kilocalorie(),
+                                          doubleValue: 425.0)
             
             let startDate = self.startDateSaved
             let endDate = self.endDateSaved
             let duration = endDate.timeIntervalSince(startDate)
             
-            let totalActiveEnergyQuantity = HKQuantity(unit: energyUnit, doubleValue: totalActiveEnergy)
             
             let workout = HKWorkout(activityType: self.configuration.activityType,
                                     start: startDate as Date,
                                     end: endDate as Date,
                                     duration: duration,
-                                    totalEnergyBurned: totalActiveEnergyQuantity,
+                                    totalEnergyBurned: energyBurned,
                                     totalDistance: nil,
                                     device: HKDevice.local(),
                                     metadata: [HKMetadataKeyIndoorWorkout : true])
@@ -136,26 +117,48 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
             self.healthKitStore.save(workout, withCompletion: { (success, error) -> Void in
                 guard success else {
                     // Add proper error handling here...
-                    print("*** an error occurred: \(error?.localizedDescription) ***")
+                    print("*** an error occurred: ***")
                     return
                 }
-                
-                self.healthKitStore.add(samples, to: workout, completion: { (success, error) -> Void in
-                    guard success else {
-                        // Add proper error handling here...
-                        print("*** an error occurred: \(error?.localizedDescription) ***")
-                        return
-                    }
-                    
-                    print("Workout saved successfully")
-                    
-                })
-                
             })
+            
+            
+            var samples:[HKQuantitySample] = []
+            
+            guard let energyBurnedType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned) else {
+                fatalError("*** Unable to create an energy burned type ***")
+            }
+            
+            let energyBurnedPerInterval = HKQuantity(unit: HKUnit.kilocalorie(),
+                                                     doubleValue: 15.5)
+            
+            let energyBurnedPerIntervalSample =
+                HKQuantitySample(type: energyBurnedType, quantity: energyBurnedPerInterval,
+                                 start: self.startDateSaved, end: self.endDateSaved)
+            
+            samples.append(energyBurnedPerIntervalSample)
+            
+            guard let heartRateType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else {
+                fatalError("*** Unable to create a heart rate type ***")
+            }
+            
+            let heartRateForInterval = HKQuantity(unit: HKUnit(from: "count/min"),
+                                                  doubleValue: 95.0)
+            
+            let heartRateForIntervalSample =
+                HKQuantitySample(type: heartRateType, quantity: heartRateForInterval,
+                                 start: self.startDateSaved, end: self.endDateSaved)
+            
+            samples.append(heartRateForIntervalSample)
+            
+            self.healthKitStore.add(samples, to: workout) { (success, error) -> Void in
+                guard success else {
+                    // Perform proper error handling here...
+                    fatalError("*** An error occurred while adding a " + "sample to the workout: \(String(describing: error?.localizedDescription))")
+                }
+            }
         }
-        
         healthStore.execute(query)
-        
     }
     
     
@@ -164,11 +167,10 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
         switch toState {
         case .running:
             startDateSaved = (session?.startDate)!
-            print(startDateSaved)
         case .ended:
             endDateSaved = (session?.endDate)!
             createWorkoutStreamingQuery()
-            print("ended")
+            healthKitStore.end(session!)
         default:
             print("Unexpected state \(toState)")
         }

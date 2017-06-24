@@ -168,11 +168,13 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
                 pushController(withName: "ErrorHandler", context: errorMessage)
             }else{
                 defaults.set(rowIndex, forKey: "welcheUebung")
+                healthManager.startWorkout()
                 pushController(withName: "UebungsUebersicht", context: rowIndex)
             }
 
         }else{
             defaults.set(rowIndex, forKey: "welcheUebung")
+            healthManager.startWorkout()
             pushController(withName: "UebungsUebersicht", context: rowIndex)
         }
     }
