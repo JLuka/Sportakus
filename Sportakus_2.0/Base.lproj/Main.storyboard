@@ -183,7 +183,7 @@
                                 <segue destination="cJC-zy-rY3" kind="show" identifier="watch" id="1Sq-zp-7to"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="g71-g0-0Hw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="g71-g0-0Hw">
                             <connections>
                                 <action selector="watchClicked:" destination="BYZ-38-t0r" id="eBH-5A-afd"/>
                             </connections>
