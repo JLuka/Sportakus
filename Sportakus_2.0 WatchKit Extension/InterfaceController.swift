@@ -60,6 +60,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func didDeactivate() {
         super.didDeactivate()
+        if wcSession.activationState == .activated {
+            
+        }
     }
     
     public func session(_ session: WCSession, activationDidCompleteWith    activationState: WCSessionActivationState, error: Error?) {
