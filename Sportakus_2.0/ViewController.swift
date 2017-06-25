@@ -22,7 +22,8 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
     var uebungenString = [""]
     var plaeneString = [""]
     var messageString: [String: [String]] = [:]
-
+    
+    var trainingsdaten = [[String]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +33,7 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         tableViewPlan.dataSource = self
         tableViewPlan.delegate = self
         
+        //sessionW = SessionW(wcSessionInit: wcSession)
        // generateTestData()
         attemptFetch()
         // Do any additional setup after loading the view, typically from a nib.
@@ -209,7 +211,7 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         }
     }
     
-    @IBAction func refreshWatchClicked(_ sender: UIBarButtonItem) {
+    @IBAction func watchClicked(_ sender: UIBarButtonItem) {
         
         prepareData()
         
@@ -231,8 +233,7 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         // show the alert
         self.present(alert, animated: true, completion: nil)
         
-        
-        
+
     }
     func prepareData() {
         
@@ -270,6 +271,83 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
         
     }
+    
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        
+            self.trainingsdaten = message["trainingsdaten"] as! [[String]]
+
+        print(trainingsdaten)
+        
+        var planName = trainingsdaten[0]
+        var datum = trainingsdaten[1]
+        
+        _ = trainingsdaten[2][0]
+        let saetze = trainingsdaten[2][1]
+        let gewicht = trainingsdaten[2][2]
+        let gemachteWiederholungen = trainingsdaten[2][4]
+        let sekunden = trainingsdaten[2][5]
+        
+        var item: UebungArchiv!
+        var satzItem: [Saetze]! = [Saetze]()
+        item = UebungArchiv(context: context)
+        
+        item.planName = planName[0]
+        item.datum = datum[0]
+        item.saetze = (saetze as NSString).intValue
+        item.gewicht = (gewicht as NSString).doubleValue
+        // item.geschaffteWiederholungen = (gemachteWiederholungen as NSString).intValue
+        
+        
+        trainingsdaten.remove(at: 0)
+        trainingsdaten.remove(at: 0)
+        
+        
+        
+        item.saetzeString = ""
+        // satzItem.nameUebung = uebungName
+        //  satzItem.wiederholungen = (gemachteWiederholungen as NSString).intValue
+        // satzItem.sekunden = (sekunden as NSString).intValue
+        
+        
+        var counter = 0
+        var uebungsName = ""
+        
+        
+        for _ in 0 ..< trainingsdaten.count {
+            
+            uebungsName = trainingsdaten[0][0]
+            trainingsdaten[0].remove(at: 0)
+            trainingsdaten[0].remove(at: 0)
+            trainingsdaten[0].remove(at: 0)
+            counter = trainingsdaten[0].count/3
+            for i in 0 ..< counter  {
+                let tempItem = Saetze(context: context)
+                satzItem.append(tempItem)
+                satzItem[i].nameUebung = uebungsName
+                satzItem[i].wiederholungen = (trainingsdaten[0][1] as NSString).intValue
+                satzItem[i].sekunden = (trainingsdaten[0][2] as NSString).intValue
+                item.mutableSetValue(forKey: "toSaetze").add(satzItem[i])
+                item.saetzeString = item.saetzeString! + uebungsName + gemachteWiederholungen + sekunden
+                trainingsdaten[0].remove(at: 0)
+                trainingsdaten[0].remove(at: 0)
+                trainingsdaten[0].remove(at: 0)
+                
+            }
+            trainingsdaten.remove(at: 0)
+        }
+        
+        
+        
+        
+        
+        
+        ad.saveContext()
+        
+        trainingsdaten.removeAll()
+    }
+
+    
     public func sessionDidBecomeInactive(_ session: WCSession) {
         print ("error in sessionDidBecomeInactive")
     }
