@@ -27,7 +27,6 @@
 		0ABE2C941EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C921EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld */; };
 		0ABE2C951EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ABE2C921EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld */; };
 		0AE52CDB1EE2C46400B009BB /* UebersichtInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDA1EE2C46400B009BB /* UebersichtInterfaceController.swift */; };
-		0AE52CDD1EE2CF7D00B009BB /* HammerCurlsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDC1EE2CF7D00B009BB /* HammerCurlsExtension.swift */; };
 		0AE52CE01EE2D0AB00B009BB /* TimerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE52CDF1EE2D0AB00B009BB /* TimerExtensions.swift */; };
 		0AEEC6351EE44015006C7B98 /* DatenEmpfangenTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEC6341EE44015006C7B98 /* DatenEmpfangenTestViewController.swift */; };
 		0AF492831EE19FDD00A2597E /* CommunicationToWatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF492821EE19FDD00A2597E /* CommunicationToWatchTest.swift */; };
@@ -37,6 +36,7 @@
 		0AF4928B1EE1A9CA00A2597E /* UebungsUebersichtInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4928A1EE1A9CA00A2597E /* UebungsUebersichtInterfaceController.swift */; };
 		0AF4928D1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4928C1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift */; };
 		0AF57DBF1EF9035E004820A1 /* DynamicErrorInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF57DBE1EF9035E004820A1 /* DynamicErrorInterfaceController.swift */; };
+		6D96698A1EFED68F00896282 /* RepitionsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9669891EFED68F00896282 /* RepitionsExtension.swift */; };
 		73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */; };
 		73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */; };
 		73CB0E251EF91FED004EE79C /* ArchivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB0E241EF91FED004EE79C /* ArchivViewController.swift */; };
@@ -119,7 +119,6 @@
 		0ABE2C801EDADAF300D3D887 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ABE2C931EDADBD700D3D887 /* Sportakus_2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sportakus_2.0.xcdatamodel; sourceTree = "<group>"; };
 		0AE52CDA1EE2C46400B009BB /* UebersichtInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebersichtInterfaceController.swift; sourceTree = "<group>"; };
-		0AE52CDC1EE2CF7D00B009BB /* HammerCurlsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HammerCurlsExtension.swift; sourceTree = "<group>"; };
 		0AE52CDF1EE2D0AB00B009BB /* TimerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerExtensions.swift; sourceTree = "<group>"; };
 		0AEEC6341EE44015006C7B98 /* DatenEmpfangenTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatenEmpfangenTestViewController.swift; sourceTree = "<group>"; };
 		0AF492821EE19FDD00A2597E /* CommunicationToWatchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationToWatchTest.swift; sourceTree = "<group>"; };
@@ -129,6 +128,7 @@
 		0AF4928A1EE1A9CA00A2597E /* UebungsUebersichtInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungsUebersichtInterfaceController.swift; sourceTree = "<group>"; };
 		0AF4928C1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurchfuehrungInterfaceController.swift; sourceTree = "<group>"; };
 		0AF57DBE1EF9035E004820A1 /* DynamicErrorInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicErrorInterfaceController.swift; sourceTree = "<group>"; };
+		6D9669891EFED68F00896282 /* RepitionsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepitionsExtension.swift; sourceTree = "<group>"; };
 		73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanErstellenViewController.swift; sourceTree = "<group>"; };
 		73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungsListeViewController.swift; sourceTree = "<group>"; };
 		73CB0E241EF91FED004EE79C /* ArchivViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchivViewController.swift; sourceTree = "<group>"; };
@@ -256,9 +256,9 @@
 		0AE52CDE1EE2CF8500B009BB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0AE52CDC1EE2CF7D00B009BB /* HammerCurlsExtension.swift */,
 				0AE52CDF1EE2D0AB00B009BB /* TimerExtensions.swift */,
 				0A920EEB1EE2E5390001570E /* PushToNextController.swift */,
+				6D9669891EFED68F00896282 /* RepitionsExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -371,7 +371,7 @@
 				TargetAttributes = {
 					0ABE2C4F1EDADAF300D3D887 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = LD8EBCUDWD;
+						DevelopmentTeam = 3E45QD236Z;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -384,7 +384,7 @@
 					};
 					0ABE2C611EDADAF300D3D887 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = LD8EBCUDWD;
+						DevelopmentTeam = 3E45QD236Z;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.watchos.app = {
@@ -394,7 +394,7 @@
 					};
 					0ABE2C701EDADAF300D3D887 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = LD8EBCUDWD;
+						DevelopmentTeam = 3E45QD236Z;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.watchos.extension = {
@@ -491,13 +491,13 @@
 				0AF4928D1EE1AA9F00A2597E /* DurchfuehrungInterfaceController.swift in Sources */,
 				0A9E7B841EFEC7A7001CE074 /* HealthManager.swift in Sources */,
 				0ABE2C7B1EDADAF300D3D887 /* ExtensionDelegate.swift in Sources */,
-				0AE52CDD1EE2CF7D00B009BB /* HammerCurlsExtension.swift in Sources */,
 				0AE52CDB1EE2C46400B009BB /* UebersichtInterfaceController.swift in Sources */,
 				0AF57DBF1EF9035E004820A1 /* DynamicErrorInterfaceController.swift in Sources */,
 				0ABE2C951EDADBD700D3D887 /* Sportakus_2.0.xcdatamodeld in Sources */,
 				0ABE2C791EDADAF300D3D887 /* InterfaceController.swift in Sources */,
 				0AE52CE01EE2D0AB00B009BB /* TimerExtensions.swift in Sources */,
 				0AF492891EE1A8D200A2597E /* UebungenInterfaceController.swift in Sources */,
+				6D96698A1EFED68F00896282 /* RepitionsExtension.swift in Sources */,
 				0A920EEC1EE2E5390001570E /* PushToNextController.swift in Sources */,
 				0AF492851EE1A1E000A2597E /* PlaeneInterfaceController.swift in Sources */,
 			);
@@ -644,10 +644,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Sportakus_2.0 WatchKit Extension/Sportakus_2.0 WatchKit Extension.entitlements";
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -662,10 +662,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Sportakus_2.0 WatchKit Extension/Sportakus_2.0 WatchKit Extension.entitlements";
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -680,10 +680,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				IBSC_MODULE = Sportakus_2_0_WatchKit_Extension;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -698,10 +698,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				IBSC_MODULE = Sportakus_2_0_WatchKit_Extension;
 				INFOPLIST_FILE = "Sportakus_2.0 WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -716,10 +716,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sportakus_2.0/Sportakus_2.0.entitlements;
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				INFOPLIST_FILE = Sportakus_2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -730,10 +730,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sportakus_2.0/Sportakus_2.0.entitlements;
-				DEVELOPMENT_TEAM = LD8EBCUDWD;
+				DEVELOPMENT_TEAM = 3E45QD236Z;
 				INFOPLIST_FILE = Sportakus_2.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.jannis.Sportakus-2-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xml.Sportakus-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
