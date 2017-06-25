@@ -200,9 +200,6 @@ extension DurchfuehrungInterfaceController {
         let gravity_x = round(motion.rotationRate.x*1000)/10
         let gravity_z = round(motion.gravity.z)*100
         
-        print("gravity_X\(round(motion.gravity.x*1000)/10)")
-        print("rot_x\(round(motion.rotationRate.x*1000)/10)")
-        
         if(gravity_x < 10 && gravity_z < 1){
             self.lifted = true;
         }
