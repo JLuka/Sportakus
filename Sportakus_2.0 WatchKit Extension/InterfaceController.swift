@@ -33,6 +33,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     /**
      WatchConnectivity Session aktivieren
+     Health Daten auhtorisieren lassen
      */
     override func willActivate() {
         super.willActivate()

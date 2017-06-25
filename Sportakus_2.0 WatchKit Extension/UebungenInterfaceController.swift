@@ -157,6 +157,7 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
      
      # Wichtig #
      Der RowIndex, der ausgewählten Uebung, muss als Context uebergeben werden
+     Hier wird auch das Healthkit Workout gestartet
      */
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         if schonEineUebungGemacht{
@@ -198,6 +199,9 @@ class UebungenInterfaceController: WKInterfaceController, WCSessionDelegate {
      
      sendet eine Message an das Handy, bestehend aus allen Trainingsdaten aus der Suite "abgeschlosseneUebungen"
      Präsentiert eine Alert, wenn die Nachricht erfolgreich zugestellt wurde und wenn das Senden fehlgeschlagen ist.
+     
+     # Wichtig #
+     Beendet das Healthkit Workout und schreibt die Workout Parameter in die Health App
      */
     @IBAction func trainingBeendenButtonPressed() {
         
