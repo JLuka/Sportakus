@@ -39,6 +39,8 @@
 		6D96698A1EFED68F00896282 /* RepitionsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9669891EFED68F00896282 /* RepitionsExtension.swift */; };
 		73AD53621EE41D8700A9AF34 /* PlanErstellenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */; };
 		73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */; };
+		73C8C5891EFFAF4900C385FF /* WaehleUebungViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8C5881EFFAF4900C385FF /* WaehleUebungViewController.swift */; };
+		73C8C58B1EFFB1B800C385FF /* UebungAuswaehlenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8C58A1EFFB1B800C385FF /* UebungAuswaehlenViewController.swift */; };
 		73CB0E251EF91FED004EE79C /* ArchivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB0E241EF91FED004EE79C /* ArchivViewController.swift */; };
 		73CB0E271EF923C0004EE79C /* ItemCellArchiv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB0E261EF923C0004EE79C /* ItemCellArchiv.swift */; };
 		73D21A101EE985AC00A86FB1 /* ItemCellPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D21A0F1EE985AC00A86FB1 /* ItemCellPlan.swift */; };
@@ -131,6 +133,8 @@
 		6D9669891EFED68F00896282 /* RepitionsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepitionsExtension.swift; sourceTree = "<group>"; };
 		73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanErstellenViewController.swift; sourceTree = "<group>"; };
 		73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungsListeViewController.swift; sourceTree = "<group>"; };
+		73C8C5881EFFAF4900C385FF /* WaehleUebungViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaehleUebungViewController.swift; sourceTree = "<group>"; };
+		73C8C58A1EFFB1B800C385FF /* UebungAuswaehlenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UebungAuswaehlenViewController.swift; sourceTree = "<group>"; };
 		73CB0E241EF91FED004EE79C /* ArchivViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchivViewController.swift; sourceTree = "<group>"; };
 		73CB0E261EF923C0004EE79C /* ItemCellArchiv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCellArchiv.swift; sourceTree = "<group>"; };
 		73D21A0F1EE985AC00A86FB1 /* ItemCellPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCellPlan.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 				73AD53611EE41D8700A9AF34 /* PlanErstellenViewController.swift */,
 				73AD53631EE41FDF00A9AF34 /* UebungsListeViewController.swift */,
 				73D21A121EE99BE000A86FB1 /* UebungErstellenViewController.swift */,
+				73C8C5881EFFAF4900C385FF /* WaehleUebungViewController.swift */,
+				73C8C58A1EFFB1B800C385FF /* UebungAuswaehlenViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -463,9 +469,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D21A1F1EE9A8E800A86FB1 /* Plan+CoreDataProperties.swift in Sources */,
+				73C8C5891EFFAF4900C385FF /* WaehleUebungViewController.swift in Sources */,
 				73D21A1C1EE9A8E800A86FB1 /* Uebung+CoreDataClass.swift in Sources */,
 				73D21A171EE99F0E00A86FB1 /* ItemCellUebung.swift in Sources */,
 				0ABE2C561EDADAF300D3D887 /* ViewController.swift in Sources */,
+				73C8C58B1EFFB1B800C385FF /* UebungAuswaehlenViewController.swift in Sources */,
 				0AF492831EE19FDD00A2597E /* CommunicationToWatchTest.swift in Sources */,
 				73AD53641EE41FDF00A9AF34 /* UebungsListeViewController.swift in Sources */,
 				73D21A131EE99BE000A86FB1 /* UebungErstellenViewController.swift in Sources */,

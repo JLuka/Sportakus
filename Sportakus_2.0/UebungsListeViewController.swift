@@ -168,7 +168,7 @@ class UebungsListeViewController: UIViewController, UITableViewDataSource, UITab
             
         }  else if segue.identifier == "UebungErstellen" {
             
-            if let destination = segue.destination as? UebungErstellenViewController{
+            if let destination = segue.destination as? WaehleUebungViewController{
 
                     destination.plan = plan
             }
