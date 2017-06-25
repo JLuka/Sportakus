@@ -178,7 +178,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Pläne" id="E0Z-bY-8be">
-                        <barButtonItem key="leftBarButtonItem" title="watch" id="fXt-vi-Krb">
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="watch" id="fXt-vi-Krb">
                             <connections>
                                 <segue destination="cJC-zy-rY3" kind="show" identifier="watch" id="1Sq-zp-7to"/>
                             </connections>
