@@ -131,7 +131,6 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
             
             self.healthKitStore.save(workout, withCompletion: { (success, error) -> Void in
                 guard success else {
-                    // Add proper error handling here...
                     print("*** an error occurred: ***")
                     return
                 }
@@ -156,9 +155,7 @@ class HealthManager: NSObject, HKWorkoutSessionDelegate {
             samples.append(heartRateForIntervalSample)
             
             self.healthKitStore.add(samples, to: workout, completion: { success, error in
-                if (error != nil) {
-                    
-                }
+                return
             })
         }
         healthStore.execute(query)
