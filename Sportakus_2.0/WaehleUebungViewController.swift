@@ -28,11 +28,13 @@ class WaehleUebungViewController: UIViewController {
     
     
     /**
+     
         Wenn Segue "UebungAuswaehlen" heisst und den ViewController UebungAuswaehlenViewController hat, füge den Plan hinzu.
         
         ODER
      
         Wenn Segue "UebungErstellen" heisst und den ViewController UebungErstellenViewController hat, füge den Plan hinzu.
+     
      */
     
     

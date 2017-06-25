@@ -29,6 +29,7 @@ class UebungAuswaehlenViewController: UIViewController, UITableViewDataSource, U
     /**
      
      Gibt die Anzahl der Rows einer TableView wieder.
+     
      */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,6 +41,7 @@ class UebungAuswaehlenViewController: UIViewController, UITableViewDataSource, U
     
     
     /**
+     
      - Zelle wird für die TableView inizialisiert.
      - Das Übungsarray wird an die Zelle übergeben und mit Werten aus einer einzelnen Übung gefüllt
      
@@ -58,6 +60,7 @@ class UebungAuswaehlenViewController: UIViewController, UITableViewDataSource, U
     
     
     /**
+     
      - Via Click auf die Zelle wird die ausgewählte Übung mittels Relationship zu dem Plan zugewiesen.
      - Mit saveContext() wird in der Core DATA gespeichert.
      - popViewController schließt den aktuellen ViewController

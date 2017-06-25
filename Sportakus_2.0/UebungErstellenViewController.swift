@@ -99,6 +99,7 @@ class UebungErstellenViewController: UIViewController {
     
     
     /**
+     
      Daten werden in die Textfelder geladen.
      
      */
@@ -119,6 +120,7 @@ class UebungErstellenViewController: UIViewController {
 
     
     /**
+     
      Button Clicked:
      
      1. Ausgewählte Übung wird zum löschen gekennzeichnet.
