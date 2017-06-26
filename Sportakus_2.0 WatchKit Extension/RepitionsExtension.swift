@@ -197,17 +197,17 @@ extension DurchfuehrungInterfaceController {
         //für mehr genauigkeit wird Rotationsrate nach x geneuer gerundet und dann erweitert
         //Da bei Crunches der Körper nicht vollständig auf 90 Grad gebeugt wird,
         //wird auf einen kleineren Zwischenwert geprüft
-        let gravity_x = round(motion.rotationRate.x*1000)/10
+        let rotationRate_x = round(motion.rotationRate.x*1000)/10
         let gravity_z = round(motion.gravity.z)*100
         
-        if(gravity_x < 10 && gravity_z < 1){
+        if(rotationRate_x < 10 && gravity_z < 1){
             self.lifted = true;
         }
         
         if(!self.lifted){
             return
         }
-        else if(gravity_x > 10 && gravity_z < -99 ){
+        else if(rotationRate_x > 10 && gravity_z < -99 ){
             self.lifted = false;
             repitionDone();
         }

@@ -24,6 +24,13 @@ class ArchivViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
 
+    
+    /**
+     
+     1. Gibt die Anzahl an Sections zurück.
+     
+     */
+    
 
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -35,6 +42,12 @@ class ArchivViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
 
+    
+    /**
+     
+     1. Gibt die Anzahl der Row zurück
+     
+     */
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +61,14 @@ class ArchivViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    
+    /**
+     
+     1. Die Daten werden in eine Zelle geladen und in der View angezeigt.
+     
+     */
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCellArchiv
@@ -58,6 +79,12 @@ class ArchivViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    /**
+     
+     1. Die Daten werden an die Zelle weiter gereicht.
+     
+     */
+    
     func configureCell(cell: ItemCellArchiv, indexPath: NSIndexPath) {
         
         let item = controller.object(at: indexPath as IndexPath)
@@ -66,6 +93,16 @@ class ArchivViewController: UIViewController, UITableViewDataSource, UITableView
         
         
     }
+    
+    
+    
+    /**
+     
+     1. Die Übungen für das Archiv werden über FetchRequest aus der Datenbank gezogen.
+     2. Sortiert wird nach dem planNamen
+     3. per PerformFetch wird der Fetch ausgeführt und die Daten geladen
+     
+     */
     
     func attemptFetch() {
         
@@ -93,7 +130,11 @@ class ArchivViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    
+    /**
+     
+     1. Es wird "gehorcht" ob Daten sich im FetchRequest verändern. Wenn ja ändert sich die tableView
+     
+     */
     
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -106,6 +147,14 @@ class ArchivViewController: UIViewController, UITableViewDataSource, UITableView
         tableViewArchiv.endUpdates()
         
     }
+    
+    
+    /**
+     
+     Boilerplate Funktionen die ermöglichen die TableView automatisch zu verändern.
+     
+     */
+    
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         

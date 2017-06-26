@@ -33,13 +33,17 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         tableViewPlan.dataSource = self
         tableViewPlan.delegate = self
         
-        //sessionW = SessionW(wcSessionInit: wcSession)
-       // generateTestData()
         attemptFetch()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
 
+    
+    /**
+     
+     1. Gibt die Anzahl an Sections zurück
+     
+     */
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -51,6 +55,17 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
     }
     
+    
+    
+    /**
+     
+     Wenn Segue "PlanEditieren" heisst und den ViewController PlanErstellenViewController hat, füge den Plan hinzu.
+     
+     ODER
+     
+     Wenn Segue "UebungsListe" heisst und den ViewController UebungsListeViewController hat, füge den Plan hinzu.
+     
+     */
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,6 +91,11 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
     }
 
+    /**
+     
+     1. Gibt die anzahl an rows zurück
+     
+     */
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,6 +109,15 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
     }
     
+    /**
+    
+     1. Die zelle mit dem Identifier ItemCell wird gesucht.
+     2. Es wird per configureCell die Zelle vorbereitet und mit Content gefüllt.
+     
+     */
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCellPlan
@@ -99,6 +128,12 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
     }
     
+    /**
+     
+     1. Daten werden an eine Zelle weiter gegeben und mit Content gefüllt.
+     
+     */
+    
     func configureCell(cell: ItemCellPlan, indexPath: NSIndexPath) {
         
         let item = controller.object(at: indexPath as IndexPath)
@@ -107,7 +142,17 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
     }
     
-    
+    /**
+     
+     1. Eine fetchRequest wird erstellt.
+     2. Plan wird nach Namen sortiert. Dies bietet die Erweiterungsmöglichkeit später die Daten nach belieben zu sortieren.
+     3. FetchResultController wird inizialisiert.
+     4. Daten werden versucht aus der Datenbank zu lesen. Abgefangen wird es mit einer try Catch funktion.
+     5. Der Plan wird erstellt.
+     6. Der Name des Plans wird in der Titelleiste angezeigt.
+     7. Die Übungen in einem Plan werden einem Übungsarray hinzugefügt.
+     
+     */
 
     func attemptFetch() {
         
@@ -131,6 +176,17 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         controller.delegate = self
         
     }
+    
+    
+    /**
+     
+     1. Delete Button für Swipe wird angelegt.
+     2. Der Plan mit den jeweiligen Übungen wird aus der Datenbank gezogen.
+     3. Jeder Übung wird ein Delete Button zugewiesen
+     4. Über performSegue wird die View geändert und der Wert "UebungEditieren" hinzugefügt. Dies bewirkt das das ausgewählte Item im UebungErstellenController als itemToEdit makiert wird.
+     5. Der Delete Button wird in seine Ausgangsposition anmiert. Anderfalls wäre er kontinuierlich offen.
+     
+     */
 
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -154,6 +210,12 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
     }
     
 
+    /**
+     
+     1. Per Klick auf eine Zelle wird die Segue mit dem Identifier UebungsListe gestartet
+     
+     */
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -167,6 +229,11 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
     }
     
+    /**
+     
+     1. Es wird "gehorcht" ob Daten sich im FetchRequest verändern. Wenn ja ändert sich die tableView
+     
+     */
     
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -179,6 +246,14 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         tableViewPlan.endUpdates()
         
     }
+    
+    
+    /**
+     
+     Boilerplate Funktionen die ermöglichen die TableView automatisch zu verändern.
+     
+     */
+    
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
@@ -211,6 +286,15 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         }
     }
     
+    
+    /**
+     
+     1. Die Daten werden mit prepareData vorbereitet
+     2. Der String mit den behinhaltenden Daten werden an die Watch geschickt per "sendMessage"
+     3. Ist der Vorgang erfolgreich wird ein Alert angezeigt.
+     
+     */
+    
     @IBAction func watchClicked(_ sender: UIBarButtonItem) {
         
         prepareData()
@@ -235,6 +319,15 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
 
     }
+    
+    /**
+     
+     1. Zuerst wird der Message die an die Watch geschickt wird der Plan Name hinzugefügt.
+     2. Danach werden die einzelnen Übungen eines Plan ausgelesen und die Daten der einzelnen Übungen in ein Array geschrieben.
+     3. Dies wird solange wiederholt bis keine Übungen mehr vorhanden sind.
+     
+     */
+    
     func prepareData() {
         
         plaeneString.removeAll()
@@ -269,9 +362,19 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
             count += 1
         }
         
-        
     }
     
+    
+    /**
+     
+     1. Zuerst wird der Plan Name und das Datum aus der an uns geschickten Dictionary gelesen. 
+     2. Die Daten wie Sätze gewicht und wiederholungen sowie Sekunden werden ebenfalls abgescheichert.
+     3. Nun wird ein neues ÜbungArchiv objekt erstellt und die Daten werden dahin übertragen.
+     4. Nun werden die ersten Daten gelöscht die bereits ausgelesen wurden um mehr übersicht zu haben.
+     5. Nun werden die Übungen einzeln ausgelesen. Nach jedem auslesen wird die ausgelesene Übung gelöscht und das Array verkleinert.
+     6. Am Ende wird Das neue Objekt in der Datenbank gespeichert und die trainingsdaten gelöscht.
+     
+     */
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         
@@ -290,13 +393,16 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
         var item: UebungArchiv!
         var satzItem: [Saetze]! = [Saetze]()
+        
+        
         item = UebungArchiv(context: context)
+        
+        
         
         item.planName = planName[0]
         item.datum = datum[0]
         item.saetze = (saetze as NSString).intValue
         item.gewicht = (gewicht as NSString).doubleValue
-        // item.geschaffteWiederholungen = (gemachteWiederholungen as NSString).intValue
         
         
         trainingsdaten.remove(at: 0)
@@ -305,9 +411,6 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
         
         
         item.saetzeString = ""
-        // satzItem.nameUebung = uebungName
-        //  satzItem.wiederholungen = (gemachteWiederholungen as NSString).intValue
-        // satzItem.sekunden = (sekunden as NSString).intValue
         
         
         var counter = 0
@@ -336,16 +439,17 @@ class ViewController: UIViewController, WCSessionDelegate, UITableViewDataSource
             }
             trainingsdaten.remove(at: 0)
         }
-        
-        
-        
-        
-        
-        
+
         ad.saveContext()
         
         trainingsdaten.removeAll()
     }
+    
+    /**
+     
+     1. Boilerplate Daten für die Watch Connectivity
+     
+     */
 
     
     public func sessionDidBecomeInactive(_ session: WCSession) {

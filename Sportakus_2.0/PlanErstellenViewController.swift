@@ -13,27 +13,33 @@ class PlanErstellenViewController: UIViewController {
     
     var itemToEdit: Plan?
     var plaene =  [Plan]()
+    
+    /**
+     
+     1. Wenn itemToEdit nicht Null ist werden Daten geladen.
+     
+     */
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let topItem = self.navigationController?.navigationBar.topItem {
-            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-        }
         
         
         if itemToEdit != nil {
             loadItemdata()
         }
 
-        // Do any additional setup after loading the view.
     }
+    
+    
+    /**
+     
+     1. Wenn itemToEdit null ist wird ein neuer Plan erstellt.
+     2. Nach der Eingabe der Plan Daten wird dieser gespeichert.
+     3. popViewController wird der Seguel geschlossen.
+     
+     */
 
     @IBAction func btnClicked(_ sender: Any) {
-        
-        
-    
-        
         
         
         if planName.text != "" {
@@ -65,7 +71,11 @@ class PlanErstellenViewController: UIViewController {
         }
     }
     
-    
+    /**
+     
+     Zeigt einen Alert an.
+     
+     */
     
     
     func newAlert(alert: String) -> UIAlertController {
@@ -77,17 +87,27 @@ class PlanErstellenViewController: UIViewController {
     }
     
     
+    /**
+     
+     1. Wenn ein Plan vorhanden ist wird dieser in die View geladen.
+     
+     */
+    
+    
     func loadItemdata() {
         
         if let item = itemToEdit {
             
             planName.text = item.name
-            
                 
             }
-        
-        
     }
+    
+    /**
+     
+     1. Plan kann gelöscht werden.
+     
+     */
     
     @IBAction func deleteClicked(_ sender: UIBarButtonItem) {
         
